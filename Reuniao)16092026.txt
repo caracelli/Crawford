@@ -1,116 +1,275 @@
-O conteúdo gerado por IA pode estar incorreto
-
-Caroline Poteria começou a transcrição
+[] Caroline Poteria: Caroline Poteria
 
-Caroline Poteria
-0 minutos 3 segundos0:03
-Caroline Poteria 0 minutos 3 segundos
-Tudo bem também.
-Caroline Poteria 0 minutos 6 segundos
-Aqui, só para explicar, eu acho que talvez eu tenha também não deva ter colaborado lá no texto. Esse da Colômbia, às vezes a gente me perco. O da Colômbia é assim, ao que tudo indica, a gente vai fazer com um banco de horas, tá?
-ND
+ começou a transcrição
+[] : Tudo bem também.
+[] : Aqui, só para explicar, eu acho que talvez eu tenha também não deva ter colaborado lá no texto. Esse da Colômbia, às vezes a gente me perco. O da Colômbia é assim, ao que tudo indica, a gente vai fazer com um banco de horas, tá?
+[] : With me.
+[] : A.
+[] : Eu duvido muito que ele vai ser um projeto, só que como ele vai ser feito para outro país, qual que é a ideia? A gente faz e a gente vai cobrar deles esse valor das horas, o proporcional pelas horas. Então a gente só precisa ter uma noção mais ou menos de quantas horas vão ser.
+[] : Yeah.
+[] : So.
+[] : porque aí a gente já passa esse projeto, vai ficar aproximadamente X para vocês. Tá tudo bem? Ah, tá tudo bem. Então beleza. Mas a gente vai fazer, ao que tudo indica, como como o pacote mesmo das horas. Porque não é uma coisa muito crítica, né?
+[] : É que passam para ele como que fosse um fechado, mas aí vocês usam um banco de horas.
+[] : Okay.
+[] : É exato. A gente vai passar para eles como se fosse, mas isso aí, porque acho que faria mais sentido se fosse um projeto fechado, se a gente tivesse muita urgência.
+[] : Okay.
+[] : Como não é algo assim tão, tão crítico, eu acho que vai dar para passar assim como como Como é que fala, meu Deus? Eu acho que vai dar para passar assim como o banco, tá? Mas é só pra gente ter uma noção de quanto tempo mais ou menos a gente precisaria para montar essa API, para enviar as informações para ele.
+[] : Yeah.
+[] : algo assim tem muitos muitos detalhes mas é só pra gente ter uma essa proximidade aí dessas horas né para para poder fazer esse cálculo aqui uma regra de três simplesinha para mandar para eles ó vai ficar em torno de tanto que vocês vão ter que pagar para Caroline Brasil
+[] : Martins.
+[] : Yeah.
+[] : Mas o projeto principal, esse me passaram agora, aí falaram Carol, já tenta falar com eles agora.
+[] : porque esse vai ser um pouquinho mais trabalhoso aí eu vou até pedir a sua ajuda porque em nível técnico qual seria a melhor opção tá eu acho que talvez seja refazer tudo mas você pode me dizer se vai dar para fazer eu vou compartilhar minha tela
+[] : O que acontece? Lembra quando a gente fez aquele levantamento da do projeto da OCR, que tinha que mexer em um portal? Eu comentei que a gente já tinha um portal aqui, a gente só ia adaptar algumas coisas.
+[] : Okay.
+[] : That, lemble.
+[] : Então, é nesse portal que a gente vai mexer. O que acontece? Eu tenho esse portal hoje que eu tenho o mesmo projeto, mas eu tenho dois links aqui para ele. Em um link eu disponibilizo para um usuário
+[] : Mm.
+[] : Um login e senha. Esse usuário é uma pessoa externa da minha seguradora, da minha corretora. Eu disponibilizo para eles esse login e senha, onde eles têm a opção de cadastrar um sinistro diretamente para a gente. Então, em vez de mandar por e-mail, eles entram aqui, tem esse botãozinho de registrar.
+[] : e aparece para ele só o que é configurado para ele, tá? Então, só o que estiver configurado ele consegue preencher, ele salva, vai espaçando em todas essas etapas, ele vai salvar a informação, vai ganhar um número de sinistro.
+[] : E isso aqui automaticamente conversa com o meu sistema, então o meu sistema aqui ele vai receber essa informação.
+[] : ele vai receber essa informação ou vai receber um e-mail falando olha chegou um novo sinistro você precisa mexer e é isso o máximo que o que esse terceiro tem acesso é essa tela aqui que é para visualizar as coisas que ele já preencheu não muda nada
+[] : So.
+[] : do que já tem, tá? É só o que ele já preencheu ali mesmo.
+[] : So.
+[] : O máximo que ele consegue fazer aqui é incluir documento. Tá vendo? É o máximo, né? Só isso. De resto, ele não consegue fazer mais nada.
+[] : Shh.
+[] : E a gente tem a outra ferramenta que é do segurado, que é somente para incluir documento, tá? Então ele entra com o número do documento dele, com CPF e CNPJ, o número do sinistro Crawford e ele vai ter só essa telinha aqui de documentos pendentes.
+[] : Essa telinha aqui some esse, some esse, só aparece isso daqui. Isso é o que a gente tem hoje. O que foi pedido?
+[] : Yeah.
+[] : A gente tem um cliente que eles precisam preencher algumas informações que vêm da seguradora, então hoje eles mandam para o pessoal daqui, para o pessoal preencher, só que tá dando muito retrabalho, tá dando muita confusão. Eles querem eles mesmos fazer essa edição dentro do sistema.
+[] : Só que esse sistema aqui não faz edição, né?
+[] : E outra, os campos que eles querem editar também não aparecem aqui, porque eles não são campos básicos de um cadastro de sinistro. Então qual que é a ideia que a gente teve? A gente ainda está montando a parte de layout para ter uma noção de mais ou menos como vai ficar, mas até peço sua ajuda se você tiver alguma opinião.
+[] : De repente, algum projeto que você já fez. A ideia é transformar isso aqui em um portal.
+[] : né hoje ele é esse site não deixa de ser um portal Mas qual a ideia deixar ele mais intuitivo né então tipo segurado o terceiro ou segurado ou a corretora eles podem entrar nesse perfil eles conseguem acessar os sinistros eles conseguem visualizar as informações
+[] : até mais informação de repente do que tá aqui né de repente eles querem visualizar algo muito específico a maioria deles tem dashboard de controle Tá mas às vezes eles querem visualizar por aqui uma coisa ou outra Então qual que era a nossa ideia
+[] : So.
+[] : O outra e qual que é uma questão também? A gente ultimamente está recebendo muito pedido assim. Eu tenho, por exemplo, um cliente telefônica. A telefônica fala tudo bem, eu tenho esses dados. Isso aqui é o cadastro básico para mim, tá? Mas a telefônica fala não, mas eu quero que você coloque um campo para eu colocar o número do meu código da telefônica.
+[] : Okay.
+[] : aí é mais fácil de eu localizar aí lá vai a gente faz uma adaptação para colocar o telefone agora a gente tá com outro cliente que falou não mas eu quero quando for operação RC coloque tal informação quando for operação Marine coloque outra informação
+[] : Só que é um outro desenvolvimento, porque eu tenho que fazer um outro ajuste de tela e tal. Então, qual que era a ideia que a gente está pensando aqui?
+[] : É, não sei se isso é exato, algo mais dinâmico, que fique mais fácil até mesmo da gente, porque aqui deixa eu te mostrar hoje o que eu faço para dar acesso para essas pessoas. Eu tenho um grupo aqui.
+[] : Algo dinâmico.
+[] : nos meus grupos né de permissão eu tenho uma opção chamada grupo externo Então imagina aqui telefônica quando eu marco esse externo aqui ele me aparece outras opções aqui do meu menu nessas minhas opções de menu eu coloco os usuários que vão ter o acesso
+[] : aquele grupo e eu tenho aqui permissões de terceiro. Essa permissão de terceiro eu falo qual é a operação que vai aparecer para ele lá na tela, qual a suboperação, qual a modalidade, qual a corretora, qual a seguradora.
+[] : E esse campo aqui são alguns campos mais fixos, tipo de cliente, o tipo de cobrança e a filial que podem variar.
+[] : mas dificilmente muda isso aqui o máximo que muda é o tipo de cobrança que são raros os casos que vai ser time sheet a maioria tabela Então hoje eu já tenho essa parametrização específica para quando é esse grupo externo porque aí ele sabe o que que ele vai carregar em cada uma dessas combos aqui
+[] : Yeah.
+[] : Yeah.
+[] : a ideia era talvez pensar em algo dinâmico também para os campos que vão aparecer a gente vai deixar esses campos fixos que são os que já tem porque esses daqui são os mínimos os campos mínimos que eu preciso para um cadastro de sinistro mas eu também preciso pensar que pode ser que de repente aquele
+[] : Cliente específico queira um campo, aquele cliente específico queira uma apólice. É porque a gente tem aqui na frente o campo de apólice. Hoje o campo ele está.
+[] : Hoje ele está, como é que fala? É em texto, mas a gente já está trabalhando numa versão para colocar em para colocar ele em como que é o nome disso?
+[] : O blog para subir aqui.
+[] : A colocar em um Robobox.
+[] : Ainda está em vias de final. Acho que está em teste. Na verdade está para teste OA corrupção. Está vendo aqui a apólice, mas eu tenho clientes que eles falam, como é segurado específico, eu já tenho SSS apólice. Eu só quero que apareça essas para eles aí.
+[] : Já deixaria fixo, né? O caso da telefone, que é um exemplo que eu tenho de desses ajustes, né? Aqui eu preciso achar um usuário e senha deles aqui para eu conseguir logar para te mostrar, mas a telefone que eu tenho tipo uma combo fixa, até então estava fixo no código.
+[] : Martins.
+[] : Yes.
+[] : E.
+[] : Aí meu desenvolvedor foi e criou uma tabela, mas sabe quando o Júnior faz as coisas sem avisar? Aí ele criou uma tabela específica com o nome telefônico, ou seja, ele criou uma tabela para melhorar, mas ele só colocou para telefônica, então qualquer outro cliente que venha, não adianta nada, porque eu também não consigo utilizar.
+[] : Operacional PC.
+[] : né mas enfim então a ideia que a gente na ideia aqui na verdade é ajustar essa ferramenta para que e detalhe ela tem que funcionar para todos os países tá então hoje a gente já eu tô com um projeto para validar aqui de teste que os meninos ajustaram
+[] : Para eu conseguir pelo menos incluir documento tal, porque isso nem estava fazendo para os outros países, não é? Eu vou ver como é que tá a parte de cadastro.
+[] : Está quando ele muda o país, ainda segue aquela regra, é só.
+[] : Parametrização do banco, né?
+[] : na verdade como se for por país eu posso parametrizar por grupo de usuário mesmo porque eu tenho aqui o grupo quando ele puxa o quando eu digito o no login né quando aqui no login eu digito o e-mail ele já vai buscar qual é o grupo que a pessoa tem acesso né
+[] : Aí, como cada um só está dentro do outro?
+[] : Quem está, mas todos os países estão no mesmo banco de dados.
+[] : Isso, tudo no mesmo, tudo no mesmo. O que separa é uma coluninha que tem de Ruth ID lá, mas tá todo mundo no mesmo.
+[] : aquele esquema aqui que vai mudando a sigla
+[] : Yeah, lame with you.
+[] : aí a gente tá passando por um momento de alteração de nome de sistema então o logo aqui acho que não tem né aqui não deixa eu ver se aqui tem logo de BRS aqui eu acho que não tem mas esse logozinho aqui ó vai mudar
+[] : o nome aqui vai mudar mas aí é DNS não é como é de desenvolvimento até aí tá tudo bem Acho que aqui de visual vai mudar pouca coisa aqui ou quase nada então a ideia desse desse projeto que a gente vai fazer agora
+[] : So.
+[] : É reestruturar essa tela, esse serviço todo, ambas as telas aqui, principalmente essa, para
+[] : Para a gente poder incluir.
+[] : A.
+[] : fazer o tratamento na verdade por grupo onde a gente sei lá alguma de uma maneira dinâmica eu inclua quais Campos adicionais eu quero que exiba em tela para aquele grupo né aí eu não sei se a melhor forma Talvez seja dentro desse próprio
+[] : grupo aqui nessas permissões de terceiro nesse campo nesse campus aqui a gente inclui alguma coisa né para para facilitar não sei a gente pode pensar que aqui na verdade ele tá puxando valor fixo né então tipo na hora de cadastrar como eu não tenho em tela qual tipo de que o tipo de cobrança por exemplo e é um campo obrigatório
+[] : Puxa daqui aqui no esses campos, eles não aparecem em tela, então não sei se de repente criar um outro blockzinho aqui para incluir o campo, né? O outro, uma outra informação que vai ter que entrar aqui, que é um ajuste que está no desenvolvimento com o pessoal.
+[] : Okay.
+[] : É que aqui, além de corretora, seguradora, eu tenho que ter uma opção de segurado, porque eu tenho, por exemplo, clientes.
+[] : It's
+[] : que o segurado é o único e são vários sinistros daquele mesmo segurado, por exemplo, o Volvo. Eu tenho uma operação de Marine, que trata de problemas de transporte, que o segurado principal é a Volvo, então todos os sinistros são abertos em nome da Volvo.
+[] : né então às vezes é mais fácil já ter o Volvo fixo aqui porque aí ele também já me traz o Volvo fixo aqui no cadastro né não fica esse negócio para o pessoal ficar digitando errando CNPJ e cada CNPJ que é incluído na tela o sistema cadastra né dentro do
+[] : Ele busca se ele tiver o CNPJ beleza, se digitarem alguma coisa errada ali, ele vai cadastrar uma pessoa nova, algo do gênero. Então a ideia é a gente dar uma refaturada, né? Talvez seja essa palavra nessa ferramenta para a gente conseguir transformar ela de uma maneira mais dinâmica.
+[] : De uma forma mais dinâmica, é.
+[] : nesse nesse cadastro né para fazer esses cadastros essas visualizações outra a gente vai precisar incluir talvez aqui acredito que nesse grupo uma opção de edição Porque hoje aquela tela ele só cadastra
+[] : Só que agora eles têm, eu tenho clientes que eles querem editar algumas informações dentro da tela, né? Então eu vou ter que fazer aparecer a tela.
+[] : E da permissão de editar, editar. Então eu não sei se de repente a gente cria. Deixa eu te mostrar aqui, por exemplo, eu tenho aqui, vou pegar, por exemplo, administrador. Esse daqui é um grupo que não é externo, é um grupo de Crawford. Então eu tenho essa tela que é a mesma, não muda.
+[] : aqui eu digo operação porque só vai aparecer para as pessoas desse grupo essas operações né as pessoas que pertencem ao grupo e eu tenho aqui esse páginas e componentes que são os componentes cada componentezinho mesmo da tela a gente tem uma uma tabela de
+[] : Okay.
+[] : Page.
+[] : Page component, page component, acho que é o nome, page, page component, algo assim. E cada itenzinho que a gente tem nas telas, ele entra. É pelo menos os principais, né? Eles entram aqui, aqui eu tenho a opção do crude, tá vendo? Então não sei se de repente a gente pode fazer essa mesmo.
+[] : Modelo dentro do grupo.
+[] : Na realidade eu estava pensando em alguma coisa assim, uma tabela com o tipo de campos necessários que a gente possa inserir. Então eu vou ter o campo texto, combobox, o checkbox, as coisas.
+[] : Mhm.
+[] : e parametrizando o formulário, inserindo esses campos, colocando a ordem dele no que ele vai aparecer e a hora que criar isso daí para o cliente específico, tem a opção de você jogar o valor padrão ou jogar uma query específica para trazer no combobox, alguma coisa
+[] : Mhm.
+[] : Sim, parametrizar tudo por trás, por trás, eu falo assim, informe na web, lógico, no portal, mas parametrizar tudo no form para o cliente ver, porque aí se entrar um precisar de um campo novo, pessoal informaria qual o tipo do campo e parametrizaria ele, que põe mais que é um valor fixo.
+[] : Sim.
+[] : Mhm.
+[] : Right.
+[] : Alguma coisa assim.
+[] : Na teoria, a gente só vai colocar Campos que já são do nosso sistema. Vai ser muito difícil incluir tipo um campo novo, novo, tipo só nessa ferramenta. Ele vai ter que estar no nosso sistema de alguma forma. Então talvez a gente até pule essa parte do tipo do dado.
+[] : Tá.
+[] : É, ele já vai estar no nosso sistema, ele puxa o que está lá na model do Klein ou qual model que seja, porque ele já vai ter o tipo lá certinho, também é uma opção.
+[] : Pode ser, aí eu vou criar a lista dos campos, redirecionando para onde ele vai buscar no sistema.
+[] : É aí talvez esse talvez seja o trabalho da parte de visualização, onde vai incluir este campo, né? Se vai criar uma telinha adicional aqui, tipo, sei lá, Campos volta aqui no cadastro.
+[] : Mhm.
+[] : de repente cria uma antes do finalização cria uma telinha aqui demais informações né e colocaria todos esses Campos ali tudo que for porque não é a ideia não é popular tipo encher de Campo tá a ideia é só tipo ah eu preciso de tal informação a mais a gente habilita aquela informação para ele
+[] : He.
+[] : A gente tá, mas o campo já existe. Não faz sentido eu colocar tipo, sei lá, 50000000 de Campos, é 34.
+[] : É, eu vou ter, eu vou ter, por exemplo, 30 campos que eu tenho no sistema e eu sou ativo o que eu quero te ligar.
+[] : isso é porque também não é ideia não é popular um monte de Campo né tipo isso aqui é o básico para o cadastro de sinistro Então o que vier a mais é um plus para tentar ajudar o pessoal daqui vamos assim dizer né E assim como também na própria edição aqui nesses dois cliques
+[] : né vai ter que aparecer uma opção aqui de tipo edição não sei eu pensei talvez em um outro menuzinho mesmo né porque aqui tá só visualização eu não mexeria nisso aqui isso aqui é informação básica eu entraria aqui com ou aqui em algum lugar aqui com tipo informações adicionais do sinistro
+[] : E aí apareceria uma opção com a opção de editar, sabe?
+[] : Mm.
+[] : Algo assim.
+[] : Aí eu não sei se faz sentido reescrever tudo ou é alterar o que a gente tem, tá? É outra coisa aqui também, essa esse login aqui, se eu te mostrar aqui.
+[] : eu crio para eles o usuário e a senha ele não tem uma opção Putz esqueci minha senha ou que nem segurança eu dou a senha para eles aí eles falam beleza agora onde eu edito não você não edita você não consegue editar é a senha que eu te dou e acabou né
+[] : Então eu acho que talvez nessa primeira tela aqui também, por questões de segurança, seria legal ter uma opção de editar, né? Ou tipo, é o primeiro login, o sistema identificar que é o primeiro login e apareceu uma opção de editar a senha, sabe?
+[] : É, mas mesmo assim precisa não esquecer minha senha, porque o cara digita uma senha que não vai lembrar depois.
+[] : Mhm.
+[] : exato exato né então ou talvez só eu esqueci minha senha também se for o caso eu dou para ele a senha e ele põe aí se ele porque eu sempre coloco uma senha tipo pega aquele gerador de senha sabe gera uma senha muito louca então é isso que eu mando para eles né para ficar difícil até porque para mim também que eu não vou lembrar nunca mais né então
+[] : eu pego mais assim eu tenho aquele histórico no meu e-mail aí se ele quiser trocar a senha ele vai lá no esqueci minha senha vai receber um e-mail e ele troca a senha tá eu acho que talvez seria até melhor do que fazer essa identificação aí é primeiro login não é manda link e tal então eu acho que esqueci minha senha seria ideal
+[] : No.
+[] : Pelo menos nesse daqui, esse daqui eu não preciso disso. Eu não tenho senha, é só documento e número de sinistro. Mas aqui que eu tenho um e-mail e senha, seria interessante ter essa opção do.
+[] : Yes.
+[] : do do esqueci minha senha tá aí é para nível de segurança mesmo aí que mais
+[] : Mhm.
+[] : então aí qual que era a ideia hoje esse Portal ele tá assim né só que você pode ver que o pessoal não consegue ver muita coisa eles têm um acesso bem bem limitado né É só o que tá aqui então no momento a gente estava pensando em como
+[] : Rester.
+[] : melhorar esse portal, aí sim, transformar como se fosse num portal para eles conseguirem ter acesso a todas as informações do sinistro também, sem ficar obrigatoriamente esperando por um teste. Para tentar ajudar, a gente tem aqui, tipo, eu não sei se vai ter aqui, mas eu tenho aqui os documentos.
+[] : No meu sinistro, eu tenho um checkzinho tipo visível para externo. Se o documento tiver esse checkzinho, ele traz para cá, porque não são todos os documentos que são disponíveis para essa visualização. Se tem, ele consegue trazer aqui, ele consegue trazer todos os documentos anexados. Então, se o pessoal marcar ela.
+[] : essas coisas ele consegue trazer. Foi uma maneira que a gente encontrou de fazer o pessoal conseguir ter mais essa visibilidade, assim como nos documentos também. É que esses daqui não tem, mas se o documento tiver alguma coisa em específico, eles conseguem visualizar também os documentos aqui.
+[] : Sure.
+[] : quando tiver a marquinha né de visível para para externo ele consegue visualizar por aqui também né e os documentos pendentes idem né todos esses documentos aqui então a gente teria que fazer alguma coisa também com as outras informações do sinistro eu não sei se talvez de repente nessa tela aqui a gente trazer mais informação já
+[] : é só visualização né aí a gente faria do meu lado aqui eu faria um levantamento de quais Campos que deveriam aparecer dentro de um desse processo de sinistro não só os campos que são preenchidos por essa ferramenta né a gente traria mais Campos e
+[] : e eles como é que fala e de repente a edição ficaria ali a por fora mas aqui a gente traria mais informações né
+[] : Mais card, né?
+[] : isso porque aqui tá vendo essas informações que estão aqui são as mesmas que ele preenchem nela por mais que o sinistro já esteja aqui do meu lado o pessoal já tenha mexido tem editado colocado um monte de outras coisas para eles não aparece
+[] : Tá, é, e que a gente, que eu tô pegando aqui, tem agora ele fala que acabou, traguei mais informação e acaba.
+[] : evoluindo.
+[] : Mhm.
+[] : Vai adicionando e se aí nós tivéssemos uma flag para mostrar o card ou não também?
+[] : Sim.
+[] : Pode ser também.
+[] : É que o card aí nada mais é do que um bloco HTML, vamos dizer assim, e ficaria visível sim ou não?
+[] : Mhm.
+[] : Sim.
+[] : A gente criaria, eu faço uma página com tudo, com todo o bloco montado que a gente vai.
+[] : Sim.
+[] : É e pode ser, é e pode fazer até cliente por cliente, né?
+[] : Right.
+[] : mesmo o mesmo modelo que a gente vai fazer para outra telinha pode ser também pode ser porque a gente tem bastante Campo Aí talvez seja do meu lado fazer um levantamento do que faz realmente sentido trazer no card né que aí talvez varie muito de cliente para cliente mas aí eu tenho que ver com o pessoal aqui também
+[] : Mm.
+[] : O.
+[] : Mas a ideia é super favorável.
+[] : aí eu não sei se faz mais sentido mexer nesse que tá aqui ou fazer um novo novo front não sei
+[] : É o problema da gente mexer no que já tem, é quebrar alguma coisa.
+[] : Sim, esse projeto ele é separado, o back é o mesmo back do BRS Cloud, mas só o front dele que é diferente. Esse front conecta no meu back, é isso, né? Mas esse front é uma ferramenta nova, ele é esse aqui, deixa eu puxar aqui.
+[] : Hello.
+[] : So.
+[] : Right.
+[] : visual Studio Ah não minto desculpa ele tá no meu front agora ele não estava ele tava numa ferramenta a parte agora ele tá no meu front também aqui no meu front deixa eu ver aqui eu tenho uma pastinha de external
+[] : Peraí que eu tô trazendo um pouco a tela
+[] : Okay.
+[] : Aqui no meu front eu tenho esse external aqui.
+[] : Yeah.
+[] : Esses tudo isso, toda essa pastinha externa são esses 2.
+[] : esses dois aqui.
+[] : O que muda para eu saber aonde eu chamo um ou outro é aqui no meu environments. Aqui no environments, se eu pegar aqui o type, eu tenho cloud, insured ou external, esse access type aqui. O cloud é o meu BRS cloud normal, o insured é o.
+[] : Okay.
+[] : segurado se eu não me engano que é para colocar não insured é o de cadastro e o external de colocar documento é um dos dois eu sempre inverto nunca lembro de cabeça também quem é que eu tenho uma colinha que salva porque eu nunca lembro mas você vai ver na hora do login se você colocar insured aqui no
+[] : Okay.
+[] : Sot.
+[] : Cadê? Aqui no envarument aqui Você colocar em should aqui, você vai ver que o login é um. Quando colocar externo vai ser outro. O que muda a gente já vai parar essa telinha aqui. Mas eu vou procurar na minha cola aqui e te passo também que eu nunca sei onde ela está.
+[] : No.
+[] : Em algum lugar eu tenho, tá vendo? Eu até tenho aqui separadinhos.
+[] : O pessoal criou.
+[] : Mas essa é a ideia desse projeto aí, como aquele outro meio que está parado, você já pode começar esse, né? Só a gente vai conversando para ter uma noção do tempo, né? Acho que quando você começar a montar os cards, a gente vai ter uma noção do que precisa ser feito.
+[] : E a gente vai conversando sobre isso também, qualquer dúvida você me passa, mas assim ele já está aqui dentro desse externo.
+[] : Aí fica até o critério se cria tipo um external 2 e começa do zero esses isso daqui ou
+[] : Vai mexer nesse daqui mesmo e a gente vai seguindo. E o back end também é o mesmo, né? Tudo aqui também dentro desse back. Aqui no back eu tenho, opa, que abriu aqui, pera aí que está carregando. Aí aqui no back eu também tenho algumas pastinhas de externo.
+[] : Okay.
+[] : E aí ele tem o external que é o principal mas ele vai chamando tudo que é de Klein essas coisas que estão já dentro aqui do meu sinistro né Eu não tenho nada muito específico com ele aqui
+[] : So.
+[] : eu abrir aqui no controle eu tenho aqui ao externo mas você vai ver que esse controle externo ele chama mais os módulos do os módulos do sinistro e os outros que eu já tenho né aqui a parte de login né E aquele tem uns
+[] : No.
+[] : Operacional PC.
+[] : Okay.
+[] : Okay.
+[] : Access aqui de buscar informação e tal.
+[] : Thank you.
+[] : Give me a second.
+[] : Deixa eu perguntar, você consegue me criar um user para eu acessar os dois?
+[] : Os 2 não, que um é só pelo sinistro, né? O outro não tem necessidade.
+[] : Okay.
+[] : Sim, consigo. Eu consigo te passar um que já tem. Tem esse aqui, eu vou te passar esse aqui, que é o que eu estava usando.
+[] : Okay.
+[] : Esse usuário aí aqui.
+[CREDENCIAL REDIGIDA]
+[CREDENCIAL REDIGIDA]
+[] : aí esse é o esse que eu tava usando aqui né Eu só peço que se for cadastrar Opa aqui se for fazer algum cadastro só em teste você consegue fazer em teste não tem problema só se for usar esses módulos aqui que é produção
+[] : Não, mas na realidade eu só quero navegar no portal em si.
+[] : Sim, tá. É esse mesmo, então.
+[] : Sem ele, porque ela vai para toda.
+[] : é que aí esse daquele tem como a gente usa para fazer simulação então ele tem bastante informação aqui preenchida né aí no
+[] : no aqui no cloud eu acho que você não tem né eu não criei acho que para você né no aqui eu vou criar então o acesso para você aqui e é com a de né como vai ser usuário e senha do AD aí eu crio um aqui para você com
+[] : Não.
+[] : Com visualização aqui de testes, não é? Aí eu vejo certinho os acessos que eu preciso te dar para você conseguir. Ou então, na verdade, o que eu faço? Eu dou acesso.
+[] : Aí qualquer coisa no teste você coloca diretamente no banco, tipo, você coloca nesse grupo de administrador, sabe? Só para não ter problema com produção.
+[] : Okay.
+[] : Believe.
+[] : Aí se eu preciso, se você precisar que eu restaure o banco, você me fala, você está usando aquele Carol, né?
+[] : Então, mas é como eu vou chamar ele aqui, eu parametrizo config.
+[] : Tá.
+[] : Brito.
+[] : Beleza. OK, aí eu vou criar só o seu acesso aqui, que a gente pelo menos já ficar pronto, aí só o usuário, né? Aí no BRS 2 não precisa, é só aqui mesmo. Então eu já crio aqui também, aí você já fica com acesso, o usuário vai ser o mesmo do.
+[] : do que você usa pra ser essa máquina que é por AD, então não vai ter problema.
+[] : Sure.
+[] : Eu acho que não tem nenhum de ter tecnologia aqui, né? Não, não tem.
+[] : Yeah.
+[] : Okay, I think the ferrament is done.
+[] : Okay.
+[] : He's aquija.
+[] : Uhum, tá, não, beleza, eu vou acertar fácil acesso então na ferramenta aqui no BRS cloud, que é o principal.
+[] : e te passo mas por enquanto para acessar essa esse portal é esse e o back o front é esse aqui também esse aqui e esse aqui
+[] : Stop there.
+[] : Beleza, eu vou olhar aqui direitinho o portal aqui, mas assim, é quase 80% de certeza que é melhor reescrever, tá? Porque por exemplo, o medo é a gente mexer, mexer alguma coisa que está lá e acaba quebrando. Vai dar mais trabalho consertado que fazer.
+[] : Mhm.
+[] : Tá, eu também acho.
+[] : Mhm.
+[] : Sim, não, qualquer coisa você cria aqui uma pastinha externa ou 2, se for o caso, porque aí mantém toda a estrutura, não tem problema.
+[] : Okay.
+[] : Okay.
+[] : Mhm.
+[] : Pico.
+[] : Tá bom, beleza. Aí qualquer dúvida, qualquer questão, qualquer coisa, você pode me chamar que que eu estou por aqui e qualquer ideia também alguma coisa você me fala e a gente vai pensar aqui também em alguma. A gente está pensando aqui também em paralelo, porque a parte do front.
+[] : Pega para todo mundo, né? Eu sou uma tragédia, mas a gente está pensando aqui também em alguma maneira de como melhorar até a visualização, embora para mim esteja ótimo do jeito que está, né? Mas.
+[] : From William Jardim William.
+[] : Mhm.
+[] : Não é a gente que é de ideia, a gente geralmente edifica com design.
+[] : Meio tudo me passar de cima.
+[] : Ah, eu sou uma tragédia.
+[] : Meu irmão mais novo, ele é formado em design. Ele, ah, que não sei o que, eu quero começar a estudar TI. Eu falei, então você vai estudar UX designer, vai para essa parte porque aproveita, aproveita a bagagem que você tem, porque geralmente back front não se conversa.
+[] : Yeah.
+[] : No.
+[] : ele dá risada então e aí eu sou uma tragédia combinar cor até roupa difícil gente
+[] : Oh.
+[] : Até roupa!
+[] : Mas beleza, então Nelson, eu vou lá que eu tenho outra reunião, mas eu ainda não esqueci, eu vou dar uma olhada no seu código lá, tá? Pode deixar. E mas qualquer dúvida que você tiver aqui, você me fala, tá?
+[] : Okay.
+[] : William.
+[] : Tá, qualquer coisa eu te levo.
+[] : Aí quando vocês forem separando os cards, você vai me avisando, a gente vai conversando também, se for o caso.
+[] : Beleza, combinado.
+[] : Tá bom? Aí você me diz mais ou menos quanto tempo depois vai aproximadamente.
+[] : É, eu vou olhar tudo direitinho, aí eu te passo mais ou menos o tempo por causa direitinho.
+[] : Tá bom. Combinado. Fechado, então. Obrigada, viu? Até mais. Tchau, tchau.
+[] : Mm.
+[] : Obrigado você. Tchau, tchau.
+[] Caroline Poteria: Caroline Poteria
 
-Nelson Diniz
-0 minutos 12 segundos0:12
-Nelson Diniz 0 minutos 12 segundos
-With me.
-Nelson Diniz 0 minutos 12 segundos
-A.
-
-Caroline Poteria
-0 minutos 23 segundos0:23
-Caroline Poteria 0 minutos 23 segundos
-Eu duvido muito que ele vai ser um projeto, só que como ele vai ser feito para outro país, qual que é a ideia? A gente faz e a gente vai cobrar deles esse valor das horas, o proporcional pelas horas. Então a gente só precisa ter uma noção mais ou menos de quantas horas vão ser.
-ND
-
-Nelson Diniz
-0 minutos 23 segundos0:23
-Nelson Diniz 0 minutos 23 segundos
-Yeah.
-Nelson Diniz 0 minutos 36 segundos
-So.
-
-Caroline Poteria
-0 minutos 40 segundos0:40
-Caroline Poteria 0 minutos 40 segundos
-porque aí a gente já passa esse projeto, vai ficar aproximadamente X para vocês. Tá tudo bem? Ah, tá tudo bem. Então beleza. Mas a gente vai fazer, ao que tudo indica, como como o pacote mesmo das horas. Porque não é uma coisa muito crítica, né?
-ND
-
-Nelson Diniz
-0 minutos 53 segundos0:53
-Nelson Diniz 0 minutos 53 segundos
-É que passam para ele como que fosse um fechado, mas aí vocês usam um banco de horas.
-
-Caroline Poteria
-0 minutos 58 segundos0:58
-Caroline Poteria 0 minutos 58 segundos
-Okay.
-Caroline Poteria 30 minutos 2 segundos
-Meu irmão mais novo, ele é formado em design. Ele, ah, que não sei o que, eu quero começar a estudar TI. Eu falei, então você vai estudar UX designer, vai para essa parte porque aproveita, aproveita a bagagem que você tem, porque geralmente back front não se conversa.
-ND
-Nelson Diniz
-30 minutos 10 segundos30:10
-Nelson Diniz 30 minutos 10 segundos
-Yeah.
-Nelson Diniz 30 minutos 22 segundos
-No.
-
-Caroline Poteria
-30 minutos 23 segundos30:23
-Caroline Poteria 30 minutos 23 segundos
-ele dá risada então e aí eu sou uma tragédia combinar cor até roupa difícil gente
-ND
-Nelson Diniz
-30 minutos 29 segundos30:29
-Nelson Diniz 30 minutos 29 segundos
-Oh.
-
-Caroline Poteria
-30 minutos 32 segundos30:32
-Caroline Poteria 30 minutos 32 segundos
-Até roupa!
-Caroline Poteria 30 minutos 34 segundos
-Mas beleza, então Nelson, eu vou lá que eu tenho outra reunião, mas eu ainda não esqueci, eu vou dar uma olhada no seu código lá, tá? Pode deixar. E mas qualquer dúvida que você tiver aqui, você me fala, tá?
-ND
-Nelson Diniz
-30 minutos 36 segundos30:36
-Nelson Diniz 30 minutos 36 segundos
-Okay.
-Nelson Diniz 30 minutos 41 segundos
-William.
-Nelson Diniz 30 minutos 46 segundos
-Tá, qualquer coisa eu te levo.
-
-Caroline Poteria
-30 minutos 46 segundos30:46
-Caroline Poteria 30 minutos 46 segundos
-Aí quando vocês forem separando os cards, você vai me avisando, a gente vai conversando também, se for o caso.
-ND
-Nelson Diniz
-30 minutos 51 segundos30:51
-Nelson Diniz 30 minutos 51 segundos
-Beleza, combinado.
-
-Caroline Poteria
-30 minutos 52 segundos30:52
-Caroline Poteria 30 minutos 52 segundos
-Tá bom? Aí você me diz mais ou menos quanto tempo depois vai aproximadamente.
-ND
-Nelson Diniz
-30 minutos 55 segundos30:55
-Nelson Diniz 30 minutos 55 segundos
-É, eu vou olhar tudo direitinho, aí eu te passo mais ou menos o tempo por causa direitinho.
-
-Caroline Poteria
-31 minutos 1 segundo31:01
-Caroline Poteria 31 minutos 1 segundo
-Tá bom. Combinado. Fechado, então. Obrigada, viu? Até mais. Tchau, tchau.
-ND
-Nelson Diniz
-31 minutos 2 segundos31:02
-Nelson Diniz 31 minutos 2 segundos
-Mm.
-Nelson Diniz 31 minutos 5 segundos
-Obrigado você. Tchau, tchau.
-
-Caroline Poteria paro
+ parou a transcrição
