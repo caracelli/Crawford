@@ -1,0 +1,142 @@
+﻿Summary,Issue Type,Parent,Description,Original Estimate,Labels,Smart Checklist
+Card 01 — Fundação da integração,Task,CRAWFORD-XX,"Objetivo
+Ter o BRS Cloud capaz de conversar com a Mundial: autenticar, chamar qualquer operação, registrar o que foi trocado e sobreviver a uma indisponibilidade.
+
+Contexto
+A Mundial exige um token Bearer, obtido com credenciais atribuídas pela área de integrações, e seis cabeçalhos de rastreabilidade em toda requisição. O backend não possui hoje nenhum cliente REST de saída autenticado — as integrações existentes são internas e usam outro protocolo. Também não existe tabela que guarde o que foi enviado e o que voltou, e isso não é luxo de auditoria: a Mundial devolve identificadores que as operações seguintes exigem. O barramento de mensagens já em produção cobre o envio assíncrono e a retentativa, o que dispensa construir fila.
+
+Critérios de sucesso
+- O token é obtido e renovado automaticamente, e os seis cabeçalhos vão preenchidos em toda requisição
+- Toda chamada fica registrada com requisição, resposta, estado e identificador de correlação
+- Os identificadores devolvidos pela Mundial ficam associados ao sinistro
+- Falha temporária é repetida sem duplicar operação; falha definitiva fica marcada para reenvio
+- A integração liga e desliga por cliente e por ambiente, sem publicar versão
+- Credenciais ficam fora do código e fora do repositório
+
+Riscos técnicos
+O manual de autenticação não foi entregue pela Mundial. Sem ele, a URL do token, o formato das credenciais e o tempo de expiração são desconhecidos, e o card inteiro fica bloqueado. Há ainda uma divergência a confirmar: o manual afirma que o identificador de transação relaciona todas as operações de um sinistro, mas os exemplos usam um valor diferente por operação.
+
+Outras informações
+É a base de todos os demais cards. A exigência de TLS 1.2 já é atendida pela plataforma atual.
+
+Este card reúne 4 itens, detalhados no documento que acompanha o estudo.",34h,api-mundial,"Cliente HTTP, autenticação e cabeçalhos obrigatórios (12h)
+Registro e rastreabilidade das chamadas (10h)
+Envio assíncrono, retentativa e idempotência (8h)
+Configuração de ambiente, credenciais e ativação por cliente (4h)"
+Card 02 — Parametrização de códigos,Task,CRAWFORD-XX,"Objetivo
+Traduzir os códigos do BRS Cloud para os da Mundial por configuração, e não por código.
+
+Contexto
+A API trabalha com códigos numéricos próprios: ramo, subramo, cobertura, sucursal de expedição, causa do sinistro, município pelo código DANE, tipo de documento, subconceito de estimativa, motivo de objeção, causa de modificação de reserva e moeda. No BRS Cloud, Cidade e Filial já possuem campo de código, que recebem os equivalentes; Cobertura não possui nenhum. A estrutura de configuração de importação, que já faz correspondência de valor por campo, serve de modelo, e o módulo de parâmetros do portal reduz o esforço da tela de manutenção.
+
+Critérios de sucesso
+- Existe correspondência, por cliente, entre as entidades do BRS Cloud e os códigos da Mundial
+- Envio com correspondência ausente é barrado antes, com mensagem que identifica o campo e o valor
+- A operação mantém a correspondência pela tela, sem apoio técnico
+- Os anexos do manual — tipos de documento e tipos de estimativa — entram por script
+- Datas saem em ISO 8601 e o conteúdo em UTF-8, conforme o lineamento do fornecedor
+
+Riscos técnicos
+As tabelas de ramo, subramo, cobertura, causa do sinistro e motivo de objeção não vieram nos manuais. Sem elas, a correspondência não pode ser preenchida nem homologada.
+
+Outras informações
+Depende do card 01 e é pré-requisito do card 03.
+
+Este card reúne 4 itens, detalhados no documento que acompanha o estudo.",36h,api-mundial,"Modelo de correspondência de códigos (10h)
+Resolução e validação dos códigos no envio (8h)
+Endpoints de manutenção da correspondência (6h)
+Tela de administração da correspondência (12h)"
+Card 03 — Operações de sinistro,Task,CRAWFORD-XX,"Objetivo
+Enviar à Mundial as cinco operações do ciclo do sinistro: criação, abertura e modificação de reserva, liquidação e objeção.
+
+Contexto
+As operações são encadeadas: a criação devolve o identificador do sinistro, a abertura da reserva devolve o código de estimativa e o número de subreclamação, e a liquidação e a objeção exigem esses dois números de volta. Antes disso, é preciso resolver a maior diferença estrutural entre os dois sistemas: a Mundial trabalha estimativas por tipo, com subconceitos, enquanto o BRS Cloud guarda reserva e indenização como valores únicos no sinistro e no item. A liquidação merece atenção própria, porque gera ordem de pagamento no sistema da seguradora.
+
+Critérios de sucesso
+- O BRS Cloud representa estimativas por tipo e subreclamações, e guarda os códigos devolvidos
+- As cinco operações funcionam ponta a ponta e respeitam a ordem do encadeamento
+- A liquidação exige confirmação explícita, registra quem autorizou e não tem reenvio automático
+- O valor aprovado nunca é enviado acima do valor reclamado
+- O gatilho de cada operação é configurável, e não fixo em código
+- Existe reenvio manual, respeitando a ordem das operações
+- Erro de negócio devolvido pela Mundial é registrado com código e descrição
+
+Riscos técnicos
+O item de estrutura de estimativas é o de maior risco do projeto: define a granularidade de tudo o que vem depois e depende de decisão de negócio da Crawford sobre quem informa a quebra de valores e em que tela. A liquidação tem efeito financeiro real na seguradora. Há divergências a confirmar na objeção, publicada na versão 1 do caminho enquanto as demais estão na versão 2.
+
+Outras informações
+Depende dos cards 01 e 02. É o maior card do projeto, com 88h; pode ser quebrado em dois — sinistro e reserva de um lado, liquidação e objeção do outro — se a equipe preferir acompanhar em pedaços menores.
+
+Este card reúne 8 itens, detalhados no documento que acompanha o estudo.",88h,api-mundial,"Estrutura de estimativas e subreclamações (12h)
+Criação do sinistro na Mundial (14h)
+Gatilhos de envio e reenvio manual (8h)
+Abertura de reserva (14h)
+Modificação de reserva (10h)
+Liquidação do sinistro (16h)
+Objeção do sinistro (8h)
+Mapeamento dos valores do sinistro (6h)"
+Card 04 — Operação e visibilidade,Task,CRAWFORD-XX,"Objetivo
+Dar à operação visibilidade do que foi enviado e autonomia para reenviar o que falhou.
+
+Contexto
+Sem essas telas, qualquer problema de integração só aparece no log do servidor, o que transfere para a equipe técnica um trabalho que é de operação. A infraestrutura de envio de e-mail já existe e cobre a entrega do aviso de falha.
+
+Critérios de sucesso
+- O painel lista as operações por sinistro, com data, estado e retorno
+- Falhas aparecem com código e descrição, e podem ser reenviadas pela própria tela
+- Falha definitiva gera aviso aos destinatários configurados
+- O detalhe do sinistro mostra o número na Mundial e o estado das operações
+- As telas respeitam a permissão de acesso e as traduções já existentes
+
+Outras informações
+Depende dos cards 01 e 03. Envolve backend e portal.
+
+Este card reúne 3 itens, detalhados no documento que acompanha o estudo.",24h,api-mundial,"Painel de integração (14h)
+Alerta de falha de integração (4h)
+Consulta de rastreabilidade por sinistro (6h)"
+Card 05 — Qualidade e entrega,Task,CRAWFORD-XX,"Objetivo
+Garantir o contrato, homologar com a Mundial, documentar e publicar.
+
+Contexto
+É a primeira vez que o BRS Cloud conversa com a Mundial. Diferenças entre o manual e o comportamento real do ambiente aparecem na homologação, e costumam aparecer. Os testes de contrato protegem o que já foi construído: as operações têm corpos extensos e muitos campos obrigatórios, e um ajuste em qualquer parte do sinistro pode invalidar o envio sem que ninguém perceba até a recusa em produção.
+
+Critérios de sucesso
+- Cada operação tem teste que valida o corpo enviado contra o contrato do manual, sem depender do ambiente da Mundial
+- O ciclo completo de um sinistro é percorrido com sucesso no ambiente de testes da seguradora
+- As divergências entre manual e comportamento real estão registradas e resolvidas
+- Existe documento da integração e manual de parametrização da correspondência
+- A integração é publicada e os primeiros sinistros são acompanhados um a um
+
+Riscos técnicos
+Depende da disponibilidade da equipe da Mundial e da liberação prévia dos nossos endereços de saída na plataforma de integração deles. É o item de maior incerteza de prazo do projeto.
+
+Outras informações
+Depende dos cards 02 e 03.
+
+Este card reúne 4 itens, detalhados no documento que acompanha o estudo.",38h,api-mundial,"Testes automatizados dos contratos (12h)
+Homologação no ambiente de testes da Mundial (14h)
+Documentação da integração (6h)
+Publicação e acompanhamento assistido (6h)"
+Card 06 — Proteção de dados (ATDP) — opcional,Task,CRAWFORD-XX,"Objetivo
+Registrar e consultar na Mundial a autorização de tratamento de dados do segurado e os canais autorizados para gestão de cobrança, e receber o aviso de mudança.
+
+Contexto
+É um bloco independente das operações de sinistro e pode ficar fora do escopo. A autorização mais recente sempre anula as anteriores. Contém a única ponta em que o BRS Cloud expõe um endereço em vez de consumir: o webhook de aviso, que precisa seguir os lineamentos de API do fornecedor e validar a autenticidade da mensagem.
+
+Critérios de sucesso
+- Criação, consulta do histórico, consulta da vigente e revogação estão implementadas
+- Os canais autorizados são registrados e consultados, com a regra de pelo menos um canal
+- O webhook recebe o aviso, valida a autenticidade e atualiza a autorização vigente
+- Aviso repetido não gera duplicidade
+- A tela mostra a autorização vigente e o histórico do segurado
+
+Riscos técnicos
+O webhook é a única ponta exposta ao exterior: exige análise de segurança e decisão de infraestrutura sobre onde publicar o endereço.
+
+Outras informações
+Bloco opcional, depende de decisão de escopo. Depende do card 01.
+
+Este card reúne 4 itens, detalhados no documento que acompanha o estudo.",40h,api-mundial,"Autorização de tratamento de dados (12h)
+Canais autorizados para gestão de cobrança (8h)
+Webhook de atualização de autorização (12h)
+Tela de consulta e registro da autorização (8h)"
