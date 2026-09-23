@@ -1,5 +1,16 @@
 ﻿"Summary","Issue Type","Parent","Description","Original Estimate","Start date","Due date","Labels","Smart Checklist"
-"Card 01 — Novo tipo de acesso external2 e configurações de build","Task","CRAWFORD-21","Objetivo
+"Bloco 0 — Infraestrutura do external2","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 01 — Novo tipo de acesso external2 e configurações de build (6h)
+- Item 02 — Tratamento do external2 nas verificações de tipo de acesso (6h)
+- Item 03 — Esqueleto do módulo e traduções (10h)
+
+----------------------------------------
+
+Item 01 — Novo tipo de acesso external2 e configurações de build
+Estimativa: 6h · 23/09/2026 a 23/09/2026
+
+Objetivo
 Ter o portal external2 compilando e publicando de forma independente, sem alterar nada do portal atual.
 
 Contexto
@@ -12,13 +23,14 @@ Critérios de sucesso
 - O endereço do external2 carrega a aplicação e chega à tela de login
 
 Outras informações
-Não depende de nenhum outro card. Reusa o padrão já aplicado nos portais externo e segurado.","6h","21/09/2026","21/09/2026","portal-externo-0","Incluir o novo tipo de acesso na definição de ambiente
-Criar os arquivos de ambiente para teste, homologação e produção
-Criar a árvore de rotas do novo portal
-Selecionar a árvore de rotas pelo tipo de acesso na inicialização
-Criar as configurações de build com saída própria
-Confirmar que os três portais existentes seguem compilando"
-"Card 02 — Tratamento do external2 nas verificações de tipo de acesso","Task","CRAWFORD-21","Objetivo
+Não depende de nenhum outro item. Reusa o padrão já aplicado nos portais externo e segurado.
+
+----------------------------------------
+
+Item 02 — Tratamento do external2 nas verificações de tipo de acesso
+Estimativa: 6h · 23/09/2026 a 24/09/2026
+
+Objetivo
 Garantir que o novo portal não herde comportamento indevido das verificações de tipo de acesso espalhadas fora do módulo.
 
 Contexto
@@ -34,17 +46,18 @@ Riscos técnicos
 São falhas silenciosas: o ramo errado não quebra a compilação e só aparece em execução, eventualmente expondo a um usuário externo um menu de uso interno.
 
 Outras informações
-Depende do card 01.","6h","21/09/2026","22/09/2026","portal-externo-0","Levantar todos os pontos que comparam tipo de acesso fora do módulo
-Ajustar o fluxo de autenticação para reconhecer o novo portal
-Ajustar a montagem de menu e navegação
-Ajustar o seletor de idioma
-Ajustar o menu do usuário e o layout
-Testar login e navegação nos quatro portais"
-"Card 03 — Esqueleto do módulo e traduções","Task","CRAWFORD-21","Objetivo
-Ter a estrutura de pastas, o módulo de rotas e as traduções prontos para os demais cards construírem em cima.
+Depende do item 01.
+
+----------------------------------------
+
+Item 03 — Esqueleto do módulo e traduções
+Estimativa: 10h · 24/09/2026 a 25/09/2026
+
+Objetivo
+Ter a estrutura de pastas, o módulo de rotas e as traduções prontos para os demais itens construírem em cima.
 
 Contexto
-O portal atende oito idiomas e as traduções representam boa parte dos arquivos do módulo. O conteúdo é majoritariamente aproveitável do portal atual, o que torna este card mais adaptação do que escrita.
+O portal atende oito idiomas e as traduções representam boa parte dos arquivos do módulo. O conteúdo é majoritariamente aproveitável do portal atual, o que torna este item mais adaptação do que escrita.
 
 Critérios de sucesso
 - O módulo responde nas rotas e renderiza o layout base
@@ -52,16 +65,44 @@ Critérios de sucesso
 - A troca de idioma funciona em todas as telas do esqueleto
 
 Outras informações
-Depende dos cards 01 e 02. Traduções adaptadas do módulo externo atual.","10h","22/09/2026","23/09/2026","portal-externo-0","Criar a estrutura de pastas do módulo
+Depende dos itens 01 e 02. Traduções adaptadas do módulo externo atual.","22h","23/09/2026","25/09/2026","portal-externo-0","# 01 — Novo tipo de acesso external2 e configurações de build (6h)
+Incluir o novo tipo de acesso na definição de ambiente
+Criar os arquivos de ambiente para teste, homologação e produção
+Criar a árvore de rotas do novo portal
+Selecionar a árvore de rotas pelo tipo de acesso na inicialização
+Criar as configurações de build com saída própria
+Confirmar que os três portais existentes seguem compilando
+# 02 — Tratamento do external2 nas verificações de tipo de acesso (6h)
+Levantar todos os pontos que comparam tipo de acesso fora do módulo
+Ajustar o fluxo de autenticação para reconhecer o novo portal
+Ajustar a montagem de menu e navegação
+Ajustar o seletor de idioma
+Ajustar o menu do usuário e o layout
+Testar login e navegação nos quatro portais
+# 03 — Esqueleto do módulo e traduções (10h)
+Criar a estrutura de pastas do módulo
 Criar o módulo de rotas e o layout base
 Copiar e adaptar as traduções dos oito idiomas
 Conferir ausência de chave de tradução faltando
 Validar a troca de idioma nas telas do esqueleto"
-"Card 04 — Modelo de parametrização de campos por grupo","Task","CRAWFORD-21","Objetivo
+"Bloco 1 — Motor de formulário dinâmico","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 04 — Modelo de parametrização de campos por grupo (12h)
+- Item 05 — Endpoint de leitura da parametrização (6h)
+- Item 06 — Componente renderizador de formulário dinâmico (20h)
+- Item 07 — Resolução de valores para campos de seleção (12h)
+- Item 08 — Tela de administração dos campos por grupo (16h)
+
+----------------------------------------
+
+Item 04 — Modelo de parametrização de campos por grupo
+Estimativa: 12h · 25/09/2026 a 29/09/2026
+
+Objetivo
 Permitir que os campos exibidos a um cliente sejam definidos por configuração, e não por código.
 
 Contexto
-Hoje cada pedido de campo novo vira desenvolvimento. Já existe no sistema uma estrutura que guarda propriedade, tipo e valor por grupo, e que é lida no momento do cadastro. Este card estende esse mecanismo para descrever campos de tela: quais aparecem, em que ordem, obrigatórios ou não, e de onde vêm os valores.
+Hoje cada pedido de campo novo vira desenvolvimento. Já existe no sistema uma estrutura que guarda propriedade, tipo e valor por grupo, e que é lida no momento do cadastro. Este item estende esse mecanismo para descrever campos de tela: quais aparecem, em que ordem, obrigatórios ou não, e de onde vêm os valores.
 
 Critérios de sucesso
 - Campo, tipo, ordem, obrigatoriedade e origem do valor ficam persistidos por grupo
@@ -69,18 +110,17 @@ Critérios de sucesso
 - A migração é aplicada em teste sem afetar os grupos já existentes
 
 Riscos técnicos
-A estrutura definida aqui é a fundação dos cards 05 a 08; alterá-la depois gera retrabalho nos quatro.
+A estrutura definida aqui é a fundação dos itens 05 a 08; alterá-la depois gera retrabalho nos quatro.
 
 Outras informações
-Reusa o padrão de seis arquivos já adotado nas demais permissões de grupo externo, mais registro de injeção de dependência e mapeamento de banco. Fica em projeto compartilhado, não replicado por país.","12h","23/09/2026","25/09/2026","portal-externo-1","Definir a estrutura: campo, tipo, ordem, obrigatoriedade e origem do valor
-Criar a entidade e o modelo de aplicação
-Criar o contrato e a implementação do repositório
-Criar o serviço de aplicação
-Registrar na injeção de dependência
-Criar o mapeamento de banco
-Escrever e aplicar a migração em ambiente de teste
-Confirmar que os grupos existentes não foram afetados"
-"Card 05 — Endpoint de leitura da parametrização","Task","CRAWFORD-21","Objetivo
+Reusa o padrão de seis arquivos já adotado nas demais permissões de grupo externo, mais registro de injeção de dependência e mapeamento de banco. Fica em projeto compartilhado, não replicado por país.
+
+----------------------------------------
+
+Item 05 — Endpoint de leitura da parametrização
+Estimativa: 6h · 29/09/2026 a 29/09/2026
+
+Objetivo
 Entregar ao portal a configuração de campos do grupo do usuário autenticado.
 
 Contexto
@@ -95,12 +135,14 @@ Riscos técnicos
 A resposta define o que o usuário externo enxerga; devolver a configuração de outro grupo expõe a estrutura de outro cliente.
 
 Outras informações
-Depende do card 04. Reusa a leitura de propriedades por usuário já existente no serviço de acesso do cliente.","6h","25/09/2026","25/09/2026","portal-externo-1","Criar o endpoint de leitura da configuração por grupo
-Resolver o grupo a partir do usuário autenticado
-Impedir a leitura de configuração de outro grupo
-Definir a resposta para grupo sem parametrização
-Testar com grupo parametrizado e não parametrizado"
-"Card 06 — Componente renderizador de formulário dinâmico","Task","CRAWFORD-21","Objetivo
+Depende do item 04. Reusa a leitura de propriedades por usuário já existente no serviço de acesso do cliente.
+
+----------------------------------------
+
+Item 06 — Componente renderizador de formulário dinâmico
+Estimativa: 20h · 30/09/2026 a 02/10/2026
+
+Objetivo
 Montar formulários em tela a partir da parametrização, sem código específico por cliente.
 
 Contexto
@@ -113,18 +155,17 @@ Critérios de sucesso
 - Os valores preenchidos chegam ao salvamento no mesmo formato dos campos fixos
 
 Riscos técnicos
-É o componente central do projeto e o de complexidade menos previsível. Casos como campo que só aparece dependendo de outro podem não caber na primeira modelagem e forçar revisão do card 04.
+É o componente central do projeto e o de complexidade menos previsível. Casos como campo que só aparece dependendo de outro podem não caber na primeira modelagem e forçar revisão do item 04.
 
 Outras informações
-Depende dos cards 04 e 05. Reusa a biblioteca de componentes de campo existente.","20h","28/09/2026","30/09/2026","portal-externo-1","Definir o contrato de configuração consumido pelo componente
-Montar o formulário dinamicamente a partir da configuração
-Despachar cada tipo para o componente de campo correspondente
-Aplicar a ordem definida na parametrização
-Aplicar obrigatoriedade e sinalização de erro em tela
-Integrar os valores preenchidos ao salvamento
-Tratar configuração inválida sem derrubar a tela
-Testar com todos os tipos de campo disponíveis"
-"Card 07 — Resolução de valores para campos de seleção","Task","CRAWFORD-21","Objetivo
+Depende dos itens 04 e 05. Reusa a biblioteca de componentes de campo existente.
+
+----------------------------------------
+
+Item 07 — Resolução de valores para campos de seleção
+Estimativa: 12h · 02/10/2026 a 05/10/2026
+
+Objetivo
 Permitir que um campo de seleção parametrizado traga lista fixa ou consulta ao sistema, conforme a configuração.
 
 Contexto
@@ -139,13 +180,14 @@ Riscos técnicos
 Consulta mal delimitada pode devolver a um cliente valores pertencentes a outro.
 
 Outras informações
-Depende dos cards 04 e 06.","12h","30/09/2026","01/10/2026","portal-externo-1","Definir as origens de valor: lista fixa e consulta ao sistema
-Implementar a origem por lista fixa
-Implementar a origem por consulta, delimitada pelo grupo
-Obter o tipo do campo a partir do modelo do sistema
-Impedir que a consulta retorne valores de outro cliente
-Testar os dois modos no campo de apólice"
-"Card 08 — Tela de administração dos campos por grupo","Task","CRAWFORD-21","Objetivo
+Depende dos itens 04 e 06.
+
+----------------------------------------
+
+Item 08 — Tela de administração dos campos por grupo
+Estimativa: 16h · 06/10/2026 a 07/10/2026
+
+Objetivo
 Dar à equipe da Crawford autonomia para habilitar campos sem depender de desenvolvimento.
 
 Contexto
@@ -157,13 +199,61 @@ Critérios de sucesso
 - Apenas perfis internos autorizados acessam a manutenção
 
 Outras informações
-Depende do card 04. Reusa a tela de manutenção de grupo e seu serviço.","16h","02/10/2026","05/10/2026","portal-externo-1","Criar a aba de campos na manutenção de grupo
+Depende do item 04. Reusa a tela de manutenção de grupo e seu serviço.","66h","25/09/2026","07/10/2026","portal-externo-1","# 04 — Modelo de parametrização de campos por grupo (12h)
+Definir a estrutura: campo, tipo, ordem, obrigatoriedade e origem do valor
+Criar a entidade e o modelo de aplicação
+Criar o contrato e a implementação do repositório
+Criar o serviço de aplicação
+Registrar na injeção de dependência
+Criar o mapeamento de banco
+Escrever e aplicar a migração em ambiente de teste
+Confirmar que os grupos existentes não foram afetados
+# 05 — Endpoint de leitura da parametrização (6h)
+Criar o endpoint de leitura da configuração por grupo
+Resolver o grupo a partir do usuário autenticado
+Impedir a leitura de configuração de outro grupo
+Definir a resposta para grupo sem parametrização
+Testar com grupo parametrizado e não parametrizado
+# 06 — Componente renderizador de formulário dinâmico (20h)
+Definir o contrato de configuração consumido pelo componente
+Montar o formulário dinamicamente a partir da configuração
+Despachar cada tipo para o componente de campo correspondente
+Aplicar a ordem definida na parametrização
+Aplicar obrigatoriedade e sinalização de erro em tela
+Integrar os valores preenchidos ao salvamento
+Tratar configuração inválida sem derrubar a tela
+Testar com todos os tipos de campo disponíveis
+# 07 — Resolução de valores para campos de seleção (12h)
+Definir as origens de valor: lista fixa e consulta ao sistema
+Implementar a origem por lista fixa
+Implementar a origem por consulta, delimitada pelo grupo
+Obter o tipo do campo a partir do modelo do sistema
+Impedir que a consulta retorne valores de outro cliente
+Testar os dois modos no campo de apólice
+# 08 — Tela de administração dos campos por grupo (16h)
+Criar a aba de campos na manutenção de grupo
 Permitir incluir, ordenar, marcar obrigatório e remover campo
 Listar os campos disponíveis a partir do sistema
 Restringir o acesso a perfis internos autorizados
 Refletir a alteração no portal sem nova publicação
 Validar com um grupo real em ambiente de teste"
-"Card 09 — Estrutura do cadastro","Task","CRAWFORD-21","Objetivo
+"Bloco 2 — Cadastro de sinistro","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 09 — Estrutura do cadastro (10h)
+- Item 10 — Etapa de dados do sinistro (6h)
+- Item 11 — Etapa de pessoas (6h)
+- Item 12 — Etapa de local (6h)
+- Item 13 — Etapa de apólice (6h)
+- Item 14 — Etapa de anexos (6h)
+- Item 15 — Etapa de finalização (6h)
+- Item 16 — Remoção do acoplamento a cliente específico (12h)
+
+----------------------------------------
+
+Item 09 — Estrutura do cadastro
+Estimativa: 10h · 08/10/2026 a 09/10/2026
+
+Objetivo
 Ter o fluxo de cadastro navegável, com o preenchimento preservado entre as etapas.
 
 Contexto
@@ -175,12 +265,14 @@ Critérios de sucesso
 - Nenhuma etapa contém referência a cliente específico
 
 Outras informações
-Depende do card 03.","10h","06/10/2026","07/10/2026","portal-externo-2","Criar o fluxo de navegação das seis etapas
-Criar o serviço de estado do sinistro em construção
-Preservar o preenchimento ao navegar entre etapas
-Preservar o preenchimento ao sair e voltar
-Garantir ausência de referência a cliente específico"
-"Card 10 — Etapa de dados do sinistro","Task","CRAWFORD-21","Objetivo
+Depende do item 03.
+
+----------------------------------------
+
+Item 10 — Etapa de dados do sinistro
+Estimativa: 6h · 09/10/2026 a 09/10/2026
+
+Objetivo
 Reproduzir a primeira etapa do cadastro usando campos fixos mais o bloco parametrizado.
 
 Contexto
@@ -192,15 +284,18 @@ Critérios de sucesso
 - Para grupo sem parametrização, o sinistro gerado é idêntico ao do portal atual
 
 Outras informações
-Depende dos cards 06 e 09.","6h","07/10/2026","07/10/2026","portal-externo-2","Montar os campos mínimos exigidos para abertura
-Integrar o bloco de campos parametrizados
-Aplicar as validações da etapa
-Comparar o resultado com o portal atual para grupo sem parametrização"
-"Card 11 — Etapa de pessoas","Task","CRAWFORD-21","Objetivo
+Depende dos itens 06 e 09.
+
+----------------------------------------
+
+Item 11 — Etapa de pessoas
+Estimativa: 6h · 13/10/2026 a 13/10/2026
+
+Objetivo
 Registrar segurado e reclamante com busca por documento, sem duplicar cadastros.
 
 Contexto
-A etapa busca a pessoa pelo documento e cadastra uma nova quando não encontra. Documento digitado errado cria pessoa nova no sistema — problema que o card 24 ataca pela raiz para os clientes de segurado único.
+A etapa busca a pessoa pelo documento e cadastra uma nova quando não encontra. Documento digitado errado cria pessoa nova no sistema — problema que o item 24 ataca pela raiz para os clientes de segurado único.
 
 Critérios de sucesso
 - A busca por documento localiza pessoa já cadastrada
@@ -211,12 +306,14 @@ Riscos técnicos
 Cadastro silencioso por erro de digitação suja a base de pessoas e é difícil de reverter depois.
 
 Outras informações
-Depende dos cards 06 e 09. Reusa a busca de pessoa por documento já existente.","6h","08/10/2026","08/10/2026","portal-externo-2","Montar os campos de segurado e reclamante
-Integrar a busca de pessoa por documento
-Exigir confirmação explícita antes de cadastrar pessoa nova
-Integrar o bloco de campos parametrizados
-Testar com documento existente e inexistente"
-"Card 12 — Etapa de local","Task","CRAWFORD-21","Objetivo
+Depende dos itens 06 e 09. Reusa a busca de pessoa por documento já existente.
+
+----------------------------------------
+
+Item 12 — Etapa de local
+Estimativa: 6h · 13/10/2026 a 14/10/2026
+
+Objetivo
 Registrar o endereço do sinistro.
 
 Contexto
@@ -227,15 +324,18 @@ Critérios de sucesso
 - Campos adicionais do grupo aparecem conforme a parametrização
 
 Outras informações
-Depende dos cards 06 e 09. Reusa o componente de endereço e a chave de mapa já configurada.","6h","08/10/2026","09/10/2026","portal-externo-2","Montar os campos de endereço do sinistro
-Integrar o componente de endereço e o mapa
-Integrar o bloco de campos parametrizados
-Validar gravação e recuperação do endereço"
-"Card 13 — Etapa de apólice","Task","CRAWFORD-21","Objetivo
+Depende dos itens 06 e 09. Reusa o componente de endereço e a chave de mapa já configurada.
+
+----------------------------------------
+
+Item 13 — Etapa de apólice
+Estimativa: 6h · 14/10/2026 a 15/10/2026
+
+Objetivo
 Registrar os dados de apólice, com o número podendo ser texto livre ou lista, conforme o grupo.
 
 Contexto
-Hoje o número da apólice é texto livre, exceto para um cliente, onde virou lista por código. Esse é o caso que melhor demonstra a parametrização, e por isso esta é a etapa que valida o card 07.
+Hoje o número da apólice é texto livre, exceto para um cliente, onde virou lista por código. Esse é o caso que melhor demonstra a parametrização, e por isso esta é a etapa que valida o item 07.
 
 Critérios de sucesso
 - Grupo sem restrição preenche o número livremente
@@ -243,11 +343,14 @@ Critérios de sucesso
 - As datas de vigência acompanham a apólice selecionada
 
 Outras informações
-Depende dos cards 06, 07 e 09.","6h","09/10/2026","13/10/2026","portal-externo-2","Montar os campos de apólice e vigência
-Integrar o campo de número com origem parametrizada
-Preencher as datas de vigência a partir da apólice selecionada
-Testar grupo com lista fixa e grupo sem restrição"
-"Card 14 — Etapa de anexos","Task","CRAWFORD-21","Objetivo
+Depende dos itens 06, 07 e 09.
+
+----------------------------------------
+
+Item 14 — Etapa de anexos
+Estimativa: 6h · 15/10/2026 a 15/10/2026
+
+Objetivo
 Permitir o envio de documentos durante o cadastro.
 
 Contexto
@@ -262,12 +365,14 @@ Riscos técnicos
 Identificadores de destino escritos no código tornam o portal dependente dos dados de um ambiente específico, e quebram ao publicar em outro.
 
 Outras informações
-Depende do card 09. Reusa a infraestrutura de upload em partes já existente.","6h","13/10/2026","13/10/2026","portal-externo-2","Montar a tela de envio de documentos
-Integrar o upload em partes
-Mover pasta e tipo de anexo do código para configuração
-Sinalizar falha de envio e permitir nova tentativa
-Validar o vínculo do documento ao sinistro em criação"
-"Card 15 — Etapa de finalização","Task","CRAWFORD-21","Objetivo
+Depende do item 09. Reusa a infraestrutura de upload em partes já existente.
+
+----------------------------------------
+
+Item 15 — Etapa de finalização
+Estimativa: 6h · 16/10/2026 a 16/10/2026
+
+Objetivo
 Consolidar o cadastro e devolver o número do sinistro ao usuário.
 
 Contexto
@@ -279,12 +384,14 @@ Critérios de sucesso
 - A notificação à Crawford ocorre como no portal atual
 
 Outras informações
-Depende dos cards 10 a 14. Reusa o endpoint de gravação já existente.","6h","14/10/2026","14/10/2026","portal-externo-2","Montar a revisão com campos fixos e adicionais
-Enviar o sinistro pelo endpoint de gravação
-Apresentar o número do sinistro ao usuário
-Disparar a notificação à Crawford
-Validar o sinistro gerado contra o portal atual"
-"Card 16 — Remoção do acoplamento a cliente específico","Task","CRAWFORD-21","Objetivo
+Depende dos itens 10 a 14. Reusa o endpoint de gravação já existente.
+
+----------------------------------------
+
+Item 16 — Remoção do acoplamento a cliente específico
+Estimativa: 12h · 16/10/2026 a 20/10/2026
+
+Objetivo
 Eliminar do código qualquer identificação de cliente por nome ou identificador fixo.
 
 Contexto
@@ -299,13 +406,64 @@ Riscos técnicos
 A equivalência precisa ser conferida campo a campo. Uma diferença silenciosa só aparecerá quando o cliente usar o portal.
 
 Outras informações
-Depende dos cards 07 e 15. Alcança portal e servidor.","12h","14/10/2026","16/10/2026","portal-externo-2","Mapear os pontos que identificam cliente por identificador fixo
+Depende dos itens 07 e 15. Alcança portal e servidor.","58h","08/10/2026","20/10/2026","portal-externo-2","# 09 — Estrutura do cadastro (10h)
+Criar o fluxo de navegação das seis etapas
+Criar o serviço de estado do sinistro em construção
+Preservar o preenchimento ao navegar entre etapas
+Preservar o preenchimento ao sair e voltar
+Garantir ausência de referência a cliente específico
+# 10 — Etapa de dados do sinistro (6h)
+Montar os campos mínimos exigidos para abertura
+Integrar o bloco de campos parametrizados
+Aplicar as validações da etapa
+Comparar o resultado com o portal atual para grupo sem parametrização
+# 11 — Etapa de pessoas (6h)
+Montar os campos de segurado e reclamante
+Integrar a busca de pessoa por documento
+Exigir confirmação explícita antes de cadastrar pessoa nova
+Integrar o bloco de campos parametrizados
+Testar com documento existente e inexistente
+# 12 — Etapa de local (6h)
+Montar os campos de endereço do sinistro
+Integrar o componente de endereço e o mapa
+Integrar o bloco de campos parametrizados
+Validar gravação e recuperação do endereço
+# 13 — Etapa de apólice (6h)
+Montar os campos de apólice e vigência
+Integrar o campo de número com origem parametrizada
+Preencher as datas de vigência a partir da apólice selecionada
+Testar grupo com lista fixa e grupo sem restrição
+# 14 — Etapa de anexos (6h)
+Montar a tela de envio de documentos
+Integrar o upload em partes
+Mover pasta e tipo de anexo do código para configuração
+Sinalizar falha de envio e permitir nova tentativa
+Validar o vínculo do documento ao sinistro em criação
+# 15 — Etapa de finalização (6h)
+Montar a revisão com campos fixos e adicionais
+Enviar o sinistro pelo endpoint de gravação
+Apresentar o número do sinistro ao usuário
+Disparar a notificação à Crawford
+Validar o sinistro gerado contra o portal atual
+# 16 — Remoção do acoplamento a cliente específico (12h)
+Mapear os pontos que identificam cliente por identificador fixo
 Substituir a identificação por parametrização de grupo
 Generalizar os endpoints dedicados a cliente específico
 Remover os modelos dedicados a cliente específico
 Conferir a paridade campo a campo com o portal atual
 Validar com o cliente hoje tratado por exceção"
-"Card 17 — Endpoint de edição de sinistro pelo portal","Task","CRAWFORD-21","Objetivo
+"Bloco 3 — Edição de sinistro","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 17 — Endpoint de edição de sinistro pelo portal (16h)
+- Item 18 — Edição na tela de detalhe do sinistro (14h)
+- Item 19 — Registro das alterações feitas pelo portal (8h)
+
+----------------------------------------
+
+Item 17 — Endpoint de edição de sinistro pelo portal
+Estimativa: 16h · 20/10/2026 a 22/10/2026
+
+Objetivo
 Permitir que o cliente altere informações do sinistro, restrito ao que lhe for autorizado.
 
 Contexto
@@ -321,14 +479,14 @@ Riscos técnicos
 Este é o ponto mais sensível do projeto. A autorização precisa ser validada no servidor e não apenas na tela — confiar na interface significa permitir que um usuário externo altere qualquer campo do sinistro.
 
 Outras informações
-Depende do card 04. Reusa a permissão por componente já modelada no grupo, que prevê edição e nunca foi consumida pelo portal.","16h","16/10/2026","20/10/2026","portal-externo-3","Definir quais campos são passíveis de edição pelo portal
-Criar o endpoint de atualização do sinistro
-Validar a autorização por campo no servidor
-Recusar alteração de campo não autorizado
-Recusar alteração conforme a situação do sinistro
-Testar tentativa de alteração feita fora da tela
-Submeter à revisão de segurança antes de publicar"
-"Card 18 — Edição na tela de detalhe do sinistro","Task","CRAWFORD-21","Objetivo
+Depende do item 04. Reusa a permissão por componente já modelada no grupo, que prevê edição e nunca foi consumida pelo portal.
+
+----------------------------------------
+
+Item 18 — Edição na tela de detalhe do sinistro
+Estimativa: 14h · 22/10/2026 a 23/10/2026
+
+Objetivo
 Oferecer ao usuário externo a alteração dos campos que lhe são permitidos.
 
 Contexto
@@ -340,12 +498,14 @@ Critérios de sucesso
 - Recusa pelo servidor é informada ao usuário sem perder o preenchimento
 
 Outras informações
-Depende do card 17.","14h","20/10/2026","21/10/2026","portal-externo-3","Identificar em tela os campos editáveis e os de leitura
-Implementar o modo de edição no detalhe
-Consumir a permissão de edição por componente
-Confirmar a alteração em tela e ao recarregar
-Tratar a recusa do servidor sem perder o preenchimento"
-"Card 19 — Registro das alterações feitas pelo portal","Task","CRAWFORD-21","Objetivo
+Depende do item 17.
+
+----------------------------------------
+
+Item 19 — Registro das alterações feitas pelo portal
+Estimativa: 8h · 26/10/2026 a 26/10/2026
+
+Objetivo
 Manter rastreável quem alterou o quê pelo portal externo.
 
 Contexto
@@ -360,12 +520,38 @@ Riscos técnicos
 Sem esse registro não há como apurar divergência sobre quem alterou um dado do sinistro.
 
 Outras informações
-Depende do card 17. Estende o registro de acesso já existente.","8h","22/10/2026","22/10/2026","portal-externo-3","Definir o conteúdo do registro de alteração
+Depende do item 17. Estende o registro de acesso já existente.","38h","20/10/2026","26/10/2026","portal-externo-3","# 17 — Endpoint de edição de sinistro pelo portal (16h)
+Definir quais campos são passíveis de edição pelo portal
+Criar o endpoint de atualização do sinistro
+Validar a autorização por campo no servidor
+Recusar alteração de campo não autorizado
+Recusar alteração conforme a situação do sinistro
+Testar tentativa de alteração feita fora da tela
+Submeter à revisão de segurança antes de publicar
+# 18 — Edição na tela de detalhe do sinistro (14h)
+Identificar em tela os campos editáveis e os de leitura
+Implementar o modo de edição no detalhe
+Consumir a permissão de edição por componente
+Confirmar a alteração em tela e ao recarregar
+Tratar a recusa do servidor sem perder o preenchimento
+# 19 — Registro das alterações feitas pelo portal (8h)
+Definir o conteúdo do registro de alteração
 Gravar usuário, data, campo, valor anterior e valor novo
 Impedir a alteração quando o registro falhar
 Disponibilizar a consulta à equipe interna
 Validar o registro com alterações reais em teste"
-"Card 21 — Exposição dos campos adicionais do sinistro","Task","CRAWFORD-21","Objetivo
+"Bloco 4 — Visualização do sinistro","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 21 — Exposição dos campos adicionais do sinistro (10h)
+- Item 20 — Detalhe do sinistro com blocos parametrizáveis (16h)
+- Item 22 — Definição dos blocos por cliente (6h)
+
+----------------------------------------
+
+Item 21 — Exposição dos campos adicionais do sinistro
+Estimativa: 10h · 27/10/2026 a 28/10/2026
+
+Objetivo
 Entregar ao portal os dados do sinistro além dos preenchidos no cadastro, respeitando o que é visível ao externo.
 
 Contexto
@@ -380,12 +566,14 @@ Riscos técnicos
 Filtrar apenas na tela deixa o dado disponível a quem inspecionar a resposta do servidor.
 
 Outras informações
-Depende do card 04. Reusa a marcação de visibilidade externa já existente.","10h","23/10/2026","26/10/2026","portal-externo-4","Definir quais campos do sinistro podem ser expostos ao externo
-Filtrar os campos no servidor pela marcação de visibilidade
-Impedir o tráfego de campo não autorizado
-Preservar o comportamento atual dos documentos
-Inspecionar a resposta do servidor quanto a vazamento de campo"
-"Card 20 — Detalhe do sinistro com blocos parametrizáveis","Task","CRAWFORD-21","Objetivo
+Depende do item 04. Reusa a marcação de visibilidade externa já existente.
+
+----------------------------------------
+
+Item 20 — Detalhe do sinistro com blocos parametrizáveis
+Estimativa: 16h · 28/10/2026 a 30/10/2026
+
+Objetivo
 Ampliar o que o cliente enxerga do sinistro, controlado por configuração.
 
 Contexto
@@ -397,12 +585,14 @@ Critérios de sucesso
 - A tela permanece legível quando poucos blocos estão habilitados
 
 Outras informações
-Depende dos cards 04 e 21. O levantamento de quais campos entram em cada bloco é o card 22.","16h","26/10/2026","28/10/2026","portal-externo-4","Definir os blocos da tela de detalhe
-Implementar exibição condicional por configuração de grupo
-Manter o conjunto atual para grupo sem configuração
-Ajustar o layout para poucos blocos habilitados
-Validar com mais de uma configuração de grupo"
-"Card 22 — Definição dos blocos por cliente","Task","CRAWFORD-21","Objetivo
+Depende dos itens 04 e 21. O levantamento de quais campos entram em cada bloco é o item 22.
+
+----------------------------------------
+
+Item 22 — Definição dos blocos por cliente
+Estimativa: 6h · 30/10/2026 a 30/10/2026
+
+Objetivo
 Transformar o levantamento da Crawford na configuração efetiva dos blocos.
 
 Contexto
@@ -413,11 +603,34 @@ Critérios de sucesso
 - Ao menos um cliente real configurado e validado com a equipe interna
 
 Outras informações
-Depende dos cards 20 e 21 e do levantamento da Crawford. É trabalho de configuração, não de desenvolvimento.","6h","28/10/2026","28/10/2026","portal-externo-4","Receber o levantamento de campos da Crawford
+Depende dos itens 20 e 21 e do levantamento da Crawford. É trabalho de configuração, não de desenvolvimento.","32h","27/10/2026","30/10/2026","portal-externo-4","# 21 — Exposição dos campos adicionais do sinistro (10h)
+Definir quais campos do sinistro podem ser expostos ao externo
+Filtrar os campos no servidor pela marcação de visibilidade
+Impedir o tráfego de campo não autorizado
+Preservar o comportamento atual dos documentos
+Inspecionar a resposta do servidor quanto a vazamento de campo
+# 20 — Detalhe do sinistro com blocos parametrizáveis (16h)
+Definir os blocos da tela de detalhe
+Implementar exibição condicional por configuração de grupo
+Manter o conjunto atual para grupo sem configuração
+Ajustar o layout para poucos blocos habilitados
+Validar com mais de uma configuração de grupo
+# 22 — Definição dos blocos por cliente (6h)
+Receber o levantamento de campos da Crawford
 Traduzir o levantamento em configuração de blocos
 Configurar ao menos um cliente real
 Validar a configuração com a equipe interna"
-"Card 23 — Segurado nas permissões de grupo","Task","CRAWFORD-21","Objetivo
+"Bloco 5 — Segurado no grupo","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 23 — Segurado nas permissões de grupo (10h)
+- Item 24 — Segurado fixo no cadastro (10h)
+
+----------------------------------------
+
+Item 23 — Segurado nas permissões de grupo
+Estimativa: 10h · 03/11/2026 a 04/11/2026
+
+Objetivo
 Permitir fixar um segurado para o grupo, como já se faz com corretora e seguradora.
 
 Contexto
@@ -428,13 +641,14 @@ Critérios de sucesso
 - Grupo sem segurado definido mantém o comportamento atual
 
 Outras informações
-Segue o padrão de seis arquivos das demais permissões de grupo externo, mais injeção de dependência, mapeamento de banco e migração.","10h","29/10/2026","30/10/2026","portal-externo-5","Criar a entidade e o modelo de segurado por grupo
-Criar o contrato e a implementação do repositório
-Criar o serviço de aplicação
-Registrar na injeção de dependência
-Criar o mapeamento de banco e a migração
-Expor a manutenção na tela de grupo"
-"Card 24 — Segurado fixo no cadastro","Task","CRAWFORD-21","Objetivo
+Segue o padrão de seis arquivos das demais permissões de grupo externo, mais injeção de dependência, mapeamento de banco e migração.
+
+----------------------------------------
+
+Item 24 — Segurado fixo no cadastro
+Estimativa: 10h · 04/11/2026 a 05/11/2026
+
+Objetivo
 Evitar que o segurado seja digitado a cada sinistro quando ele é sempre o mesmo.
 
 Contexto
@@ -446,12 +660,31 @@ Critérios de sucesso
 - Grupo sem segurado definido segue informando normalmente
 
 Outras informações
-Depende dos cards 11 e 23.","10h","30/10/2026","03/11/2026","portal-externo-5","Carregar o segurado do grupo na etapa de pessoas
+Depende dos itens 11 e 23.","20h","03/11/2026","05/11/2026","portal-externo-5","# 23 — Segurado nas permissões de grupo (10h)
+Criar a entidade e o modelo de segurado por grupo
+Criar o contrato e a implementação do repositório
+Criar o serviço de aplicação
+Registrar na injeção de dependência
+Criar o mapeamento de banco e a migração
+Expor a manutenção na tela de grupo
+# 24 — Segurado fixo no cadastro (10h)
+Carregar o segurado do grupo na etapa de pessoas
 Preencher e proteger o campo quando houver segurado definido
 Impedir a criação de pessoa a partir desse preenchimento
 Preservar o comportamento para grupo sem segurado
 Validar com um cliente de segurado único"
-"Card 25 — Recuperação de senha","Task","CRAWFORD-21","Objetivo
+"Bloco 6 — Senha e segurança de acesso","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 25 — Recuperação de senha (14h)
+- Item 26 — Telas de recuperação e redefinição (10h)
+- Item 27 — Troca de senha pelo usuário autenticado (6h)
+
+----------------------------------------
+
+Item 25 — Recuperação de senha
+Estimativa: 14h · 05/11/2026 a 09/11/2026
+
+Objetivo
 Permitir que o usuário externo redefina a própria senha sem depender da Crawford.
 
 Contexto
@@ -467,14 +700,14 @@ Riscos técnicos
 Um link sem expiração ou reutilizável se torna caminho de acesso à conta. A resposta também não pode servir para descobrir quais e-mails estão cadastrados.
 
 Outras informações
-Reusa a infraestrutura de envio de e-mail já existente no servidor.","14h","03/11/2026","05/11/2026","portal-externo-6","Criar a geração de token de redefinição com expiração
-Criar o endpoint de solicitação de recuperação
-Criar o endpoint de redefinição
-Invalidar o token após o uso
-Padronizar a resposta para não revelar cadastro existente
-Montar e enviar o e-mail pela infraestrutura existente
-Invalidar a senha anterior após a redefinição"
-"Card 26 — Telas de recuperação e redefinição","Task","CRAWFORD-21","Objetivo
+Reusa a infraestrutura de envio de e-mail já existente no servidor.
+
+----------------------------------------
+
+Item 26 — Telas de recuperação e redefinição
+Estimativa: 10h · 09/11/2026 a 10/11/2026
+
+Objetivo
 Oferecer o fluxo de recuperação a partir da tela de login.
 
 Contexto
@@ -486,27 +719,53 @@ Critérios de sucesso
 - Link expirado é informado com orientação para nova solicitação
 
 Outras informações
-Depende do card 25.","10h","05/11/2026","06/11/2026","portal-externo-6","Incluir a opção de recuperação na tela de login
-Criar a tela de solicitação por e-mail
-Criar a tela de definição de nova senha
-Tratar link expirado com orientação de nova solicitação
-Validar o fluxo completo em ambiente de teste"
-"Card 27 — Troca de senha pelo usuário autenticado","Task","CRAWFORD-21","Objetivo
+Depende do item 25.
+
+----------------------------------------
+
+Item 27 — Troca de senha pelo usuário autenticado
+Estimativa: 6h · 10/11/2026 a 11/11/2026
+
+Objetivo
 Permitir a troca de senha a qualquer momento, sem passar pela recuperação.
 
 Contexto
-Complementa o card 25 para quem já está dentro do portal e apenas quer trocar a senha recebida.
+Complementa o item 25 para quem já está dentro do portal e apenas quer trocar a senha recebida.
 
 Critérios de sucesso
 - A troca exige a senha atual
 - A senha anterior deixa de funcionar após a troca
 
 Outras informações
-Depende do card 25.","6h","06/11/2026","09/11/2026","portal-externo-6","Criar a tela de troca de senha
+Depende do item 25.","30h","05/11/2026","11/11/2026","portal-externo-6","# 25 — Recuperação de senha (14h)
+Criar a geração de token de redefinição com expiração
+Criar o endpoint de solicitação de recuperação
+Criar o endpoint de redefinição
+Invalidar o token após o uso
+Padronizar a resposta para não revelar cadastro existente
+Montar e enviar o e-mail pela infraestrutura existente
+Invalidar a senha anterior após a redefinição
+# 26 — Telas de recuperação e redefinição (10h)
+Incluir a opção de recuperação na tela de login
+Criar a tela de solicitação por e-mail
+Criar a tela de definição de nova senha
+Tratar link expirado com orientação de nova solicitação
+Validar o fluxo completo em ambiente de teste
+# 27 — Troca de senha pelo usuário autenticado (6h)
+Criar a tela de troca de senha
 Exigir a senha atual na troca
 Invalidar a senha anterior
 Validar o fluxo em ambiente de teste"
-"Card 28 — Portal de documentos do segurado","Task","CRAWFORD-21","Objetivo
+"Bloco 7 — Portal do segurado","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 28 — Portal de documentos do segurado (12h)
+
+----------------------------------------
+
+Item 28 — Portal de documentos do segurado
+Estimativa: 12h · 11/11/2026 a 12/11/2026
+
+Objetivo
 Migrar o acesso por documento e número de sinistro para a nova estrutura.
 
 Contexto
@@ -518,12 +777,24 @@ Critérios de sucesso
 - Nenhuma informação além da disponível hoje é exposta
 
 Outras informações
-Depende do card 03.","12h","09/11/2026","10/11/2026","portal-externo-7","Criar as rotas de acesso por documento e número de sinistro
+Depende do item 03.","12h","11/11/2026","12/11/2026","portal-externo-7","# 28 — Portal de documentos do segurado (12h)
+Criar as rotas de acesso por documento e número de sinistro
 Montar a tela de documentos pendentes
 Integrar o anexo de documentos
 Conferir que nenhuma informação adicional é exposta
 Validar o fluxo completo em ambiente de teste"
-"Card 29 — Validação nos demais países","Task","CRAWFORD-21","Objetivo
+"Bloco 8 — Validação, homologação e virada","Task","CRAWFORD-21","Escopo do bloco
+Itens de trabalho, na ordem de execução:
+- Item 29 — Validação nos demais países (12h)
+- Item 30 — Homologação com a Crawford (16h)
+- Item 31 — Publicação e virada do primeiro cliente (10h)
+
+----------------------------------------
+
+Item 29 — Validação nos demais países
+Estimativa: 12h · 12/11/2026 a 16/11/2026
+
+Objetivo
 Confirmar que o portal opera fora do Brasil.
 
 Contexto
@@ -537,27 +808,32 @@ Riscos técnicos
 A separação por identificador dentro da mesma base significa que uma consulta mal delimitada cruza dados entre países.
 
 Outras informações
-Depende dos blocos de cadastro e de edição concluídos.","12h","10/11/2026","12/11/2026","portal-externo-8","Preparar acesso e massa de teste em um segundo país
-Validar cadastro, visualização e edição fora do Brasil
-Conferir que a parametrização não cruza entre países
-Registrar como card os ajustes necessários"
-"Card 30 — Homologação com a Crawford","Task","CRAWFORD-21","Objetivo
+Depende dos blocos de cadastro e de edição concluídos.
+
+----------------------------------------
+
+Item 30 — Homologação com a Crawford
+Estimativa: 16h · 16/11/2026 a 18/11/2026
+
+Objetivo
 Validar o portal com quem vai operá-lo, antes de expor a clientes.
 
 Contexto
-A revisão de código acontecerá conforme os cards forem saindo. A homologação reúne essa validação num ciclo fechado antes do primeiro cliente real.
+A revisão de código acontecerá conforme os itens forem saindo. A homologação reúne essa validação num ciclo fechado antes do primeiro cliente real.
 
 Critérios de sucesso
 - Fluxos de cadastro, visualização, edição e recuperação de senha validados em teste
 - Ajustes apontados na revisão tratados ou registrados como card
 
 Outras informações
-Depende de todos os blocos anteriores. O tempo é compartilhado com a equipe da Crawford e não depende só do desenvolvimento.","16h","12/11/2026","16/11/2026","portal-externo-8","Preparar o ambiente e a massa de homologação
-Conduzir a validação dos fluxos com a equipe da Crawford
-Registrar os apontamentos da revisão de código
-Tratar ou transformar em card cada apontamento
-Obter o aceite para a virada"
-"Card 31 — Publicação e virada do primeiro cliente","Task","CRAWFORD-21","Objetivo
+Depende de todos os blocos anteriores. O tempo é compartilhado com a equipe da Crawford e não depende só do desenvolvimento.
+
+----------------------------------------
+
+Item 31 — Publicação e virada do primeiro cliente
+Estimativa: 10h · 18/11/2026 a 19/11/2026
+
+Objetivo
 Colocar o portal no ar e migrar um cliente, mantendo o portal atual disponível.
 
 Contexto
@@ -573,7 +849,19 @@ Riscos técnicos
 A virada depende do endereço entregue ao cliente, não de uma configuração no sistema. A lista de quem já foi migrado precisa ser controlada fora da aplicação.
 
 Outras informações
-Depende do card 30.","10h","16/11/2026","17/11/2026","portal-externo-8","Publicar o portal em endereço próprio
+Depende do item 30.","38h","12/11/2026","19/11/2026","portal-externo-8","# 29 — Validação nos demais países (12h)
+Preparar acesso e massa de teste em um segundo país
+Validar cadastro, visualização e edição fora do Brasil
+Conferir que a parametrização não cruza entre países
+Registrar como card os ajustes necessários
+# 30 — Homologação com a Crawford (16h)
+Preparar o ambiente e a massa de homologação
+Conduzir a validação dos fluxos com a equipe da Crawford
+Registrar os apontamentos da revisão de código
+Tratar ou transformar em card cada apontamento
+Obter o aceite para a virada
+# 31 — Publicação e virada do primeiro cliente (10h)
+Publicar o portal em endereço próprio
 Configurar o endereço e o certificado
 Definir o cliente piloto com a Crawford
 Entregar o novo endereço ao cliente piloto
