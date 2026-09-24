@@ -25,13 +25,13 @@ SET NOCOUNT ON;
 
 DECLARE @Amostra INT = 5;
 
-/* 1) sinistros ancora */
+/* 1) sinistros ancora. Guarda Id E UniqueId, porque as tabelas filhas ligam
+   ao sinistro ora por ClaimId, ora por ClaimUniqueId. */
 IF OBJECT_ID('tempdb..#claims') IS NOT NULL DROP TABLE #claims;
-SELECT TOP (@Amostra) c.Id
+SELECT TOP (@Amostra) c.Id, c.UniqueId
 INTO #claims
 FROM dbo.Claim c
 WHERE c.ClaimCode LIKE 'BR[0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]'
-  AND EXISTS (SELECT 1 FROM dbo.ClaimChronology ch WHERE ch.ClaimId = c.Id)
 ORDER BY c.Id DESC;
 
 /* 2) plano de tabelas: 'claim' = filtra por ClaimId; 'full' = todas as linhas */
@@ -117,15 +117,30 @@ BEGIN
 
         DECLARE @temId BIT = CASE WHEN EXISTS (SELECT 1 FROM sys.identity_columns WHERE object_id=OBJECT_ID(@full)) THEN 1 ELSE 0 END;
 
-        DECLARE @where NVARCHAR(200) = '';
+        DECLARE @where NVARCHAR(400) = '';
         IF @modo = 'claim'
         BEGIN
-            IF EXISTS (SELECT 1 FROM sys.columns WHERE object_id=OBJECT_ID(@full) AND name='ClaimId')
-                SET @where = ' WHERE [ClaimId] IN (SELECT Id FROM #claims)';
-            ELSE IF @tab = 'Claim'
+            IF @tab = 'Claim'
                 SET @where = ' WHERE [Id] IN (SELECT Id FROM #claims)';
+            ELSE IF EXISTS (SELECT 1 FROM sys.columns WHERE object_id=OBJECT_ID(@full) AND name='ClaimId')
+                SET @where = ' WHERE [ClaimId] IN (SELECT Id FROM #claims)';
+            ELSE IF EXISTS (SELECT 1 FROM sys.columns WHERE object_id=OBJECT_ID(@full) AND name='ClaimUniqueId')
+                SET @where = ' WHERE [ClaimUniqueId] IN (SELECT UniqueId FROM #claims)';
             ELSE
-                SET @where = ' WHERE 1=0';
+            BEGIN
+                /* usa a FK declarada para dbo.Claim, se houver */
+                DECLARE @fkcol SYSNAME = (
+                    SELECT TOP 1 pc.name
+                    FROM sys.foreign_keys fk
+                    JOIN sys.foreign_key_columns fkc ON fkc.constraint_object_id = fk.object_id
+                    JOIN sys.columns pc ON pc.object_id = fk.parent_object_id AND pc.column_id = fkc.parent_column_id
+                    WHERE fk.parent_object_id = OBJECT_ID(@full)
+                      AND fk.referenced_object_id = OBJECT_ID('dbo.Claim'));
+                IF @fkcol IS NOT NULL
+                    SET @where = ' WHERE ' + QUOTENAME(@fkcol) + ' IN (SELECT Id FROM #claims)';
+                ELSE
+                    SET @where = ' WHERE 1=0';  /* sem ligacao conhecida com Claim: nao traz dados */
+            END
         END
 
         INSERT #out (Linha) VALUES ('-- ' + @full + ' (' + @modo + ')');
