@@ -18,8 +18,9 @@
 
 [CmdletBinding()]
 param(
-    [Parameter(Mandatory = $true)]
-    [string] $Servidor,
+    # Servidor da CarolOneCrawfordDB (o mesmo da connection string do appsettings).
+    # Ja vem preenchido; passe -Servidor "outro" so se o endereco mudar no ambiente.
+    [string] $Servidor = '10.122.0.11',
 
     [string] $Banco = 'CarolOneCrawfordDB',
 
