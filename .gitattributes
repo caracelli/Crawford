@@ -4,3 +4,4 @@ SQL/*.csv filter=lfs diff=lfs merge=lfs -text
 SQL/*.ps1 filter=lfs diff=lfs merge=lfs -text
 SQL/**/*.sql filter=lfs diff=lfs merge=lfs -text
 seed.sql filter=lfs diff=lfs merge=lfs -text
+schema.sql filter=lfs diff=lfs merge=lfs -text
