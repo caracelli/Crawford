@@ -1,0 +1,578 @@
+PORTAL EXTERNO BRS CLOUD - DESCRICAO DOS 9 CARDS PARA O JIRA
+
+Formato conforme o modelo definido pelo Nelson: checklist no topo, em linhas
+soltas, com caminho de arquivo e classe reais; depois Objetivo, Contexto,
+Criterios de sucesso, Riscos tecnicos e Outras informacoes. Sem aninhamento,
+sem repetir escopo, sem datas dentro do corpo.
+
+Datas conforme Cards.xlsx (o que esta no Jira). Total: 316h em 9 cards.
+
+
+================================================================================
+Bloco 0 - Infraestrutura do external2   |   23/09/2026 a 25/09/2026   |   22h
+================================================================================
+
+Checklist
+
+Incluir 'external2' na união de accessType em src/environments/enviroment.type.ts
+
+Criar environment.test.external2.ts, environment.staging.external2.ts e environment.prod.external2.ts
+
+Criar appExternal2Routes em src/app/app.routing.ts, ao lado de appExternalRoutes
+
+Substituir o ternário aninhado de RouterModule.forRoot em src/app/app.module.ts por seleção explícita
+
+Criar as configurações test-external2, staging-external2 e production-external2 em angular.json, com outputPath dist/wwwroot_external2
+
+Tratar o novo accessType em authentication/_services/auth.service.ts e user.service.ts
+
+Tratar em configuration/navigation/navigation.service.ts
+
+Tratar em layout/common/language/language.component.ts e layout/common/user-menu/user-menu.component.ts
+
+Tratar em layout/layouts/horizontal/modern/modern.component.ts e .html
+
+Criar src/app/modules/external2/ com external2.module.ts e o layout base
+
+Copiar as pastas i18n dos componentes do módulo external, nos oito idiomas
+
+Confirmar que production, production-external e production-insured seguem gerando a mesma saída
+
+
+Objetivo
+
+Ter o portal external2 compilando, publicando e navegando por conta própria, sem tocar nos três portais existentes.
+
+Contexto
+
+O portal servido é escolhido em tempo de build: environment.accessType vale 'brscloud', 'insured' ou 'external', e app.module.ts monta o RouterModule com uma das três árvores de app.routing.ts. Cada portal tem sua configuração em angular.json e pasta de saída própria — dist/wwwroot, dist/wwwroot_external e dist/wwwroot_insured. O quarto segue o mesmo caminho. O trabalho não está em criar, está nas comparações de accessType fora do módulo: oito arquivos em authentication, configuration/navigation e layout decidem comportamento por esse valor.
+
+Critérios de sucesso
+
+As três configurações de external2 compilam e publicam em dist/wwwroot_external2
+
+Nenhum accessType cai em ramo alheio depois da troca do ternário
+
+Login, menu, navegação, seletor de idioma e menu do usuário se comportam como no portal externo
+
+Os oito idiomas carregam no módulo novo sem chave faltando
+
+Os três portais existentes compilam e publicam sem alteração de comportamento
+
+Riscos técnicos
+
+As comparações são do tipo "igual a insured" ou "diferente de brscloud": o tipo novo cai no ramo errado sem quebrar a compilação, e o defeito só aparece em execução — na pior hipótese, menu interno exibido a usuário externo. O ternário aninhado do app.module.ts já está no limite com três valores.
+
+Outras informações
+
+Não depende de nada e bloqueia todos os demais blocos. Reusa o caminho já percorrido nos portais external e insured.
+
+
+================================================================================
+Bloco 1 - Motor de formulário dinâmico   |   25/09/2026 a 07/10/2026   |   66h
+================================================================================
+
+Checklist
+
+Criar a entidade de campo parametrizado em Domain/Entities/Profiles/, ao lado de GroupUserExternalDefaultProperty.cs
+
+Seguir o padrão de seis arquivos: Domain/Entities/Profiles, Domain/Interfaces/Repositories/Profiles, Infra.Data/Repositories/Profiles, Application/Models/Profiles, Application/Interfaces/Profiles e Application/Services/Profiles
+
+Registrar em Infra.CrossCutting.IoC/NativeInjectorBootStrapper.cs
+
+Script de migração em Infra.Database.SqlServer/scripts/2026/
+
+Endpoint de leitura em Services.Api/Controllers/External/ClientAccessController.cs, resolvendo o grupo pelo usuário autenticado
+
+Reusar SelectAllPropertysByUserId de Application/Services/External/ClientAccessService.cs como caminho de leitura
+
+Componente renderizador em src/app/modules/external2/_components/, despachando por tipo para os campos de src/@brscloud/components
+
+Aplicar ordem, obrigatoriedade e sinalização de erro a partir da configuração
+
+Origem de valor por lista fixa e por consulta ao sistema, delimitada pelo grupo
+
+Frontend: aba de campos na manutenção de grupo, no padrão das telas de src/app/modules/parameters/
+
+Frontend: traduções da tela nova nos oito idiomas
+
+Testar com todos os tipos de campo e com grupo sem parametrização
+
+
+Objetivo
+
+Permitir que os campos exibidos a cada cliente venham de configuração, e não de código.
+
+Contexto
+
+Já existe GroupUserExternalDefaultProperty, que guarda propriedade, tipo e valor por grupo e é lida no cadastro por SelectAllPropertysByUserId. Este bloco estende esse mecanismo para descrever campos de tela: quais aparecem, em que ordem, obrigatórios ou não e de onde vêm os valores. A biblioteca de componentes de campo em src/@brscloud/components já está completa; falta a peça que lê a configuração e monta o formulário. É a frente mais cara e sustenta o cadastro, a visualização e a edição.
+
+Critérios de sucesso
+
+Campo, tipo, ordem, obrigatoriedade e origem do valor ficam persistidos por grupo
+
+O endpoint devolve apenas a configuração do grupo do usuário autenticado
+
+O formulário se monta na ordem definida, com obrigatoriedade bloqueando o avanço
+
+Campo de seleção com consulta não devolve valores de outro cliente
+
+A alteração pela tela de parâmetros vale no portal sem nova publicação
+
+Grupo sem parametrização opera com os campos fixos, como hoje
+
+Riscos técnicos
+
+O renderizador é o componente de complexidade menos previsível do projeto. Campo condicionado a outro pode não caber na primeira modelagem e forçar mudança na entidade, com retrabalho nos quatro itens seguintes. Consulta de seleção mal delimitada devolve dado de outro cliente — vale revisar a cláusula de grupo com a mesma atenção do endpoint de edição.
+
+Outras informações
+
+Depende do bloco 0. As entidades ficam em projeto compartilhado, não replicado por país.
+
+
+================================================================================
+Bloco 2 - Cadastro de sinistro   |   08/10/2026 a 20/10/2026   |   58h
+================================================================================
+
+Checklist
+
+Criar src/app/modules/external2/claim-register/ com as seis etapas, espelhando external-claim-register
+
+Criar o serviço de estado do sinistro em construção, no lugar de external-claim-data.service.ts
+
+Etapa de dados, pessoas, local, apólice, anexos e finalização, cada uma com o bloco parametrizado
+
+Remover o GUID 930f3c8c-cc60-4756-8117-f7a6c2f74d35 e a flag isTelefonica dos sete componentes onde aparece
+
+Substituir a flag por parametrização de grupo em claim-data, people, policy, finally, detail e basic
+
+Generalizar GetAllPoliciesTelefonica, GeAllItensNameTelefonica e GetAllItensManufacturersTelefonica de Application/Interfaces/External/IExternalClaimService.cs
+
+Remover os três repositórios Telefonica de Application/Services/External/ExternalClaimService.cs e os três mapas de AutoMapper/ReverseMappingProfile.cs
+
+Mover pasta e tipo de anexo do código para configuração, na etapa de anexos
+
+Gravar pelo ContactClaim de ClientAccessController.cs, sem endpoint dedicado a cliente
+
+Exigir confirmação explícita antes de cadastrar pessoa nova na busca por documento
+
+Comparar campo a campo o sinistro gerado com o do portal atual, para grupo sem parametrização
+
+
+Objetivo
+
+Reconstruir o cadastro em seis etapas, sem nenhuma identificação de cliente escrita no código.
+
+Contexto
+
+O cadastro atual vive em src/app/modules/external/external-claim-register/, com uma pasta por etapa e o estado em external-claim-data.service.ts. A estrutura se mantém; o que muda é a origem dos campos, que passa a ser a parametrização do bloco 1. O acoplamento é o grosso do trabalho: a flag isTelefonica aparece em claim-data (13 ocorrências entre .ts e .html), people (12), finally (11), policy, basic, detail e no próprio serviço de estado. No servidor são três métodos em IExternalClaimService, três repositórios injetados em ExternalClaimService e três mapas em ReverseMappingProfile.
+
+Critérios de sucesso
+
+As seis etapas navegam preservando o preenchimento, inclusive ao sair e voltar
+
+Nenhuma ocorrência de Telefonica ou do GUID no código do external2
+
+O cliente hoje tratado por exceção opera integralmente por parametrização
+
+Para grupo sem parametrização, o sinistro gerado é idêntico ao do portal atual
+
+Pasta e tipo de anexo deixam de estar fixos no código
+
+Riscos técnicos
+
+A paridade precisa ser conferida campo a campo: diferença silenciosa só aparece quando o cliente usar. Identificadores de destino de anexo escritos no código amarram o portal a um ambiente e quebram na publicação em outro. Cadastro de pessoa por erro de digitação suja a base e é difícil de reverter.
+
+Outras informações
+
+Depende dos blocos 0 e 1. É o bloco com mais itens e atravessa portal e servidor.
+
+
+================================================================================
+Bloco 3 - Edição de sinistro   |   20/10/2026 a 26/10/2026   |   38h
+================================================================================
+
+Checklist
+
+Definir com a Crawford a lista de campos editáveis pelo portal
+
+Criar o endpoint de atualização em Services.Api/Controllers/External/ClientAccessController.cs, ao lado do ContactClaim
+
+Validar a autorização campo a campo no servidor, lendo CanUpdated de Domain/Entities/Profiles/GroupUserPermission.cs por PageComponentId
+
+Recusar alteração conforme a situação do sinistro
+
+Criar a entidade de registro de alteração e o script em Infra.Database.SqlServer/scripts/2026/
+
+Gravar usuário, data, campo, valor anterior e valor novo, e abortar a alteração se o registro falhar
+
+Expor a consulta do registro à equipe interna
+
+Frontend: modo de edição no detalhe do sinistro, consumindo CanUpdated por componente
+
+Frontend: distinguir em tela campo editável de campo somente leitura
+
+Frontend: tratar a recusa do servidor sem perder o preenchimento
+
+Testar alteração de campo não autorizado fora da tela, direto no endpoint
+
+Submeter à revisão de segurança antes de publicar
+
+
+Objetivo
+
+Permitir que o cliente externo altere informações do sinistro, restrito ao que lhe for autorizado e com rastro de tudo que mudar.
+
+Contexto
+
+O ClientAccessController tem hoje um único caminho de escrita de sinistro, o ContactClaim, e nenhum de atualização — as demais ações são login, consulta por código e envio de documento. Os clientes pedem edição porque hoje mandam as alterações para a equipe da Crawford preencher. A permissão já está modelada: GroupUserPermission tem CanInserted, CanUpdated, CanDeleted e CanVisible por PageId e PageComponentId, e o portal externo nunca consumiu o CanUpdated.
+
+Critérios de sucesso
+
+A alteração é aceita apenas nos campos autorizados para o grupo, validada no servidor
+
+Tentativa direta no endpoint, sem passar pela tela, é recusada
+
+Campos de uso interno da Crawford permanecem inalteráveis pelo portal
+
+Sinistro em situação que não admite alteração recusa a edição
+
+Toda alteração fica registrada, e falha no registro impede a alteração
+
+Riscos técnicos
+
+É o ponto mais sensível do projeto. Validar só na tela significa permitir que um usuário externo altere qualquer campo do sinistro via requisição direta. O registro de alteração é o que permite apurar divergência depois — sem ele, não há como saber quem mudou o quê.
+
+Outras informações
+
+Depende do bloco 1. Atravessa portal e servidor, exige release coordenado.
+
+
+================================================================================
+Bloco 4 - Visualização do sinistro   |   27/10/2026 a 30/10/2026   |   32h
+================================================================================
+
+Checklist
+
+Definir quais campos do sinistro podem ser expostos ao externo
+
+Filtrar no servidor, em GetExternalClaimByClaimCode de ClientAccessController.cs, pela marcação de visibilidade
+
+Garantir que campo não autorizado não trafega, ainda que a tela não o exiba
+
+Preservar o comportamento atual dos documentos, que já respeitam CanViewExternal
+
+Modelar os blocos da tela de detalhe e sua habilitação por grupo
+
+Script de configuração dos blocos em Infra.Database.SqlServer/scripts/2026/
+
+Frontend: reorganizar o detalhe em blocos, com exibição condicional por configuração
+
+Frontend: manter o conjunto atual para grupo sem configuração
+
+Frontend: ajustar o layout para o caso de poucos blocos habilitados
+
+Receber da Crawford o levantamento de campos por bloco e configurar um cliente real
+
+Inspecionar a resposta do servidor procurando campo que vaza
+
+
+Objetivo
+
+Ampliar o que o cliente enxerga do sinistro, controlado por configuração e respeitando o que é visível ao externo.
+
+Contexto
+
+Hoje o usuário externo vê apenas o que ele mesmo preencheu, ainda que o sinistro já tenha evoluído do lado da Crawford. O sistema já marca documento por documento o que pode ser visto externamente, e o mesmo critério passa a valer para os campos do sinistro. A consulta do portal é o GetExternalClaimByClaimCode, e é nele que o filtro precisa ficar.
+
+Critérios de sucesso
+
+Somente campos marcados como visíveis ao externo são entregues
+
+Blocos são exibidos ou ocultados conforme a configuração do grupo
+
+Cliente sem configuração específica enxerga o mesmo conjunto de hoje
+
+A tela permanece legível com poucos blocos habilitados
+
+Ao menos um cliente real configurado e validado com a equipe interna
+
+Riscos técnicos
+
+Filtrar apenas na tela deixa o dado disponível a quem inspecionar a resposta do servidor — o mesmo erro do bloco 3, em sentido inverso. Vale conferir também o comportamento herdado de CanViewExternal nos anexos gravados por cronologia.
+
+Outras informações
+
+Depende dos blocos 1 e 3. O levantamento de campos por bloco é da Crawford e condiciona a configuração final.
+
+
+================================================================================
+Bloco 5 - Segurado no grupo   |   03/11/2026 a 05/11/2026   |   20h
+================================================================================
+
+Checklist
+
+Criar GroupUserExternalInsured seguindo os seis arquivos de GroupUserExternalBroker
+
+Domain/Entities/Profiles/GroupUserExternalInsured.cs e Domain/Interfaces/Repositories/Profiles/IGroupUserExternalInsuredRepository.cs
+
+Infra.Data/Repositories/Profiles/GroupUserExternalInsuredRepository.cs
+
+Application/Models/Profiles/GroupUserExternalInsuredModel.cs, Interfaces e Services correspondentes
+
+Registrar em Infra.CrossCutting.IoC/NativeInjectorBootStrapper.cs
+
+Script de migração em Infra.Database.SqlServer/scripts/2026/
+
+Frontend: expor a manutenção na tela de grupo, ao lado de corretora e seguradora
+
+Frontend: carregar o segurado do grupo na etapa de pessoas do cadastro
+
+Frontend: preencher e proteger o campo quando houver segurado definido
+
+Impedir a criação de pessoa a partir desse preenchimento
+
+Preservar o comportamento atual para grupo sem segurado definido
+
+
+Objetivo
+
+Permitir fixar um segurado no grupo, para os clientes em que todos os sinistros pertencem ao mesmo segurado.
+
+Contexto
+
+O grupo externo já restringe operação, suboperação, cobertura, corretora e seguradora — são GroupUserExternalOperation, GroupUserExternalSubOperation, GroupUserExternalCoverage, GroupUserExternalBroker e GroupUserExternalInsurance, todos no mesmo padrão de seis arquivos. Falta o segurado. Hoje o documento é digitado a cada abertura, e digitação errada cadastra pessoa nova no sistema.
+
+Critérios de sucesso
+
+O segurado é vinculado ao grupo e recuperado junto com ele
+
+Grupo com segurado definido tem o campo preenchido e protegido de alteração
+
+Nenhuma pessoa nova é criada a partir desse preenchimento
+
+Grupo sem segurado definido mantém o comportamento atual
+
+Outras informações
+
+Depende do bloco 2. É o bloco mais previsível do projeto: copia um padrão existente cinco vezes repetido.
+
+
+================================================================================
+Bloco 6 - Senha e segurança de acesso   |   05/11/2026 a 11/11/2026   |   30h
+================================================================================
+
+Checklist
+
+Criar a entidade de token de redefinição com expiração e o script em Infra.Database.SqlServer/scripts/2026/
+
+Endpoints de solicitação e de redefinição em Services.Api/Controllers/External/ClientAccessController.cs, ao lado do LoginExternal
+
+Invalidar o token após o uso e na expiração
+
+Padronizar a resposta da solicitação para não revelar se o e-mail está cadastrado
+
+Montar o e-mail com Infra.CrossCutting.Mail/EmailFactory.cs e os Providers já configurados
+
+Cadastrar o modelo da mensagem como ParameterTemplateEmail
+
+Invalidar a senha anterior em Application/Services/Security/Factories/LoginFactory.cs após a redefinição
+
+Endpoint de troca de senha exigindo a senha atual
+
+Frontend: opção de recuperação na tela de login do external2
+
+Frontend: telas de solicitação por e-mail e de definição de nova senha
+
+Frontend: tela de troca de senha para o usuário autenticado
+
+Frontend: tratar link expirado com orientação de nova solicitação
+
+
+Objetivo
+
+Dar ao usuário externo autonomia para recuperar e trocar a própria senha.
+
+Contexto
+
+Hoje a senha é gerada e enviada manualmente, e o usuário não consegue trocá-la nem recuperá-la — o ClientAccessController só tem LoginExternal e LoginInsured, nada de redefinição. O que já existe é a entrega: Infra.CrossCutting.Mail, com EmailFactory e os Providers, está em produção, e os modelos de mensagem são parametrizados em ParameterTemplateEmail. O acesso por documento e número de sinistro não usa senha e fica fora deste bloco.
+
+Critérios de sucesso
+
+A solicitação envia link de redefinição ao e-mail cadastrado
+
+O link expira e só pode ser usado uma vez
+
+Solicitação para e-mail inexistente não revela se o cadastro existe
+
+A troca pelo usuário autenticado exige a senha atual
+
+A senha anterior deixa de funcionar após a redefinição ou a troca
+
+Riscos técnicos
+
+Link sem expiração ou reutilizável vira caminho de acesso à conta. A resposta da solicitação não pode servir para descobrir quais e-mails estão cadastrados — mesmo texto e mesmo tempo de resposta nos dois casos.
+
+Outras informações
+
+Depende do bloco 0. Reusa a infraestrutura de e-mail já em produção, o que reduz o bloco ao fluxo e às telas.
+
+
+================================================================================
+Bloco 7 - Portal do segurado   |   11/11/2026 a 12/11/2026   |   12h
+================================================================================
+
+Checklist
+
+Criar as rotas de acesso por documento e número de sinistro em appExternal2Routes
+
+Espelhar external-insured.module.ts na estrutura do external2
+
+Consumir LoginInsured de ClientAccessController.cs para a entrada sem senha
+
+Listar pendências com GetAllDocumentPendingByClaimUniqueId
+
+Enviar anexos com SendDocumentInsured
+
+Frontend: tela de documentos pendentes com a opção de anexar
+
+Conferir que a resposta não traz nenhum campo além dos exibidos hoje
+
+Validar o fluxo completo em ambiente de teste
+
+
+Objetivo
+
+Migrar para a nova estrutura o acesso por documento e número de sinistro.
+
+Contexto
+
+É o menor dos dois portais: o usuário entra com documento e número do sinistro, vê os documentos pendentes e anexa. Não tem senha nem cadastro. No servidor já existe tudo de que precisa — LoginInsured, GetAllDocumentPendingByClaimUniqueId, GetAllDocumentReceivedByClaimUniqueId e SendDocumentInsured. O trabalho é de portal.
+
+Critérios de sucesso
+
+O acesso por documento e número de sinistro funciona como hoje
+
+Documentos pendentes são listados e podem ser anexados
+
+Nenhuma informação além da disponível hoje é exposta
+
+Outras informações
+
+Depende do bloco 0 e só dele. Pode correr em paralelo com os blocos 4 a 6 se houver segundo desenvolvedor.
+
+
+================================================================================
+Bloco 8 - Validação, homologação e virada   |   12/11/2026 a 19/11/2026   |   38h
+================================================================================
+
+Checklist
+
+Preparar acesso e massa de teste em um segundo país, com environment.test-latam.ts
+
+Validar cadastro, visualização e edição fora do Brasil, conferindo o roteamento por pathAPIPeru, pathAPIColombia e afins
+
+Conferir que a parametrização de um país não alcança grupos de outro
+
+Conferir os registros em NativeInjectorBootStrapperPeru e demais bootstrappers por país
+
+Preparar ambiente e massa de homologação
+
+Conduzir a validação dos fluxos com a equipe da Crawford
+
+Registrar os apontamentos da revisão de código e tratar ou abrir card para cada um
+
+Publicar em dist/wwwroot_external2, com endereço e certificado próprios
+
+Definir o cliente piloto com a Crawford e entregar o novo endereço
+
+Acompanhar a operação após a virada
+
+Documentar a lista de clientes migrados, fora da aplicação
+
+
+Objetivo
+
+Validar o portal nos demais países, homologar com a Crawford e virar o primeiro cliente, mantendo o portal atual no ar.
+
+Contexto
+
+Todos os países dividem a mesma base, separados por identificador, e cada um tem seu bootstrapper de injeção e sua URL de API no environment. A parametrização é por grupo, portanto independente de país, mas o comportamento precisa ser verificado na prática. Como o portal é escolhido em tempo de build, o external2 tem endereço próprio e a migração se dá pelo endereço entregue a cada cliente — um de cada vez, com volta possível sem nova publicação.
+
+Critérios de sucesso
+
+Cadastro, visualização e edição validados no Brasil e em ao menos um outro país
+
+A parametrização de um país não afeta grupos de outro
+
+Fluxos validados com a equipe da Crawford, apontamentos tratados ou registrados
+
+Portal publicado em endereço próprio, com um cliente migrado e operando
+
+Portal atual segue no ar para os demais clientes
+
+Riscos técnicos
+
+A separação por identificador dentro da mesma base significa que uma consulta mal delimitada cruza dados entre países — o mesmo risco das consultas de seleção do bloco 1, agora em escala maior. A virada depende do endereço entregue, não de configuração no sistema, então a lista de migrados vive fora da aplicação e pode se perder.
+
+Outras informações
+
+Depende de todos os blocos anteriores. O tempo de homologação é compartilhado com a equipe da Crawford e não depende só do desenvolvimento.
+
+
+================================================================================
+ACHADOS DE CAMINHO, PARA NAO REFAZER O LEVANTAMENTO
+================================================================================
+
+Frontend (BRSCloud-Frontend/BRSCloud.FrontEnd/ClientApp):
+- src/environments/enviroment.type.ts  ->  accessType: 'brscloud' | 'insured' | 'external'
+  (o nome do arquivo tem o erro de grafia "enviroment", e e assim mesmo)
+- 15 arquivos de environment, entre eles environment.{prod,staging,test}.{external,insured}.ts
+- src/app/app.routing.ts  ->  appBRSCloudRoutes (l.9), appExternalRoutes (l.111), appInsuredRoutes (l.175)
+- src/app/app.module.ts  ->  l.45-52, RouterModule.forRoot com ternario aninhado por accessType
+- angular.json  ->  14 configuracoes; outputPath dist/wwwroot, _external, _insured,
+  _staging*, _test*, e as variantes latam e chile
+- accessType comparado fora do modulo em 8 arquivos:
+  authentication/_services/auth.service.ts, authentication/_services/user.service.ts,
+  configuration/navigation/navigation.service.ts, layout/common/language/language.component.ts,
+  layout/common/user-menu/user-menu.component.ts,
+  layout/layouts/horizontal/modern/modern.component.ts e .html
+- modulo atual: src/app/modules/external/ com external.module.ts, external-insured.module.ts,
+  external-home, external-claim/{basic,detail,document}, external-claim-register/{claim-data,
+  people, local, policy, attachment, finally, detail} e _components/_models/_services
+  (a pasta da etapa de dados esta escrita "external-calim-register-claim-data")
+- traducoes: pasta i18n por componente, mais src/@brscloud/translates/i18n; transloco em
+  src/app/configuration/transloco
+- componentes de campo: src/@brscloud/components
+- telas de parametro: src/app/modules/parameters/ (parameter-coverage, parameter-fees, ...)
+- acoplamento Telefonica: GUID 930f3c8c-cc60-4756-8117-f7a6c2f74d35 e flag isTelefonica em
+  external-claim-basic (7), external-claim-detail (3), claim-data (13), people (12),
+  finally (11), policy (5+), register-detail (1) e em _services/external-claim-data.service.ts
+
+Backend (BRSCloud-Backend):
+- Services.Api/Controllers/External/ClientAccessController.cs  ->  rota api/[controller];
+  LoginInsured (l.82), LoginExternal (l.99), ContactClaim (l.115, unico caminho de escrita
+  de sinistro), GetInsuredClaimByClaimCode, GetExternalClaimByClaimCode,
+  GetAllDocumentReceivedByClaimUniqueId, SendDocumentInsured, SendDocumentExternal,
+  GetAllDocumentPendingByClaimUniqueId, GetOperations, GetSubOperations, GetCoverages
+- Application/Services/External/ClientAccessService.cs  ->  SelectAllPropertysByUserId
+- Domain/Entities/Profiles/  ->  GroupUser, GroupUserPermission (CanInserted, CanUpdated,
+  CanDeleted, CanVisible, por PageId e PageComponentId), GroupUserExternalBroker,
+  GroupUserExternalCoverage, GroupUserExternalDefaultProperty, GroupUserExternalInsurance,
+  GroupUserExternalOperation, GroupUserExternalSubOperation
+- padrao de seis arquivos (exemplo GroupUserExternalBroker):
+  Domain/Entities/Profiles/GroupUserExternalBroker.cs
+  Domain/Interfaces/Repositories/Profiles/IGroupUserExternalBrokerRepository.cs
+  Infra.Data/Repositories/Profiles/GroupUserExternalBrokerRepository.cs
+  Application/Models/Profiles/GroupUserExternalBrokerModel.cs
+  Application/Interfaces/Profiles/IGroupUserExternalBrokerService.cs
+  Application/Services/Profiles/GroupUserExternalBrokerService.cs
+- IoC: Infra.CrossCutting.IoC/NativeInjectorBootStrapper.cs e um por pais
+  (Brazil, Peru, Chile, Colombia, Mexico, Argentina, Common)
+- scripts: Infra.Database.SqlServer/scripts/2026/ (154 arquivos, nomeados pelo ticket)
+- e-mail: Infra.CrossCutting.Mail/EmailFactory.cs + Providers; modelos em ParameterTemplateEmail
+- login: Application/Services/Security/Factories/LoginFactory.cs
+- acoplamento Telefonica: Application/Interfaces/External/IExternalClaimService.cs l.15-18
+  (GetAllPoliciesTelefonica, GeAllItensNameTelefonica - sem o "t" -, GetAllItensManufacturersTelefonica);
+  Application/Services/External/ExternalClaimService.cs l.94-96 (tres repositorios injetados);
+  Application/AutoMapper/ReverseMappingProfile.cs l.317-320 (tres mapas)

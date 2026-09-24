@@ -1,0 +1,210 @@
+================================================================================
+LTDEV-2 - ARTEFATOS SQL NECESSARIOS
+Indexacao automatica de e-mails do Outlook (Microsoft Graph) -> BRSCloud
+================================================================================
+Gerado em: 23/09/2026
+Base: BRSCloud-Backend, branch LTDEV-2, commit a2c20d32b
+Objetivo: permitir restaurar do backup do cliente (70 GB) somente o que este
+          projeto usa, em vez do banco inteiro.
+
+--------------------------------------------------------------------------------
+0) COMO ESTA LISTA FOI LEVANTADA (e o quanto confiar nela)
+--------------------------------------------------------------------------------
+Os repositorios do BRSCloud tem SQL escrito a mao dentro do codigo C#. A lista
+abaixo saiu de:
+  a) leitura dos 3 scripts do proprio LTDEV-2;
+  b) extracao dos objetos citados em FROM/JOIN/INSERT/UPDATE/EXEC nos
+     repositorios que o fluxo de indexacao percorre;
+  c) leitura das triggers de auditoria que disparam na gravacao de anexos.
+
+CONFIANCA:
+  - Secoes 1, 2, 5, 6, 7, 8 e 9: ALTA (objeto citado explicitamente no codigo
+    ou no script).
+  - Secoes 3 e 4: MEDIA. Sao tabelas que entram por JOIN na resolucao do
+    sinistro e na autorizacao. Estao ai porque a consulta as referencia, mas
+    nem toda coluna delas e usada pelo fluxo.
+  - NAO foi possivel validar contra o banco real: o acesso ainda depende da
+    liberacao da Carolina (pasta + token). Trate como lista de partida, nao
+    como verdade final.
+
+--------------------------------------------------------------------------------
+1) BANCOS DE DADOS
+--------------------------------------------------------------------------------
+[1] OneCrawfordDB          - banco principal. Indispensavel.
+                             (no appsettings de dev aparece como CarolOneCrawfordDB)
+[2] LocalizationsDB        - traducoes. Indispensavel: o backend resolve
+                             mensagens de validacao por aqui na subida.
+[3] LogDB                  - log da aplicacao. OPCIONAL para testar a
+                             indexacao; so nao se perde rastro de erro.
+
+Redis e RabbitMQ aparecem na configuracao, mas nao sao SQL - nao entram no
+backup.
+
+--------------------------------------------------------------------------------
+2) TABELAS - NUCLEO DO FLUXO (obrigatorias)
+--------------------------------------------------------------------------------
+Sao as que a indexacao le e grava de fato.
+
+  Attachment               grava 1 linha por arquivo (.msg + cada anexo)
+  AttachmentClaim          vincula o anexo ao sinistro; guarda
+                           ExternalMessageId (chave de idempotencia:
+                           reenvio do mesmo e-mail nao duplica)
+  AttachmentFolder         pasta de destino; o fluxo procura pelo NOME
+                           "Indexacao automatica"
+  AttachmentTypeCR         tipo do anexo (tabela de dominio)
+  Claim                    resolucao do sinistro pelo ClaimCode extraido
+                           do assunto/corpo do e-mail
+  ClaimChronology          card 5: recebe a coluna nova
+                           LastEmailReceivedDoneDate
+  ChronologyFieldActionCR  dominio que controla acao por campo da cronologia
+  Localizations            (em LocalizationsDB) mensagens de validacao
+
+--------------------------------------------------------------------------------
+3) TABELAS - RESOLUCAO DO SINISTRO (entram por JOIN)
+--------------------------------------------------------------------------------
+Citadas pelo ClaimRepository ao montar o sinistro. Confianca MEDIA.
+
+  BranchOffice         Catastrophe          CauseCR
+  ClaimBusinessLineCR  ClaimExpedition      ClaimMovement
+  ClaimRequestDocument ClaimSituation       ClaimSurvey
+  ClaimSurveyTypeCR    ClaimTimesheet       ClaimTypeCR
+  ClaimValue           Coverage             CoverageType
+  CurrencyTypeCR       MainClientTypeCR     MovementType
+  Operation            ParameterRoot        Person
+  PersonContact        Product              ReasonClosure
+  RootX                Situation            SituationPhase
+  SituationTypeCR      Stage                SubClaimDocument
+  SubOperation
+
+Tambem usada pelo dashboard do Brasil (coluna nova do card 5):
+  ActivityArea
+
+--------------------------------------------------------------------------------
+4) TABELAS - AUTENTICACAO E PERMISSAO (entram por JOIN)
+--------------------------------------------------------------------------------
+O consumer autentica um usuario de servico antes de gravar, entao esse caminho
+precisa existir. Confianca MEDIA.
+
+  UserX                RoleX                RootX
+  GroupUser            GroupUserAccess      GroupUserPermission
+  Person               PersonContact        ParameterRoot
+  BranchOffice         Operation            SubOperation
+
+ATENCAO a nomenclatura: no SQL escrito a mao as tabelas aparecem como UserX,
+RoleX, RootX e AttachmentTypeCR, enquanto as classes de dominio se chamam User,
+Role, Root e AttachmentType. Ao restaurar, confira os nomes reais no backup.
+
+--------------------------------------------------------------------------------
+5) SCHEMA "audit" + SERVICE BROKER  (OBRIGATORIO - LEIA ANTES DE RESTAURAR)
+--------------------------------------------------------------------------------
+ESTE E O PONTO QUE MAIS COSTUMA QUEBRAR UMA RESTAURACAO PARCIAL.
+
+Existem triggers de auditoria em Attachment, AttachmentClaim e Claim. Elas
+disparam exatamente nas operacoes que a indexacao faz (INSERT de anexo,
+UPDATE de anexo, INSERT/UPDATE de sinistro). As triggers enviam mensagem por
+SERVICE BROKER. Se o Service Broker nao estiver habilitado e com os objetos
+criados, a GRAVACAO DO ANEXO FALHA - nao e um aviso, e erro.
+
+Objetos do schema audit:
+  audit.AuditTypeCR                audit.ClaimAudit
+  audit.ClaimColumnCategoryCR      audit.ClaimWipHistory
+  audit.ErrorLogAudit              audit.ParameterMovementAudit
+  audit.ParameterMovementRuleAudit
+
+Service Broker (banco OneCrawfordDB):
+  MESSAGE TYPE  //MessageType/OneCrawford/ClaimAuditMessage
+  CONTRACT      //Contract/OneCrawford/ClaimAuditContract
+  QUEUE         audit.BRSCloudClaimAuditQueue
+  SERVICE       //BRSCloudSQLServer/OneCrawford/BRSCloudClaimAuditService
+
+  Outras filas existem (Currency, ParameterMovement, WipHistory). NAO sao usadas
+  pela indexacao, mas as triggers correspondentes podem existir no banco
+  restaurado - se elas vierem junto, os objetos delas tambem precisam vir.
+
+Pre-requisitos no banco restaurado:
+  ALTER DATABASE <banco> SET ENABLE_BROKER;
+  ALTER DATABASE <banco> SET TRUSTWORTHY ON;
+  (o script MessageBroker/_Script 0.sql do repo faz o TRUSTWORTHY)
+
+ALTERNATIVA, se o ambiente for so para teste da indexacao: restaurar sem as
+triggers de auditoria. E mais simples e nao afeta o que o LTDEV-2 exercita.
+Decisao sua - mas precisa ser consciente, nao por acidente.
+
+--------------------------------------------------------------------------------
+6) VIEWS
+--------------------------------------------------------------------------------
+Usada pelo fluxo:
+  VW_ClaimValues      (definida em Views/audits/Vw_ClaimValues.sql)
+
+NAO usadas pela indexacao (sao de relatorio/exportacao) - podem ficar de fora:
+  Vw_ClaimReportTag_*       Vw_ExportClaim*          Vw_AttachmentReportTag
+  Vw_ClaimItemReportTag     Vw_ClaimSurveyReportTag  e demais Vw_*ReportTag
+
+--------------------------------------------------------------------------------
+7) PROCEDURES E FUNCTIONS
+--------------------------------------------------------------------------------
+Nenhuma procedure e chamada pelo caminho da indexacao em si.
+
+O ClaimRepository (a mesma classe que resolve o sinistro) chama duas, em
+metodos que o fluxo NAO percorre. Traga so se for exercitar essas telas:
+  PROC_ParameterMovementFee
+  PROC_ReprocessClaims
+
+Ligadas a auditoria (necessarias se voce mantiver as triggers da secao 5):
+  audit.PROC_FireAudit
+  audit.Proc_ClaimAudit
+  PROC_SendMessageBroker
+
+Functions: nenhuma exigida pelo fluxo.
+
+--------------------------------------------------------------------------------
+8) TRIGGERS
+--------------------------------------------------------------------------------
+Disparadas pela indexacao:
+  tr_AttachmentClaim_Audit_i     AFTER INSERT  em AttachmentClaim
+  tr_Attachment_Audit_u          AFTER UPDATE  em Attachment
+  tr_Claim_Audit_iud             AFTER I/U/D   em Claim
+
+Ver o aviso da secao 5: ou vem com o Service Broker inteiro, ou nao vem.
+
+--------------------------------------------------------------------------------
+9) SCRIPTS DO PROPRIO LTDEV-2 (rodar DEPOIS de restaurar)
+--------------------------------------------------------------------------------
+Em: BRSCloud-Backend/OneCrawford.Infra.Database.SqlServer/scripts/2026/
+Todos idempotentes - podem rodar mais de uma vez sem duplicar.
+
+  [1] LTDEV-2 ClaimChronology.sql   OneCrawfordDB
+      Cria ClaimChronology.LastEmailReceivedDoneDate
+      (datetimeoffset(7), null). OBRIGATORIO para o card 5.
+
+  [2] LTDEV-2 Localization.sql      LocalizationsDB
+      Insere a mensagem de validacao do campo em pt-BR, en-US e es-ES.
+      OBRIGATORIO junto com o [1].
+
+  [3] LTDEV-2 AttachmentType.sql    OneCrawfordDB
+      CONDICIONAL - rodar SOMENTE se a Crawford confirmar que a indexacao
+      automatica deve ter AttachmentType proprio, em vez de reusar o tipo da
+      pasta "_Anexos". Cria o tipo "Indexacao automatica" em AttachmentTypeCR
+      e aponta as 6 pastas de mesmo nome para ele.
+
+--------------------------------------------------------------------------------
+10) AVISOS PRATICOS PARA A RESTAURACAO
+--------------------------------------------------------------------------------
+- CHAVES ESTRANGEIRAS: restaurar um subconjunto de tabelas costuma esbarrar em
+  FK para tabelas que ficaram de fora. Se o objetivo e um ambiente que sobe,
+  pode sair mais barato trazer o OneCrawfordDB inteiro e deixar de fora so os
+  bancos/tabelas grandes de log e historico.
+
+- MASSA DE TESTE: para exercitar a indexacao ponta a ponta e preciso pelo menos
+  um Claim com ClaimCode valido, a AttachmentFolder chamada
+  "Indexacao automatica" e um usuario de servico ativo em UserX com permissao.
+  Sem isso o consumer resolve o sinistro como "nao encontrado" e cai no TODO da
+  caixa manual.
+
+- DADO PESSOAL: o backup e de maquina de cliente. Anexos e dados de sinistro
+  podem conter dado pessoal. Vale confirmar com a Crawford o que pode ser
+  copiado para o ambiente de desenvolvimento antes de subir.
+
+- ESTA LISTA NAO FOI VALIDADA CONTRA O BANCO REAL. Assim que o acesso sair, o
+  jeito rapido de fechar o cerco e rodar o fluxo e ver o que falta.
+================================================================================
