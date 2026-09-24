@@ -43,9 +43,13 @@ if ($Servidor -notmatch '^(tcp:|np:|lpc:)') { $Alvo = "tcp:$Servidor" } else { $
 Write-Host ""
 Write-Host "Conectando: $Banco @ $Alvo (Windows auth, criptografia obrigatoria)" -ForegroundColor Cyan
 
-# 1) teste de conexao curto, com mensagem clara
+# 1) teste de conexao curto, com mensagem clara.
+# Junta a saida num texto so antes de testar: com -notmatch num array o
+# PowerShell devolvia os elementos que nao casavam (ex.: "1 rows affected"),
+# o que dava falso "FALHA" mesmo com o OK= presente.
 $teste = & sqlcmd -S $Alvo -d $Banco -E -N -C -b -h -1 -W -Q "SELECT 'OK='+DB_NAME();" 2>&1
-if ($LASTEXITCODE -ne 0 -or ($teste -notmatch 'OK=')) {
+$testeTxt = ($teste | Out-String)
+if ($LASTEXITCODE -ne 0 -or ($testeTxt -notmatch 'OK=')) {
     Write-Host "FALHA ao conectar:" -ForegroundColor Red
     ($teste | Where-Object { $_ -and $_ -notmatch '^\s*$' }) | ForEach-Object { Write-Host "  $_" -ForegroundColor DarkRed }
     Write-Host ""
