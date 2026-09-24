@@ -1,0 +1,5 @@
+SQL/LTDEV-2/** filter=lfs diff=lfs merge=lfs -text
+SQL/*.zip filter=lfs diff=lfs merge=lfs -text
+SQL/*.csv filter=lfs diff=lfs merge=lfs -text
+SQL/*.ps1 filter=lfs diff=lfs merge=lfs -text
+SQL/**/*.sql filter=lfs diff=lfs merge=lfs -text

@@ -1,0 +1,8 @@
+﻿Bom dia!
+
+Dados removidos por segurança.
+Os valores reais foram excluídos antes do push para respeitar a política de segurança do GitHub.
+
+TenantId: [removido]
+AppId: [removido]
+Token: [removido]
