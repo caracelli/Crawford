@@ -1,0 +1,112 @@
+ordem;tipo;schema;objeto;banco;obrigatorio;observacao
+10;DATABASE;;OneCrawfordDB;OneCrawfordDB;sim;LTDEV-2: banco principal (em dev aparece como CarolOneCrawfordDB)
+11;DATABASE;;LocalizationsDB;LocalizationsDB;sim;LTDEV-2: traducoes
+12;DATABASE;;LogDB;LogDB;nao;LTDEV-2: log da aplicacao
+20;SCHEMA;;audit;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers de auditoria
+21;BROKER_PREREQ;;ENABLE_BROKER;OneCrawfordDB;condicional;LTDEV-2: ALTER DATABASE <banco> SET ENABLE_BROKER
+22;BROKER_PREREQ;;TRUSTWORTHY;OneCrawfordDB;condicional;LTDEV-2: ALTER DATABASE <banco> SET TRUSTWORTHY ON
+30;TABLE;dbo;Attachment;OneCrawfordDB;sim;LTDEV-2: nucleo: 1 linha por arquivo (.msg + anexos)
+31;TABLE;dbo;AttachmentClaim;OneCrawfordDB;sim;LTDEV-2: nucleo: vinculo com o sinistro
+32;TABLE;dbo;AttachmentFolder;OneCrawfordDB;sim;"LTDEV-2: nucleo: pasta buscada pelo nome ""Indexacao automatica"""
+33;TABLE;dbo;AttachmentTypeCR;OneCrawfordDB;sim;LTDEV-2: nucleo: dominio do tipo de anexo
+34;TABLE;dbo;Claim;OneCrawfordDB;sim;LTDEV-2: nucleo: resolucao do sinistro pelo ClaimCode
+35;TABLE;dbo;ClaimChronology;OneCrawfordDB;sim;LTDEV-2: nucleo: recebe LastEmailReceivedDoneDate (card 5)
+36;TABLE;dbo;ChronologyFieldActionCR;OneCrawfordDB;sim;LTDEV-2: nucleo: acao por campo da cronologia
+37;TABLE;dbo;Localizations;LocalizationsDB;sim;LTDEV-2: nucleo: mensagens de validacao
+40;TABLE;dbo;ActivityArea;OneCrawfordDB;medio;LTDEV-2: dashboard Brasil (coluna nova do card 5)
+41;TABLE;dbo;BranchOffice;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+42;TABLE;dbo;Catastrophe;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+43;TABLE;dbo;CauseCR;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+44;TABLE;dbo;ClaimBusinessLineCR;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+45;TABLE;dbo;ClaimExpedition;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+46;TABLE;dbo;ClaimMovement;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+47;TABLE;dbo;ClaimRequestDocument;OneCrawfordDB;sim;LTDEV-2: join na resolucao do sinistro | LTDEV-72: essencial para o portal
+48;TABLE;dbo;ClaimSituation;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+49;TABLE;dbo;ClaimSurvey;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+50;TABLE;dbo;ClaimSurveyTypeCR;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+51;TABLE;dbo;ClaimTimesheet;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+52;TABLE;dbo;ClaimTypeCR;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+53;TABLE;dbo;ClaimValue;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+54;TABLE;dbo;Coverage;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+55;TABLE;dbo;CoverageType;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+56;TABLE;dbo;CurrencyTypeCR;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+57;TABLE;dbo;MainClientTypeCR;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+58;TABLE;dbo;MovementType;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+59;TABLE;dbo;Operation;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro e na permissao
+60;TABLE;dbo;ParameterRoot;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro e na permissao
+61;TABLE;dbo;Person;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro e na permissao
+62;TABLE;dbo;PersonContact;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro e na permissao
+63;TABLE;dbo;Product;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+64;TABLE;dbo;ReasonClosure;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+65;TABLE;dbo;RootX;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro e na permissao
+66;TABLE;dbo;Situation;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+67;TABLE;dbo;SituationPhase;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+68;TABLE;dbo;SituationTypeCR;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+69;TABLE;dbo;Stage;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+70;TABLE;dbo;SubClaimDocument;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro
+71;TABLE;dbo;SubOperation;OneCrawfordDB;medio;LTDEV-2: join na resolucao do sinistro e na permissao
+80;TABLE;dbo;UserX;OneCrawfordDB;sim;LTDEV-2: autenticacao do usuario de servico | LTDEV-72: essencial para o portal
+81;TABLE;dbo;RoleX;OneCrawfordDB;sim;LTDEV-2: autenticacao do usuario de servico | LTDEV-72: essencial para o portal
+82;TABLE;dbo;GroupUser;OneCrawfordDB;sim;LTDEV-2: permissao | LTDEV-72: essencial para o portal
+83;TABLE;dbo;GroupUserAccess;OneCrawfordDB;sim;LTDEV-2: permissao | LTDEV-72: essencial para o portal
+84;TABLE;dbo;GroupUserPermission;OneCrawfordDB;sim;LTDEV-2: permissao | LTDEV-72: essencial para o portal
+90;TABLE;audit;AuditTypeCR;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+91;TABLE;audit;ClaimAudit;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+92;TABLE;audit;ClaimColumnCategoryCR;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+93;TABLE;audit;ClaimWipHistory;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+94;TABLE;audit;ErrorLogAudit;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+95;TABLE;audit;ParameterMovementAudit;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+96;TABLE;audit;ParameterMovementRuleAudit;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+100;VIEW;dbo;VW_ClaimValues;OneCrawfordDB;sim;LTDEV-2: unica view do fluxo (Views/audits/Vw_ClaimValues.sql)
+110;MESSAGE_TYPE;;//MessageType/OneCrawford/ClaimAuditMessage;OneCrawfordDB;condicional;LTDEV-2: service broker das triggers
+111;CONTRACT;;//Contract/OneCrawford/ClaimAuditContract;OneCrawfordDB;condicional;LTDEV-2: service broker das triggers
+112;QUEUE;audit;BRSCloudClaimAuditQueue;OneCrawfordDB;condicional;LTDEV-2: service broker das triggers
+113;SERVICE;;//BRSCloudSQLServer/OneCrawford/BRSCloudClaimAuditService;OneCrawfordDB;condicional;LTDEV-2: service broker das triggers
+120;PROCEDURE;audit;PROC_FireAudit;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+121;PROCEDURE;audit;Proc_ClaimAudit;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+122;PROCEDURE;dbo;PROC_SendMessageBroker;OneCrawfordDB;condicional;LTDEV-2: so se mantiver as triggers
+123;PROCEDURE;dbo;PROC_ParameterMovementFee;OneCrawfordDB;nao;LTDEV-2: fora do caminho da indexacao
+124;PROCEDURE;dbo;PROC_ReprocessClaims;OneCrawfordDB;nao;LTDEV-2: fora do caminho da indexacao
+130;TRIGGER;dbo;tr_AttachmentClaim_Audit_i;OneCrawfordDB;condicional;LTDEV-2: AFTER INSERT em AttachmentClaim
+131;TRIGGER;dbo;tr_Attachment_Audit_u;OneCrawfordDB;condicional;LTDEV-2: AFTER UPDATE em Attachment
+132;TRIGGER;dbo;tr_Claim_Audit_iud;OneCrawfordDB;condicional;LTDEV-2: AFTER I/U/D em Claim
+140;SCRIPT_LTDEV2;;LTDEV-2 ClaimChronology.sql;OneCrawfordDB;sim;LTDEV-2: cria ClaimChronology.LastEmailReceivedDoneDate
+141;SCRIPT_LTDEV2;;LTDEV-2 Localization.sql;LocalizationsDB;sim;LTDEV-2: insere traducoes pt-BR/en-US/es-ES
+142;SCRIPT_LTDEV2;;LTDEV-2 AttachmentType.sql;OneCrawfordDB;condicional;LTDEV-2: so se a Crawford confirmar AttachmentType proprio
+200;TABLE;dbo;ClientAccessToken;OneCrawfordDB;sim;LTDEV-72 portal: token de sessao do portal externo
+201;TABLE;dbo;GroupUserPageAccess;OneCrawfordDB;sim;LTDEV-72 portal: permissao por pagina
+202;TABLE;dbo;GroupUserExternalBroker;OneCrawfordDB;sim;LTDEV-72 portal: vinculo do grupo com corretora
+203;TABLE;dbo;GroupUserExternalCoverage;OneCrawfordDB;sim;LTDEV-72 portal: vinculo do grupo com cobertura
+204;TABLE;dbo;GroupUserExternalDefaultProperty;OneCrawfordDB;sim;LTDEV-72 portal: parametrizacao por grupo: propriedade, tipo e valor
+205;TABLE;dbo;GroupUserExternalInsurance;OneCrawfordDB;sim;LTDEV-72 portal: vinculo do grupo com seguradora
+206;TABLE;dbo;GroupUserExternalOperation;OneCrawfordDB;sim;LTDEV-72 portal: vinculo do grupo com operacao
+207;TABLE;dbo;GroupUserExternalSubOperation;OneCrawfordDB;sim;LTDEV-72 portal: vinculo do grupo com suboperacao
+208;TABLE;dbo;ExternalLevelAccess;OneCrawfordDB;sim;LTDEV-72 portal: nivel de acesso do usuario externo
+209;TABLE;dbo;Timezone;OneCrawfordDB;sim;LTDEV-72 portal: fuso do usuario
+210;TABLE;dbo;ClaimAccess;OneCrawfordDB;sim;LTDEV-72 portal: controle de acesso ao sinistro
+211;TABLE;dbo;ClaimAddress;OneCrawfordDB;sim;LTDEV-72 portal: endereco do sinistro
+212;TABLE;dbo;ClaimItem;OneCrawfordDB;sim;LTDEV-72 portal: itens do sinistro
+213;TABLE;dbo;ClaimObservation;OneCrawfordDB;sim;LTDEV-72 portal: observacoes do sinistro
+214;TABLE;dbo;RequestDocumentType;OneCrawfordDB;sim;LTDEV-72 portal: tipo de documento solicitado
+215;TABLE;dbo;RequestDocumentClassification;OneCrawfordDB;sim;LTDEV-72 portal: classificacao do documento solicitado
+216;TABLE;dbo;DocumentRequestSituation;OneCrawfordDB;sim;LTDEV-72 portal: situacao da solicitacao de documento
+217;TABLE;dbo;ParameterDocument;OneCrawfordDB;sim;LTDEV-72 portal: parametrizacao de documentos por cobertura
+218;TABLE;dbo;Address;OneCrawfordDB;sim;LTDEV-72 portal: endereco
+219;TABLE;dbo;AddressTypeCR;OneCrawfordDB;sim;LTDEV-72 portal: tipo de endereco
+220;TABLE;dbo;CityCR;OneCrawfordDB;sim;LTDEV-72 portal: municipio
+221;TABLE;dbo;StateCR;OneCrawfordDB;sim;LTDEV-72 portal: estado
+222;TABLE;dbo;CountryCR;OneCrawfordDB;sim;LTDEV-72 portal: pais
+223;TABLE;dbo;PersonClassification;OneCrawfordDB;sim;LTDEV-72 portal: classificacao da pessoa
+224;TABLE;dbo;PersonPhone;OneCrawfordDB;sim;LTDEV-72 portal: telefone da pessoa
+225;TABLE;dbo;PhoneTypeCR;OneCrawfordDB;sim;LTDEV-72 portal: tipo de telefone
+226;TABLE;dbo;ClassificationTypeCR;OneCrawfordDB;sim;LTDEV-72 portal: tipo de classificacao
+227;TABLE;dbo;ParameterRootClassificationType;OneCrawfordDB;sim;LTDEV-72 portal: classificacoes habilitadas por root
+228;TABLE;dbo;ParameterTemplateEmail;OneCrawfordDB;sim;LTDEV-72 portal: parametrizacao de template de e-mail
+229;TABLE;dbo;ParameterTemplateEmailAddress;OneCrawfordDB;sim;LTDEV-72 portal: destinatarios do template
+230;TABLE;dbo;TemplateEmail;OneCrawfordDB;sim;LTDEV-72 portal: template de e-mail
+231;TABLE;dbo;TemplateEmailAction;OneCrawfordDB;sim;LTDEV-72 portal: acao que dispara o template
+232;TABLE;dbo;MailMessageAddressTypeCR;OneCrawfordDB;sim;LTDEV-72 portal: tipo de destinatario
+233;TABLE;dbo;BranchOfficeTypeCR;OneCrawfordDB;sim;LTDEV-72 portal: tipo de filial
+234;TABLE;dbo;BusinessLine;OneCrawfordDB;sim;LTDEV-72 portal: ramo
+235;TABLE;dbo;UnityCR;OneCrawfordDB;sim;LTDEV-72 portal: unidade de medida
+236;TABLE;dbo;ParameterCurrencyType;OneCrawfordDB;sim;LTDEV-72 portal: moedas habilitadas por root
