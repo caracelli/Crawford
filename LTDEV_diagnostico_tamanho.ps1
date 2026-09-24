@@ -36,11 +36,15 @@ if (-not $sqlcmd) {
     return
 }
 
+# Forca o protocolo TCP (tcp:). Sem isso o ODBC tenta Named Pipes e da erro 64
+# em servidor que so aceita TCP - que e como o SSMS conecta.
+if ($Servidor -notmatch '^(tcp:|np:|lpc:)') { $Alvo = "tcp:$Servidor" } else { $Alvo = $Servidor }
+
 Write-Host ""
-Write-Host "Conectando: $Banco @ $Servidor (Windows auth, criptografia obrigatoria)" -ForegroundColor Cyan
+Write-Host "Conectando: $Banco @ $Alvo (Windows auth, criptografia obrigatoria)" -ForegroundColor Cyan
 
 # 1) teste de conexao curto, com mensagem clara
-$teste = & sqlcmd -S $Servidor -d $Banco -E -N -C -b -h -1 -W -Q "SELECT 'OK='+DB_NAME();" 2>&1
+$teste = & sqlcmd -S $Alvo -d $Banco -E -N -C -b -h -1 -W -Q "SELECT 'OK='+DB_NAME();" 2>&1
 if ($LASTEXITCODE -ne 0 -or ($teste -notmatch 'OK=')) {
     Write-Host "FALHA ao conectar:" -ForegroundColor Red
     ($teste | Where-Object { $_ -and $_ -notmatch '^\s*$' }) | ForEach-Object { Write-Host "  $_" -ForegroundColor DarkRed }
@@ -63,7 +67,7 @@ GROUP BY s.name, t.name
 ORDER BY MB DESC;
 "@
 
-$saida = & sqlcmd -S $Servidor -d $Banco -E -N -C -b -s ";" -W -Q $q 2>&1
+$saida = & sqlcmd -S $Alvo -d $Banco -E -N -C -b -s ";" -W -Q $q 2>&1
 if ($LASTEXITCODE -ne 0) {
     Write-Host "Erro na consulta:" -ForegroundColor Red
     $saida | ForEach-Object { Write-Host "  $_" -ForegroundColor DarkRed }
