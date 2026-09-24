@@ -27,7 +27,8 @@ SET QUOTED_IDENTIFIER ON;
 SET ANSI_NULLS ON;
 SET NOCOUNT ON;
 
-DECLARE @Amostra INT = 5;
+DECLARE @Amostra INT = 5;        -- sinistros ancora
+DECLARE @LinhasFull INT = 2000;  -- tabela de dominio: so vem inteira se tiver <= isto
 
 /* 1) sinistros ancora. Guarda Id E UniqueId, porque as tabelas filhas ligam
    ao sinistro ora por ClaimId, ora por ClaimUniqueId. */
@@ -61,18 +62,22 @@ INSERT #plan (Schema_, Tabela, Modo) VALUES
  ('dbo','GroupUserExternalDefaultProperty','full'),
  ('dbo','ExternalLevelAccess','full');
 
-/* 3) acrescenta toda tabela pequena (<=5 MB) ainda nao listada (dominio) */
+/* 3) acrescenta as tabelas de dominio ainda nao listadas: criterio por LINHAS,
+   nao por MB. O que infla o arquivo e a quantidade de linhas (cada linha vira
+   um INSERT verboso), nao o tamanho em disco. Tabela com muitas linhas e
+   transacional/log, nao dominio - fica de fora. */
 INSERT #plan (Schema_, Tabela, Modo)
 SELECT s.name, t.name, 'full'
 FROM sys.tables t
 JOIN sys.schemas s ON s.schema_id = t.schema_id
-JOIN (SELECT object_id, SUM(reserved_page_count)*8.0/1024 AS MB
+JOIN (SELECT object_id, SUM(row_count) AS Linhas
       FROM sys.dm_db_partition_stats WHERE index_id IN (0,1) GROUP BY object_id) sz
      ON sz.object_id = t.object_id
-WHERE sz.MB <= 5
+WHERE sz.Linhas <= @LinhasFull
   AND NOT EXISTS (SELECT 1 FROM #plan p WHERE p.Schema_ = s.name AND p.Tabela = t.name)
   AND t.name NOT LIKE 'MailMessage%'
-  AND t.name NOT LIKE '%History';
+  AND t.name NOT LIKE '%History'
+  AND t.name NOT LIKE '%Audit%';
 
 /* 4) geracao */
 IF OBJECT_ID('tempdb..#out') IS NOT NULL DROP TABLE #out;
