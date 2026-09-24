@@ -21,6 +21,10 @@
    Tecnica: CHAR(39)=aspa simples, CHAR(44)=virgula, CHAR(78)='N'. Evita
    empilhamento de aspas no SQL-que-gera-SQL.
    ============================================================================ */
+-- Obrigatorio: os metodos de XML (FOR XML ... .value()) usados aqui exigem
+-- QUOTED_IDENTIFIER ON. Sem isso, da Msg 1934. O sqlcmd costuma vir com OFF.
+SET QUOTED_IDENTIFIER ON;
+SET ANSI_NULLS ON;
 SET NOCOUNT ON;
 
 DECLARE @Amostra INT = 5;
