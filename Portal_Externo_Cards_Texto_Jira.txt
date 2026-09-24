@@ -1,0 +1,987 @@
+PORTAL EXTERNO BRS CLOUD - TEXTO DOS CARDS PARA O JIRA
+
+31 cards. Para cada um: o texto do campo Descricao e os itens do Smart
+Checklist, em linhas limpas para colar de uma vez. Epico pai: CRAWFORD-21.
+
+==============================================================================
+Card 01 — Novo tipo de acesso external2 e configurações de build
+Estimativa: 6h   |   Inicio: 21/09/2026   |   Entrega: 21/09/2026   |   Etiqueta: portal-externo-0
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Ter o portal external2 compilando e publicando de forma independente, sem alterar nada do portal atual.
+
+Contexto
+O BRS Cloud escolhe qual portal servir em tempo de build, pelo tipo de acesso definido no environment. Hoje existem três — interno, segurado e externo — cada um com sua árvore de rotas e sua configuração de build. Criar o quarto segue o mesmo caminho já trilhado três vezes.
+
+Critérios de sucesso
+- O novo tipo de acesso é aceito e o projeto compila nos ambientes de teste, homologação e produção
+- O build gera saída própria, sem sobrescrever a pasta de nenhum portal existente
+- O portal externo atual continua compilando e publicando sem alteração
+- O endereço do external2 carrega a aplicação e chega à tela de login
+
+Outras informações
+Não depende de nenhum outro card. Reusa o padrão já aplicado nos portais externo e segurado.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Incluir o novo tipo de acesso na definição de ambiente
+Criar os arquivos de ambiente para teste, homologação e produção
+Criar a árvore de rotas do novo portal
+Selecionar a árvore de rotas pelo tipo de acesso na inicialização
+Criar as configurações de build com saída própria
+Confirmar que os três portais existentes seguem compilando
+
+
+==============================================================================
+Card 02 — Tratamento do external2 nas verificações de tipo de acesso
+Estimativa: 6h   |   Inicio: 21/09/2026   |   Entrega: 22/09/2026   |   Etiqueta: portal-externo-0
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Garantir que o novo portal não herde comportamento indevido das verificações de tipo de acesso espalhadas fora do módulo.
+
+Contexto
+Existem verificações diretas de tipo de acesso na autenticação, no serviço de usuário, na navegação, no seletor de idioma, no menu do usuário e no layout. Escritas como "igual a segurado" ou "diferente de interno", elas colocam qualquer tipo novo num ramo que não foi pensado para ele.
+
+Critérios de sucesso
+- O login do external2 segue o fluxo do portal externo, e não o do sistema interno
+- Menu e navegação exibem apenas o que cabe a um usuário externo
+- O seletor de idioma se comporta como no portal externo
+- Nenhum dos três portais existentes muda de comportamento
+
+Riscos técnicos
+São falhas silenciosas: o ramo errado não quebra a compilação e só aparece em execução, eventualmente expondo a um usuário externo um menu de uso interno.
+
+Outras informações
+Depende do card 01.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Levantar todos os pontos que comparam tipo de acesso fora do módulo
+Ajustar o fluxo de autenticação para reconhecer o novo portal
+Ajustar a montagem de menu e navegação
+Ajustar o seletor de idioma
+Ajustar o menu do usuário e o layout
+Testar login e navegação nos quatro portais
+
+
+==============================================================================
+Card 03 — Esqueleto do módulo e traduções
+Estimativa: 10h   |   Inicio: 22/09/2026   |   Entrega: 23/09/2026   |   Etiqueta: portal-externo-0
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Ter a estrutura de pastas, o módulo de rotas e as traduções prontos para os demais cards construírem em cima.
+
+Contexto
+O portal atende oito idiomas e as traduções representam boa parte dos arquivos do módulo. O conteúdo é majoritariamente aproveitável do portal atual, o que torna este card mais adaptação do que escrita.
+
+Critérios de sucesso
+- O módulo responde nas rotas e renderiza o layout base
+- Os oito idiomas carregam sem chave de tradução faltando
+- A troca de idioma funciona em todas as telas do esqueleto
+
+Outras informações
+Depende dos cards 01 e 02. Traduções adaptadas do módulo externo atual.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Criar a estrutura de pastas do módulo
+Criar o módulo de rotas e o layout base
+Copiar e adaptar as traduções dos oito idiomas
+Conferir ausência de chave de tradução faltando
+Validar a troca de idioma nas telas do esqueleto
+
+
+==============================================================================
+Card 04 — Modelo de parametrização de campos por grupo
+Estimativa: 12h   |   Inicio: 23/09/2026   |   Entrega: 25/09/2026   |   Etiqueta: portal-externo-1
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Permitir que os campos exibidos a um cliente sejam definidos por configuração, e não por código.
+
+Contexto
+Hoje cada pedido de campo novo vira desenvolvimento. Já existe no sistema uma estrutura que guarda propriedade, tipo e valor por grupo, e que é lida no momento do cadastro. Este card estende esse mecanismo para descrever campos de tela: quais aparecem, em que ordem, obrigatórios ou não, e de onde vêm os valores.
+
+Critérios de sucesso
+- Campo, tipo, ordem, obrigatoriedade e origem do valor ficam persistidos por grupo
+- A configuração de um grupo não interfere na de outro
+- A migração é aplicada em teste sem afetar os grupos já existentes
+
+Riscos técnicos
+A estrutura definida aqui é a fundação dos cards 05 a 08; alterá-la depois gera retrabalho nos quatro.
+
+Outras informações
+Reusa o padrão de seis arquivos já adotado nas demais permissões de grupo externo, mais registro de injeção de dependência e mapeamento de banco. Fica em projeto compartilhado, não replicado por país.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Definir a estrutura: campo, tipo, ordem, obrigatoriedade e origem do valor
+Criar a entidade e o modelo de aplicação
+Criar o contrato e a implementação do repositório
+Criar o serviço de aplicação
+Registrar na injeção de dependência
+Criar o mapeamento de banco
+Escrever e aplicar a migração em ambiente de teste
+Confirmar que os grupos existentes não foram afetados
+
+
+==============================================================================
+Card 05 — Endpoint de leitura da parametrização
+Estimativa: 6h   |   Inicio: 25/09/2026   |   Entrega: 25/09/2026   |   Etiqueta: portal-externo-1
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Entregar ao portal a configuração de campos do grupo do usuário autenticado.
+
+Contexto
+O serviço de acesso do cliente já lê as propriedades do grupo a partir do usuário logado ao montar o cadastro. O mesmo caminho serve para devolver a configuração de tela.
+
+Critérios de sucesso
+- O endpoint devolve a configuração do grupo do usuário autenticado
+- O usuário recebe apenas a configuração do próprio grupo
+- Grupo sem parametrização recebe resposta válida e o portal opera com os campos fixos
+
+Riscos técnicos
+A resposta define o que o usuário externo enxerga; devolver a configuração de outro grupo expõe a estrutura de outro cliente.
+
+Outras informações
+Depende do card 04. Reusa a leitura de propriedades por usuário já existente no serviço de acesso do cliente.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Criar o endpoint de leitura da configuração por grupo
+Resolver o grupo a partir do usuário autenticado
+Impedir a leitura de configuração de outro grupo
+Definir a resposta para grupo sem parametrização
+Testar com grupo parametrizado e não parametrizado
+
+
+==============================================================================
+Card 06 — Componente renderizador de formulário dinâmico
+Estimativa: 20h   |   Inicio: 28/09/2026   |   Entrega: 30/09/2026   |   Etiqueta: portal-externo-1
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Montar formulários em tela a partir da parametrização, sem código específico por cliente.
+
+Contexto
+A biblioteca de componentes já oferece os campos necessários — texto, seleção, caixa de marcação, data, moeda, número, área de texto, alternador, máscara e hora. Falta a peça que lê a configuração e despacha para o componente correto, aplicando ordem e validação.
+
+Critérios de sucesso
+- O formulário se monta a partir da configuração, na ordem definida
+- Cada tipo parametrizado renderiza o componente correspondente
+- A obrigatoriedade bloqueia o avanço e é sinalizada em tela
+- Os valores preenchidos chegam ao salvamento no mesmo formato dos campos fixos
+
+Riscos técnicos
+É o componente central do projeto e o de complexidade menos previsível. Casos como campo que só aparece dependendo de outro podem não caber na primeira modelagem e forçar revisão do card 04.
+
+Outras informações
+Depende dos cards 04 e 05. Reusa a biblioteca de componentes de campo existente.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Definir o contrato de configuração consumido pelo componente
+Montar o formulário dinamicamente a partir da configuração
+Despachar cada tipo para o componente de campo correspondente
+Aplicar a ordem definida na parametrização
+Aplicar obrigatoriedade e sinalização de erro em tela
+Integrar os valores preenchidos ao salvamento
+Tratar configuração inválida sem derrubar a tela
+Testar com todos os tipos de campo disponíveis
+
+
+==============================================================================
+Card 07 — Resolução de valores para campos de seleção
+Estimativa: 12h   |   Inicio: 30/09/2026   |   Entrega: 01/10/2026   |   Etiqueta: portal-externo-1
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Permitir que um campo de seleção parametrizado traga lista fixa ou consulta ao sistema, conforme a configuração.
+
+Contexto
+Os clientes pedem os dois casos: apólice restrita a uma lista daquele segurado, ou seleção alimentada por dados do sistema. Ficou definido que os campos sempre existirão no sistema, de modo que o tipo pode vir do próprio modelo em vez de ser informado na parametrização.
+
+Critérios de sucesso
+- Seleção com lista fixa exibe apenas os valores configurados
+- Seleção dinâmica traz os valores do sistema respeitando o grupo
+- Grupo sem restrição continua enxergando a lista completa
+
+Riscos técnicos
+Consulta mal delimitada pode devolver a um cliente valores pertencentes a outro.
+
+Outras informações
+Depende dos cards 04 e 06.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Definir as origens de valor: lista fixa e consulta ao sistema
+Implementar a origem por lista fixa
+Implementar a origem por consulta, delimitada pelo grupo
+Obter o tipo do campo a partir do modelo do sistema
+Impedir que a consulta retorne valores de outro cliente
+Testar os dois modos no campo de apólice
+
+
+==============================================================================
+Card 08 — Tela de administração dos campos por grupo
+Estimativa: 16h   |   Inicio: 02/10/2026   |   Entrega: 05/10/2026   |   Etiqueta: portal-externo-1
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Dar à equipe da Crawford autonomia para habilitar campos sem depender de desenvolvimento.
+
+Contexto
+A manutenção de grupo já possui abas de operação, suboperação, corretora, seguradora e propriedades. A parametrização de campos entra como mais uma, no mesmo lugar onde os grupos externos já são configurados.
+
+Critérios de sucesso
+- Campo pode ser incluído, ordenado, marcado como obrigatório e removido pela tela
+- A alteração passa a valer no portal sem nova publicação
+- Apenas perfis internos autorizados acessam a manutenção
+
+Outras informações
+Depende do card 04. Reusa a tela de manutenção de grupo e seu serviço.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Criar a aba de campos na manutenção de grupo
+Permitir incluir, ordenar, marcar obrigatório e remover campo
+Listar os campos disponíveis a partir do sistema
+Restringir o acesso a perfis internos autorizados
+Refletir a alteração no portal sem nova publicação
+Validar com um grupo real em ambiente de teste
+
+
+==============================================================================
+Card 09 — Estrutura do cadastro
+Estimativa: 10h   |   Inicio: 06/10/2026   |   Entrega: 07/10/2026   |   Etiqueta: portal-externo-2
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Ter o fluxo de cadastro navegável, com o preenchimento preservado entre as etapas.
+
+Contexto
+O cadastro atual tem seis etapas e mantém o sinistro em construção num serviço compartilhado. A estrutura se mantém; o que muda é não haver ramificação por cliente.
+
+Critérios de sucesso
+- A navegação entre etapas preserva o que já foi preenchido
+- Sair e voltar não perde o preenchimento em andamento
+- Nenhuma etapa contém referência a cliente específico
+
+Outras informações
+Depende do card 03.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Criar o fluxo de navegação das seis etapas
+Criar o serviço de estado do sinistro em construção
+Preservar o preenchimento ao navegar entre etapas
+Preservar o preenchimento ao sair e voltar
+Garantir ausência de referência a cliente específico
+
+
+==============================================================================
+Card 10 — Etapa de dados do sinistro
+Estimativa: 6h   |   Inicio: 07/10/2026   |   Entrega: 07/10/2026   |   Etiqueta: portal-externo-2
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Reproduzir a primeira etapa do cadastro usando campos fixos mais o bloco parametrizado.
+
+Contexto
+A etapa reúne os dados mínimos exigidos para abrir um sinistro. Hoje ela contém ramificações por cliente; no novo portal os campos além do mínimo vêm da parametrização.
+
+Critérios de sucesso
+- Os campos mínimos do cadastro continuam sendo exigidos
+- Campos adicionais do grupo aparecem conforme a parametrização
+- Para grupo sem parametrização, o sinistro gerado é idêntico ao do portal atual
+
+Outras informações
+Depende dos cards 06 e 09.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Montar os campos mínimos exigidos para abertura
+Integrar o bloco de campos parametrizados
+Aplicar as validações da etapa
+Comparar o resultado com o portal atual para grupo sem parametrização
+
+
+==============================================================================
+Card 11 — Etapa de pessoas
+Estimativa: 6h   |   Inicio: 08/10/2026   |   Entrega: 08/10/2026   |   Etiqueta: portal-externo-2
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Registrar segurado e reclamante com busca por documento, sem duplicar cadastros.
+
+Contexto
+A etapa busca a pessoa pelo documento e cadastra uma nova quando não encontra. Documento digitado errado cria pessoa nova no sistema — problema que o card 24 ataca pela raiz para os clientes de segurado único.
+
+Critérios de sucesso
+- A busca por documento localiza pessoa já cadastrada
+- Documento não encontrado permite cadastro, mediante confirmação explícita
+- Campos adicionais do grupo aparecem conforme a parametrização
+
+Riscos técnicos
+Cadastro silencioso por erro de digitação suja a base de pessoas e é difícil de reverter depois.
+
+Outras informações
+Depende dos cards 06 e 09. Reusa a busca de pessoa por documento já existente.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Montar os campos de segurado e reclamante
+Integrar a busca de pessoa por documento
+Exigir confirmação explícita antes de cadastrar pessoa nova
+Integrar o bloco de campos parametrizados
+Testar com documento existente e inexistente
+
+
+==============================================================================
+Card 12 — Etapa de local
+Estimativa: 6h   |   Inicio: 08/10/2026   |   Entrega: 09/10/2026   |   Etiqueta: portal-externo-2
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Registrar o endereço do sinistro.
+
+Contexto
+A etapa usa o componente de endereço e a integração de mapa já existentes no sistema.
+
+Critérios de sucesso
+- O endereço é registrado e recuperado corretamente
+- Campos adicionais do grupo aparecem conforme a parametrização
+
+Outras informações
+Depende dos cards 06 e 09. Reusa o componente de endereço e a chave de mapa já configurada.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Montar os campos de endereço do sinistro
+Integrar o componente de endereço e o mapa
+Integrar o bloco de campos parametrizados
+Validar gravação e recuperação do endereço
+
+
+==============================================================================
+Card 13 — Etapa de apólice
+Estimativa: 6h   |   Inicio: 09/10/2026   |   Entrega: 13/10/2026   |   Etiqueta: portal-externo-2
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Registrar os dados de apólice, com o número podendo ser texto livre ou lista, conforme o grupo.
+
+Contexto
+Hoje o número da apólice é texto livre, exceto para um cliente, onde virou lista por código. Esse é o caso que melhor demonstra a parametrização, e por isso esta é a etapa que valida o card 07.
+
+Critérios de sucesso
+- Grupo sem restrição preenche o número livremente
+- Grupo com lista configurada seleciona apenas entre os valores permitidos
+- As datas de vigência acompanham a apólice selecionada
+
+Outras informações
+Depende dos cards 06, 07 e 09.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Montar os campos de apólice e vigência
+Integrar o campo de número com origem parametrizada
+Preencher as datas de vigência a partir da apólice selecionada
+Testar grupo com lista fixa e grupo sem restrição
+
+
+==============================================================================
+Card 14 — Etapa de anexos
+Estimativa: 6h   |   Inicio: 13/10/2026   |   Entrega: 13/10/2026   |   Etiqueta: portal-externo-2
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Permitir o envio de documentos durante o cadastro.
+
+Contexto
+O envio usa upload em partes e grava o destino do arquivo. Hoje a pasta e o tipo de anexo estão fixos no código do portal.
+
+Critérios de sucesso
+- O documento enviado fica vinculado ao sinistro em criação
+- Pasta e tipo de anexo deixam de estar fixos no código do portal
+- Falha de envio é sinalizada e permite nova tentativa
+
+Riscos técnicos
+Identificadores de destino escritos no código tornam o portal dependente dos dados de um ambiente específico, e quebram ao publicar em outro.
+
+Outras informações
+Depende do card 09. Reusa a infraestrutura de upload em partes já existente.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Montar a tela de envio de documentos
+Integrar o upload em partes
+Mover pasta e tipo de anexo do código para configuração
+Sinalizar falha de envio e permitir nova tentativa
+Validar o vínculo do documento ao sinistro em criação
+
+
+==============================================================================
+Card 15 — Etapa de finalização
+Estimativa: 6h   |   Inicio: 14/10/2026   |   Entrega: 14/10/2026   |   Etiqueta: portal-externo-2
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Consolidar o cadastro e devolver o número do sinistro ao usuário.
+
+Contexto
+A etapa revisa o preenchimento e envia o sinistro. É onde hoje se concentram as últimas ramificações por cliente.
+
+Critérios de sucesso
+- A revisão exibe os campos fixos e os adicionais preenchidos
+- O sinistro é gravado e o número é apresentado ao usuário
+- A notificação à Crawford ocorre como no portal atual
+
+Outras informações
+Depende dos cards 10 a 14. Reusa o endpoint de gravação já existente.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Montar a revisão com campos fixos e adicionais
+Enviar o sinistro pelo endpoint de gravação
+Apresentar o número do sinistro ao usuário
+Disparar a notificação à Crawford
+Validar o sinistro gerado contra o portal atual
+
+
+==============================================================================
+Card 16 — Remoção do acoplamento a cliente específico
+Estimativa: 12h   |   Inicio: 14/10/2026   |   Entrega: 16/10/2026   |   Etiqueta: portal-externo-2
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Eliminar do código qualquer identificação de cliente por nome ou identificador fixo.
+
+Contexto
+O portal atual reconhece um cliente por um identificador de grupo escrito diretamente em três componentes, e daí deriva uma marca que se ramifica por seis componentes e cerca de vinte e cinco pontos de template. Há ainda três modelos e três endpoints dedicados a esse cliente. Tudo isso passa a ser parametrização.
+
+Critérios de sucesso
+- Nenhum identificador de grupo ou nome de cliente aparece no código do novo portal
+- O cliente hoje tratado por exceção opera integralmente por parametrização
+- Os endpoints dedicados são substituídos por consulta parametrizada
+
+Riscos técnicos
+A equivalência precisa ser conferida campo a campo. Uma diferença silenciosa só aparecerá quando o cliente usar o portal.
+
+Outras informações
+Depende dos cards 07 e 15. Alcança portal e servidor.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Mapear os pontos que identificam cliente por identificador fixo
+Substituir a identificação por parametrização de grupo
+Generalizar os endpoints dedicados a cliente específico
+Remover os modelos dedicados a cliente específico
+Conferir a paridade campo a campo com o portal atual
+Validar com o cliente hoje tratado por exceção
+
+
+==============================================================================
+Card 17 — Endpoint de edição de sinistro pelo portal
+Estimativa: 16h   |   Inicio: 16/10/2026   |   Entrega: 20/10/2026   |   Etiqueta: portal-externo-3
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Permitir que o cliente altere informações do sinistro, restrito ao que lhe for autorizado.
+
+Contexto
+O portal externo hoje apenas cria: existe um único endpoint de gravação e nenhum de atualização. Os clientes pedem edição porque hoje enviam as alterações para a equipe da Crawford preencher, o que gera retrabalho e confusão.
+
+Critérios de sucesso
+- A alteração é aceita apenas nos campos autorizados para o grupo
+- Tentativa de alterar campo não autorizado é recusada, mesmo partindo de fora da tela
+- Campos de uso interno da Crawford permanecem inalteráveis pelo portal
+- Sinistro em situação que não admite alteração recusa a edição
+
+Riscos técnicos
+Este é o ponto mais sensível do projeto. A autorização precisa ser validada no servidor e não apenas na tela — confiar na interface significa permitir que um usuário externo altere qualquer campo do sinistro.
+
+Outras informações
+Depende do card 04. Reusa a permissão por componente já modelada no grupo, que prevê edição e nunca foi consumida pelo portal.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Definir quais campos são passíveis de edição pelo portal
+Criar o endpoint de atualização do sinistro
+Validar a autorização por campo no servidor
+Recusar alteração de campo não autorizado
+Recusar alteração conforme a situação do sinistro
+Testar tentativa de alteração feita fora da tela
+Submeter à revisão de segurança antes de publicar
+
+
+==============================================================================
+Card 18 — Edição na tela de detalhe do sinistro
+Estimativa: 14h   |   Inicio: 20/10/2026   |   Entrega: 21/10/2026   |   Etiqueta: portal-externo-3
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Oferecer ao usuário externo a alteração dos campos que lhe são permitidos.
+
+Contexto
+A tela de detalhe hoje é apenas leitura. A permissão de edição por componente já existe no modelo de grupo e nunca foi utilizada pelo portal externo.
+
+Critérios de sucesso
+- Campos editáveis se apresentam como tal; os demais seguem em leitura
+- A alteração é confirmada em tela e se mantém ao recarregar
+- Recusa pelo servidor é informada ao usuário sem perder o preenchimento
+
+Outras informações
+Depende do card 17.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Identificar em tela os campos editáveis e os de leitura
+Implementar o modo de edição no detalhe
+Consumir a permissão de edição por componente
+Confirmar a alteração em tela e ao recarregar
+Tratar a recusa do servidor sem perder o preenchimento
+
+
+==============================================================================
+Card 19 — Registro das alterações feitas pelo portal
+Estimativa: 8h   |   Inicio: 22/10/2026   |   Entrega: 22/10/2026   |   Etiqueta: portal-externo-3
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Manter rastreável quem alterou o quê pelo portal externo.
+
+Contexto
+Já existe registro de acesso ao sinistro pelo portal. Com a edição, passa a ser necessário registrar também o conteúdo alterado.
+
+Critérios de sucesso
+- Cada alteração registra usuário, data, campo, valor anterior e valor novo
+- O registro fica consultável pela equipe interna
+- Falha no registro impede a alteração, em vez de alterar sem rastro
+
+Riscos técnicos
+Sem esse registro não há como apurar divergência sobre quem alterou um dado do sinistro.
+
+Outras informações
+Depende do card 17. Estende o registro de acesso já existente.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Definir o conteúdo do registro de alteração
+Gravar usuário, data, campo, valor anterior e valor novo
+Impedir a alteração quando o registro falhar
+Disponibilizar a consulta à equipe interna
+Validar o registro com alterações reais em teste
+
+
+==============================================================================
+Card 21 — Exposição dos campos adicionais do sinistro
+Estimativa: 10h   |   Inicio: 23/10/2026   |   Entrega: 26/10/2026   |   Etiqueta: portal-externo-4
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Entregar ao portal os dados do sinistro além dos preenchidos no cadastro, respeitando o que é visível ao externo.
+
+Contexto
+O sistema já marca documento por documento o que pode ser visto externamente. O mesmo critério precisa valer para os campos do sinistro.
+
+Critérios de sucesso
+- Somente campos marcados como visíveis ao externo são entregues
+- Campo não autorizado não trafega, ainda que a tela não o exiba
+- Os documentos continuam respeitando a marcação já existente
+
+Riscos técnicos
+Filtrar apenas na tela deixa o dado disponível a quem inspecionar a resposta do servidor.
+
+Outras informações
+Depende do card 04. Reusa a marcação de visibilidade externa já existente.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Definir quais campos do sinistro podem ser expostos ao externo
+Filtrar os campos no servidor pela marcação de visibilidade
+Impedir o tráfego de campo não autorizado
+Preservar o comportamento atual dos documentos
+Inspecionar a resposta do servidor quanto a vazamento de campo
+
+
+==============================================================================
+Card 20 — Detalhe do sinistro com blocos parametrizáveis
+Estimativa: 16h   |   Inicio: 26/10/2026   |   Entrega: 28/10/2026   |   Etiqueta: portal-externo-4
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Ampliar o que o cliente enxerga do sinistro, controlado por configuração.
+
+Contexto
+Hoje o usuário externo vê apenas o que ele mesmo preencheu, ainda que o sinistro já tenha evoluído bastante do lado da Crawford. A proposta é organizar a tela em blocos e permitir habilitar cada um por grupo.
+
+Critérios de sucesso
+- Blocos são exibidos ou ocultados conforme a configuração do grupo
+- Cliente sem configuração específica enxerga o mesmo conjunto de hoje
+- A tela permanece legível quando poucos blocos estão habilitados
+
+Outras informações
+Depende dos cards 04 e 21. O levantamento de quais campos entram em cada bloco é o card 22.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Definir os blocos da tela de detalhe
+Implementar exibição condicional por configuração de grupo
+Manter o conjunto atual para grupo sem configuração
+Ajustar o layout para poucos blocos habilitados
+Validar com mais de uma configuração de grupo
+
+
+==============================================================================
+Card 22 — Definição dos blocos por cliente
+Estimativa: 6h   |   Inicio: 28/10/2026   |   Entrega: 28/10/2026   |   Etiqueta: portal-externo-4
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Transformar o levantamento da Crawford na configuração efetiva dos blocos.
+
+Contexto
+A equipe da Crawford ficou de levantar quais campos fazem sentido em cada bloco, o que deve variar bastante de cliente para cliente.
+
+Critérios de sucesso
+- Blocos configurados conforme o levantamento recebido
+- Ao menos um cliente real configurado e validado com a equipe interna
+
+Outras informações
+Depende dos cards 20 e 21 e do levantamento da Crawford. É trabalho de configuração, não de desenvolvimento.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Receber o levantamento de campos da Crawford
+Traduzir o levantamento em configuração de blocos
+Configurar ao menos um cliente real
+Validar a configuração com a equipe interna
+
+
+==============================================================================
+Card 23 — Segurado nas permissões de grupo
+Estimativa: 10h   |   Inicio: 29/10/2026   |   Entrega: 30/10/2026   |   Etiqueta: portal-externo-5
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Permitir fixar um segurado para o grupo, como já se faz com corretora e seguradora.
+
+Contexto
+Há clientes em que todos os sinistros pertencem ao mesmo segurado. Hoje o grupo permite restringir operação, suboperação, cobertura, corretora e seguradora — mas não segurado.
+
+Critérios de sucesso
+- O segurado pode ser vinculado ao grupo e é recuperado junto com ele
+- Grupo sem segurado definido mantém o comportamento atual
+
+Outras informações
+Segue o padrão de seis arquivos das demais permissões de grupo externo, mais injeção de dependência, mapeamento de banco e migração.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Criar a entidade e o modelo de segurado por grupo
+Criar o contrato e a implementação do repositório
+Criar o serviço de aplicação
+Registrar na injeção de dependência
+Criar o mapeamento de banco e a migração
+Expor a manutenção na tela de grupo
+
+
+==============================================================================
+Card 24 — Segurado fixo no cadastro
+Estimativa: 10h   |   Inicio: 30/10/2026   |   Entrega: 03/11/2026   |   Etiqueta: portal-externo-5
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Evitar que o segurado seja digitado a cada sinistro quando ele é sempre o mesmo.
+
+Contexto
+Digitar o documento a cada abertura gera erro, e documento digitado errado cadastra uma pessoa nova no sistema. Com o segurado vinculado ao grupo, o campo passa a vir preenchido.
+
+Critérios de sucesso
+- Grupo com segurado definido tem o campo preenchido e protegido de alteração
+- Nenhuma pessoa nova é criada a partir desse preenchimento
+- Grupo sem segurado definido segue informando normalmente
+
+Outras informações
+Depende dos cards 11 e 23.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Carregar o segurado do grupo na etapa de pessoas
+Preencher e proteger o campo quando houver segurado definido
+Impedir a criação de pessoa a partir desse preenchimento
+Preservar o comportamento para grupo sem segurado
+Validar com um cliente de segurado único
+
+
+==============================================================================
+Card 25 — Recuperação de senha
+Estimativa: 14h   |   Inicio: 03/11/2026   |   Entrega: 05/11/2026   |   Etiqueta: portal-externo-6
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Permitir que o usuário externo redefina a própria senha sem depender da Crawford.
+
+Contexto
+Hoje a senha é gerada e enviada manualmente, e o usuário não tem como trocá-la nem recuperá-la. Não existe nada de redefinição no sistema; a infraestrutura de envio de e-mail, no entanto, já está pronta e em uso.
+
+Critérios de sucesso
+- A solicitação envia link de redefinição ao e-mail cadastrado
+- O link expira e só pode ser usado uma vez
+- Solicitação para e-mail inexistente não revela se o cadastro existe
+- A nova senha passa a valer imediatamente e a anterior deixa de funcionar
+
+Riscos técnicos
+Um link sem expiração ou reutilizável se torna caminho de acesso à conta. A resposta também não pode servir para descobrir quais e-mails estão cadastrados.
+
+Outras informações
+Reusa a infraestrutura de envio de e-mail já existente no servidor.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Criar a geração de token de redefinição com expiração
+Criar o endpoint de solicitação de recuperação
+Criar o endpoint de redefinição
+Invalidar o token após o uso
+Padronizar a resposta para não revelar cadastro existente
+Montar e enviar o e-mail pela infraestrutura existente
+Invalidar a senha anterior após a redefinição
+
+
+==============================================================================
+Card 26 — Telas de recuperação e redefinição
+Estimativa: 10h   |   Inicio: 05/11/2026   |   Entrega: 06/11/2026   |   Etiqueta: portal-externo-6
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Oferecer o fluxo de recuperação a partir da tela de login.
+
+Contexto
+O acesso por documento e número de sinistro não usa senha e fica fora deste fluxo. Apenas o portal com e-mail e senha o utiliza.
+
+Critérios de sucesso
+- A tela de login oferece a opção de recuperação
+- O link recebido leva à definição da nova senha
+- Link expirado é informado com orientação para nova solicitação
+
+Outras informações
+Depende do card 25.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Incluir a opção de recuperação na tela de login
+Criar a tela de solicitação por e-mail
+Criar a tela de definição de nova senha
+Tratar link expirado com orientação de nova solicitação
+Validar o fluxo completo em ambiente de teste
+
+
+==============================================================================
+Card 27 — Troca de senha pelo usuário autenticado
+Estimativa: 6h   |   Inicio: 06/11/2026   |   Entrega: 09/11/2026   |   Etiqueta: portal-externo-6
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Permitir a troca de senha a qualquer momento, sem passar pela recuperação.
+
+Contexto
+Complementa o card 25 para quem já está dentro do portal e apenas quer trocar a senha recebida.
+
+Critérios de sucesso
+- A troca exige a senha atual
+- A senha anterior deixa de funcionar após a troca
+
+Outras informações
+Depende do card 25.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Criar a tela de troca de senha
+Exigir a senha atual na troca
+Invalidar a senha anterior
+Validar o fluxo em ambiente de teste
+
+
+==============================================================================
+Card 28 — Portal de documentos do segurado
+Estimativa: 12h   |   Inicio: 09/11/2026   |   Entrega: 10/11/2026   |   Etiqueta: portal-externo-7
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Migrar o acesso por documento e número de sinistro para a nova estrutura.
+
+Contexto
+É o menor dos dois portais: o usuário entra com o documento e o número do sinistro e vê apenas os documentos pendentes e a opção de anexar. Não tem senha nem cadastro.
+
+Critérios de sucesso
+- O acesso por documento e número de sinistro funciona como hoje
+- Documentos pendentes são listados e podem ser anexados
+- Nenhuma informação além da disponível hoje é exposta
+
+Outras informações
+Depende do card 03.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Criar as rotas de acesso por documento e número de sinistro
+Montar a tela de documentos pendentes
+Integrar o anexo de documentos
+Conferir que nenhuma informação adicional é exposta
+Validar o fluxo completo em ambiente de teste
+
+
+==============================================================================
+Card 29 — Validação nos demais países
+Estimativa: 12h   |   Inicio: 10/11/2026   |   Entrega: 12/11/2026   |   Etiqueta: portal-externo-8
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Confirmar que o portal opera fora do Brasil.
+
+Contexto
+Todos os países dividem a mesma base, separados por um identificador. A parametrização é por grupo, o que é independente de país, mas o comportamento precisa ser verificado na prática.
+
+Critérios de sucesso
+- Cadastro, visualização e edição validados no Brasil e em ao menos um outro país
+- A parametrização de um país não afeta grupos de outro
+
+Riscos técnicos
+A separação por identificador dentro da mesma base significa que uma consulta mal delimitada cruza dados entre países.
+
+Outras informações
+Depende dos blocos de cadastro e de edição concluídos.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Preparar acesso e massa de teste em um segundo país
+Validar cadastro, visualização e edição fora do Brasil
+Conferir que a parametrização não cruza entre países
+Registrar como card os ajustes necessários
+
+
+==============================================================================
+Card 30 — Homologação com a Crawford
+Estimativa: 16h   |   Inicio: 12/11/2026   |   Entrega: 16/11/2026   |   Etiqueta: portal-externo-8
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Validar o portal com quem vai operá-lo, antes de expor a clientes.
+
+Contexto
+A revisão de código acontecerá conforme os cards forem saindo. A homologação reúne essa validação num ciclo fechado antes do primeiro cliente real.
+
+Critérios de sucesso
+- Fluxos de cadastro, visualização, edição e recuperação de senha validados em teste
+- Ajustes apontados na revisão tratados ou registrados como card
+
+Outras informações
+Depende de todos os blocos anteriores. O tempo é compartilhado com a equipe da Crawford e não depende só do desenvolvimento.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Preparar o ambiente e a massa de homologação
+Conduzir a validação dos fluxos com a equipe da Crawford
+Registrar os apontamentos da revisão de código
+Tratar ou transformar em card cada apontamento
+Obter o aceite para a virada
+
+
+==============================================================================
+Card 31 — Publicação e virada do primeiro cliente
+Estimativa: 10h   |   Inicio: 16/11/2026   |   Entrega: 17/11/2026   |   Etiqueta: portal-externo-8
+==============================================================================
+
+--- DESCRICAO ----------------------------------------------------------------
+
+Objetivo
+Colocar o portal no ar e migrar um cliente, mantendo o portal atual disponível.
+
+Contexto
+Como a seleção do portal ocorre em tempo de build, o novo portal tem endereço próprio. A migração se dá pelo endereço entregue a cada cliente, o que permite virar um de cada vez.
+
+Critérios de sucesso
+- Portal publicado e acessível em endereço próprio
+- Um cliente migrado e operando
+- Portal atual segue no ar para os demais clientes
+- Retorno ao portal anterior é possível sem nova publicação
+
+Riscos técnicos
+A virada depende do endereço entregue ao cliente, não de uma configuração no sistema. A lista de quem já foi migrado precisa ser controlada fora da aplicação.
+
+Outras informações
+Depende do card 30.
+
+--- SMART CHECKLIST ----------------------------------------------------------
+
+Publicar o portal em endereço próprio
+Configurar o endereço e o certificado
+Definir o cliente piloto com a Crawford
+Entregar o novo endereço ao cliente piloto
+Acompanhar a operação após a virada
+Documentar a lista de clientes migrados
+
