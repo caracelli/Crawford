@@ -1,0 +1,22 @@
+EventType: Crawford.Framework.EventBus.Handlers.InsertEvent`1[[OneCrawford.Domain.Entities.Profiles.User, OneCrawford.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], Crawford.Framework.EventBus, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+ 
+Service-SystemLock
+
+
+ 
+Service-IntegracaoBRS
+ 
+ 
+Service-TaskScheduler
+
+
+ 
+Service-Email
+ 
+Service-EmailReiteration
+ 
+https://github.com/crawfordbrasil/Service-ClaimEmailAutomation
+ 
+Notas foram criados nesse chat.
+
+ 
