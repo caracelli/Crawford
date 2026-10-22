@@ -1,0 +1,93 @@
+// LTDEV-2 - appsettings.json do EmailIndexingService (EXEMPLO COMENTADO)
+// Copiar para C:\Projetos\Service-ClaimEmailAutomation\EmailIndexingService\appsettings.json
+// e trocar os valores de exemplo pelos do seu ambiente.
+// Os comentarios (//) sao aceitos pelo .NET e podem ficar no arquivo.
+// Segredos (Graph:ClientSecret, RabbitMQ:Password) NAO vao aqui: vao no User Secrets.
+{
+  // ---------------------------------------------------------------------------
+  // Secoes do BRS Cloud: COPIAR do appsettings da API local
+  // (BRSCloud-Backend\OneCrawford.Services.Api\appsettings*.json).
+  // Os servicos do backend usados pelo microservico leem estas secoes.
+  // ---------------------------------------------------------------------------
+  "AppSettings": {
+    "Secret": "COPIAR-DA-API",            // chave do JWT: o mesmo valor da API
+    "MasterPassword": "COPIAR-DA-API",    // o mesmo valor da API
+    "DisableRedis": true,                 // manter true: o servico nao usa Redis
+    "DisableEventBus": true,              // manter true
+    "DisableInsights": true,              // manter true
+    "SecretCaptcha": "COPIAR-DA-API",     // o mesmo valor da API
+    "CorsOrigins": []                     // nao usado pelo servico
+  },
+  "ConnectionStrings": {
+    // os MESMOS bancos que a API local usa
+    "DefaultConnection": "Server=localhost;Database=OneCrawfordDB;Integrated Security=True",
+    "LogConnection": "Server=localhost;Database=LogDB;Integrated Security=True",
+    "RedisConnection": "COPIAR-DA-API",
+    "LocalizationsConnection": "Server=localhost;Database=LocalizationsDB;Integrated Security=True"
+  },
+  "RabbitMQ": {
+    "Host": "localhost",                  // o mesmo host da API
+    "Timeout": 60,
+    "Username": "guest",                  // o mesmo usuario da API
+    "Password": "",                       // deixar vazio: vai no User Secrets (RabbitMQ:Password)
+    "Endpoint": {
+      // nomes das filas: os mesmos da API (estes sao os usados no teste)
+      "TaskSchedulerEndpoint": "TaskSchedulers",
+      "RealtimeEndpoint": "RTQueue",
+      "LogEndpoint": "LogEventDataQueue",
+      "BRS2EndPoint": "COPIAR-DA-API",
+      "ReportEndPoint": "ReportQueue",
+      "EmailEndPoint": "EmailEndpoint",   // aviso ao regulador (Service-Email)
+      "EmailReiterationEndPoint": "EmailReiterationQueue",
+      "ActiveDirectoryEndpoint": "ActiveDirectoryQueue",
+      "ImportEndPoint": "ImportConfigurationQueue",
+      "ClaimSystemLockEndPoint": "ClaimSystemLockEndPointQueue",
+      "FinanceEndPoint": "FinanceEndPointQueue",
+      "AuditEndPoint": "AuditEndPointQueue"
+    }
+  },
+  "Files": {
+    "Environment": "Developer",           // o mesmo valor da API
+    "Temp": "C:\\BRSCloud\\Temp",         // a MESMA pasta Files.Temp da API (o servico grava, a API le)
+    "Attachments": "C:\\BRSCloud\\Attachments" // o mesmo valor da API
+  },
+  "Integration": {
+    // as mesmas URLs da API
+    "PeruUrl": "COPIAR-DA-API",
+    "ArgentinaUrl": "COPIAR-DA-API",
+    "MexicoUrl": "COPIAR-DA-API",
+    "ColombiaUrl": "COPIAR-DA-API"
+  },
+
+  // ---------------------------------------------------------------------------
+  // Secoes do microservico
+  // ---------------------------------------------------------------------------
+  "ServiceConfiguration": {
+    // nome do servico Windows (so importa na instalacao com Topshelf)
+    "ServiceName": "_OneCrawford EmailIndexingService HostedService",
+    "DisplayName": "_OneCrawford EmailIndexingService HostedService",
+    "Description": "Anexa nos sinistros os e-mails da caixa monitorada"
+  },
+  "Graph": {
+    "TenantId": "00000000-0000-0000-0000-000000000000",  // Tenant ID do Azure AD (enviado separadamente)
+    "ClientId": "00000000-0000-0000-0000-000000000000",  // Client ID do aplicativo (enviado separadamente)
+    "CertificateThumbprint": "",          // vazio quando usa client secret
+    "ClientSecret": "",                   // deixar vazio: vai no User Secrets (Graph:ClientSecret)
+    "ProcessedFolder": "Processados",     // pasta dos e-mails indexados
+    "RejectedFolder": "Rejeitados",       // pasta dos e-mails recusados
+    "FoldersAtRoot": false,               // false = cria as pastas dentro da Caixa de Entrada
+    "DeltaStatePath": "delta-state.txt"   // apagar este arquivo faz reler a Caixa de Entrada toda
+  },
+  "Indexing": {
+    "IntervalMinutes": 10,                // intervalo entre varreduras (para teste pode usar 1)
+    "BatchSize": 50,                      // e-mails por varredura
+    "MaxAttachmentSizeMB": 25,            // anexo maior que isso nao e indexado
+    "HealthPort": 0,                      // 0 = health check desligado
+    "AlertWindowMinutes": 60              // no maximo 1 aviso de erro critico por janela
+  },
+  "ServiceUser": {
+    // UniqueId (GUID) do usuario de servico em usr.UserX - NAO e o login.
+    // select UniqueId from usr.UserX where RootId = 1 and IsActive = 1 and UserName = '<login>'
+    "UserName": "00000000-0000-0000-0000-000000000000"
+  }
+}
