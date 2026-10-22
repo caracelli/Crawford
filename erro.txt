@@ -1,0 +1,11 @@
+The _OneCrawford EmailIndexingService HostedService service is now running, press Control+C to exit.
+18:54:05.6221|INFO|User profile is available. Using 'C:\Users\admin.system\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+18:54:05.6677|INFO|Application started. Press Ctrl+C to shut down.
+18:54:05.6685|INFO|Hosting environment: Production
+18:54:05.6685|INFO|Content root path: D:\Sites\services\staging\EmailIndexingService\publish\
+18:54:05.6978|WARN|Could not read the configuration from BRS Cloud; using the last one. The ConnectionString property has not been initialized.
+18:54:05.6978|WARN|No mailbox configured for the service user's country; scan skipped.
+18:54:05.7019|WARN|Could not read the configuration from BRS Cloud; using the last one. The ConnectionString property has not been initialized.
+18:54:05.7019|WARN|No mailbox configured for the service user's country; scan skipped.
+18:54:05.7019|INFO|Scan: read=0 indexed=0 rejected=0 failed=0 purged=0
+ 
