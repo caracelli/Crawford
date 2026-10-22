@@ -1,0 +1,159 @@
+LTDEV-15: DISTRIBUIÇÃO AUTOMÁTICA DE PROCESSOS (ORIGEM: BRL-735)
+Passagem de contexto para outra sessão do Claude
+====================================================================
+
+1. O QUE É
+----------
+Projeto da Crawford (BRS Cloud): ao cadastrar um sinistro, o sistema escolhe sozinho o regulador
+principal, pela senioridade (hierarquia do cargo) e pela quantidade de processos em aberto de cada
+regulador. Vale para todos os países LATAM, com telas de parametrização.
+
+O Nelson pede estimativas em horas e dias úteis, NUNCA com datas de calendário.
+Formato dos cards: checklist no topo, em linhas soltas, com caminho de arquivo real; depois Objetivo,
+Contexto, Critérios de sucesso e Outras informações.
+Não commitar nem dar push sem o Nelson pedir.
+
+2. DOCUMENTOS (repositório caracelli/Crawford, pasta "Doctos Crawford\Crawford")
+--------------------------------------------------------------------------------
+- "Distribuição de processos - QA.docx": análise original com as anotações da QA (Agatta, 03/10/2025):
+    * campo Ramo em vermelho quando não preenchido no cadastro: ok
+    * "O sistema ainda não está captando o regulador vinculado ao nível da parametrização (Júnior, Pleno, Sênior)"
+    * Sinistro BR25010820: campo regulador principal ok; teste de trava ok
+- "Distribuição de processos (1).docx": mesma análise, sem a parte de QA (editada pela Caroline em 20/10/2026).
+- Os dois chegaram no commit e659d34 (21/10).
+- No mesmo commit vieram dois arquivos do LTDEV-2, que NÃO fazem parte desta estimativa:
+  "LTDEV-2/DV-122 Office com BRS Cloud.pdf" e uma cópia do PDF da integração Outlook.
+
+Requisitos do documento de análise:
+  a) tabela de Hierarquia vinculada ao cargo (1 Aprendiz ... 10 Presidente)
+  b) tela de parametrização Ramo (Susep) x Regulador
+  c) Ramo obrigatório no sinistro SOMENTE para o Brasil
+  d) mover ActivityArea (Ramo) de brl.Claim para dbo.Claim (todos os países)
+  e) tela de parametrização com Operação, Sub-operação, Seguradora, Hierarquia, Ramo e Estimativa de prejuízo
+  f) após o cadastro, escolher automaticamente o regulador principal, mantendo as quantidades equilibradas
+     (exemplo: R1=10, R2=9, R3=8 -> o próximo vai para R3)
+  g) permissão no botão de regulador principal
+  h) observação obrigatória na troca do regulador principal
+  i) o cadastro inicial continua igual; o sistema troca o regulador principal e lança uma situação em nome dele
+  j) o regulador não escolhe o caso; só o gestor redistribui
+
+3. ANOTAÇÕES DO NELSON (reunião, vale como complemento do documento)
+--------------------------------------------------------------------
+  1. hierarquia = tabela RoleX, campo HierarchicalPosition
+  2. campo Ramo com flag de obrigatório (parametrizável, não fixo no código)
+  3. Ramo sai de brl.Claim e vai para dbo.Claim (Claim geral)
+  4. sem parametrização: continua manual, como hoje
+  5. com parametrização: NÃO mostrar o botão, ou seja, não trocar o regulador principal
+  6. o sinistro vai para quem tem menos casos; no empate, para quem tem processo em andamento
+     e vai fechar primeiro
+  7. botão de regulador com exceção: só gestores têm acesso
+  8. observação com no mínimo 30 caracteres
+  9. ou enviar por e-mail ao gestor para aprovação (frase incompleta na anotação)
+ 10. tela de gerenciamento de equipes (nova)
+ 11. tela de aprovações (nova)
+ Escopo: Back e Front end. Card: LTDEV-15.
+
+4. CÓDIGO
+---------
+Repositórios em "OneDrive\Backup Note\Projetos\Antlia\Crawford\":
+  BRSCloud-Backend   (principal; está em LTDEV-2-card6 com 3 alterações sem commit: NÃO MEXER)
+  BRSCloud-Frontend  (principal, em LTDEV-2)
+A branch BRL-735 foi baixada como git worktree, sem tocar nos principais:
+  BRSCloud-Backend-BRL-735   (branch local BRL-735, commit c17cd4f35, 05/11/2025)
+  BRSCloud-Frontend-BRL-735  (branch local BRL-735, commit d9cde6dbc)
+Autores: Leonardo Dalben e William Huang (2025); merge com a main feito pela Caroline no Front.
+
+O que a branch BRL-735 já tem:
+  - scripts _executar/BRL-735-1..4.sql:
+      1: tabela ParameterActivityAreaAdjuster + menu e página
+      2: tabela ParameterDistribuitionClaim + menu e página
+      3: ActivityAreaId em dbo.Claim, migrado de brl.Claim
+      4: traduções das mensagens
+  - Back: controllers, serviços e repositórios ParameterActivityAreaAdjuster e ParameterDistribuitionClaim;
+    Cores/ActivityAreaController
+  - Back: Application/Services/Claims/Events/DistributionClaimService.cs, chamado em
+    ClaimService.AfterRegister (todos os países)
+  - Back: ChangeMainAdjusterService com Reason (motivo)
+  - Front: telas parameter-distribuition-claim e parameter-activity-area-adjuster (i18n de 8 países),
+    Ramo obrigatório, diálogo de regulador principal com motivo obrigatório e permissão
+
+Defeitos e lacunas encontrados:
+  - ClaimAdjusterRepository.SelectAdjustersForDistribution parte da tabela Claim com COUNT(*):
+    o regulador SEM nenhum caso aberto nunca entra como candidato. É a causa provável do defeito
+    apontado pela QA. O filtro de nível por RoleX.HierarchicalPosition está correto (confirmado pela anotação 1).
+  - Desempate não implementado: ordena só por NroClaim e pega o primeiro.
+  - O retorno de DistributionClaimForAdjuster é ignorado em AfterRegister: as falhas passam em silêncio.
+  - Sem parametrização, a rotina devolve erro (que é ignorado). Tratar explicitamente como "manual".
+  - Faltam:
+      * flag do Ramo
+      * esconder o botão quando houver parametrização
+      * motivo com no mínimo 30 caracteres (Front e Back)
+      * restringir o botão a gestores (confirmar)
+      * aprovação por e-mail
+      * tela de aprovações
+      * tela de equipes
+
+5. ANÁLISE DE MERGE COM A MAIN (simulado com git merge-tree)
+-----------------------------------------------------------
+Frontend: base fb7826e71 (prod-2026-10-12); 62 arquivos (+1382 linhas); ZERO conflitos.
+Backend:  base 8b1b817c7 (03/11/2025); a main andou 1979 commits e 1618 arquivos desde então.
+          Branch: 85 arquivos (+2596 / -905 linhas).
+            - 37 arquivos NOVOS (+1976 linhas): não conflitam, dá para aproveitar.
+            - 46 arquivos ALTERADOS (+620 / -843 linhas): geram 33 arquivos em conflito, no núcleo do
+              sinistro dos 6 países (ClaimService, ClaimSituation*Service, ClaimRepository, Claim.cs,
+              ClaimController, NativeInjectorBootStrapper...).
+          Os maiores conflitos: ClaimSituationPeruService (543 linhas), ClaimSituationColombiaService (223),
+          ActivityAreaService (214), ClaimSituationService (189), ClaimBrazilService (189).
+          A branch REESTRUTUROU os serviços de situação (o Peru passou a herdar ClaimSituationService
+          genérico, -465 linhas). Isso não faz parte do requisito, e a main mexeu nesses arquivos em 19
+          commits desde então.
+          A main ainda não tem: ActivityArea em dbo.Claim, o Reason no ChangeMainAdjuster, as tabelas
+          Parameter*, o DistributionClaimService.
+          A main já tem: a tabela HierarchyOfPerson (não usada aqui), a RoleX.HierarchicalPosition e o
+          ChangeMainAdjusterService (sem Reason).
+
+6. DECISÃO (combinada com o Nelson)
+-----------------------------------
+REAPROVEITAR E AJUSTAR, não refazer do zero.
+Criar a branch nova LTDEV-15 a partir da main atual, no Front e no Back.
+(O Nelson escreveu "LTDE-15"; confirmar o nome LTDEV-15 antes de criar.)
+  - Front: trazer o código da BRL-735 (merge sem conflito) e ajustar.
+  - Back: copiar os 37 arquivos novos e os 4 scripts; reaplicar à mão os ganchos pequenos:
+      * a chamada em AfterRegister
+      * o ActivityAreaId em Claim/IClaim/ClaimRepository
+      * o Reason no ChangeMainAdjuster
+      * as injeções de dependência no NativeInjectorBootStrapper
+      * o mapeamento no ReverseMappingProfile
+    DESCARTAR a reestruturação dos ClaimSituation*Service.
+  - Corrigir o DistributionClaimService: a consulta, para incluir o regulador com 0 casos; o desempate;
+    o caso "sem parametrização" como manual; e logar e notificar as falhas.
+  - Depois, construir os itens novos das anotações (seção 3).
+Sugestão: criar como git worktree em pastas separadas, como foi feito com a BRL-735. Não dar push.
+
+7. PENDÊNCIAS (perguntar ao Nelson)
+-----------------------------------
+  a) Os itens 5, 8, 9 e 11 são um fluxo só? A leitura proposta: com parametrização, o regulador não troca
+     direto; quem quiser trocar pede com uma observação de 30 caracteres ou mais, o pedido vai por e-mail
+     ao gestor, e o gestor aprova na tela de aprovações.
+  b) O que entra na tela de gerenciamento de equipes: vincular reguladores a um gestor, ver a carga de casos
+     de cada um, ou as duas coisas?
+  c) Desempate. O Nelson confirmou o entendimento: no empate de quantidade, vai para quem vai se liberar
+     primeiro. Falta definir COMO medir; a sugestão é levar a opção 1 para a Carol validar.
+       1. pela fase dos processos em andamento (ordem das situações até a de encerramento): recomendada
+       2. pela última atualização dos casos
+       3. pela data prevista de conclusão
+  d) Confirmar o nome da branch: LTDEV-15.
+
+8. PRÓXIMOS PASSOS
+------------------
+  1. Confirmar as pendências da seção 7.
+  2. Criar a LTDEV-15 (Front e Back) a partir da main, só local.
+  3. Montar a estimativa em cards no formato do Nelson (horas e dias úteis, sem datas), separando:
+       "reaproveitar e portar da BRL-735" / "corrigir defeitos" / "construir itens novos"
+       (flag do Ramo, bloqueio do botão, 30 caracteres, aprovação por e-mail, tela de aprovações,
+       tela de equipes) / testes.
+
+Outras pendências fora da LTDEV-15:
+  - O Backend na main não compila: falta a classe DpapiConfigurationSource, do commit 80ffb8f98 do
+    William. O Nelson deu como encerrado por ora.
+  - As PRs foram aprovadas; falta ajudar (provavelmente a Carol) a configurar o ambiente de teste.
