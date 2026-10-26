@@ -1,0 +1,116 @@
+LTDEV-2 - EMAILINDEXINGSERVICE: AJUSTES PARA RODAR EM PRODUCAO
+=============================================================
+
+Codigo: Service-ClaimEmailAutomation, branch main (inclui a PR #4).
+Compilar com o BRSCloud-Backend na branch que tem o LTDEV-2 (staging-latam, ate o merge no main)
+e o Crawford-Framework no main.
+
+Os itens abaixo comparam o NLog.config e o appsettings.json usados no staging com o que precisa
+estar em producao.
+
+
+1. NLog.config
+--------------
+
+1.1 Regra de log (HOJE NADA E GRAVADO)
+    A regra ativa aponta para destinos que nao existem no arquivo:
+        <logger name="*" minlevel="Info" writeTo="arquivo,console" />
+    Os destinos do arquivo se chamam "logFile" e "database". Trocar por:
+        <logger name="*" minlevel="Info" writeTo="logFile,database" />
+
+1.2 Apagar a linha comentada (a regra do item 1.1 ja grava no banco):
+        <!--<logger name="*" writeTo="database" minlevel="Debug" />-->
+
+1.3 ServiceName gravado no LogDB
+    No commandText do target "database" esta 'Staging EmailService' (copiado do Service-Email).
+    Trocar pelo nome deste servico, no padrao de producao, por exemplo:
+        'EmailIndexingService'
+    (usar o mesmo padrao com que o Service-Email aparece no LogDB de producao)
+
+1.4 Rotacao do arquivo de log
+    Esta archiveEvery="Minute" com maxArchiveFiles="30": o arquivo troca A CADA MINUTO e so os
+    30 ultimos ficam, ou seja, apenas os ultimos 30 minutos de historico. Trocar por:
+        archiveEvery="Day"
+    (30 arquivos = 30 dias)
+
+1.5 Log interno do NLog
+    internalLogLevel="Debug"  ->  internalLogLevel="Warn"
+    (em Debug o arquivo log\internal-nlog.txt cresce muito; em Warn so registra problemas)
+
+1.6 Pode manter: ${currentdir}\log\... (como servico, o Topshelf poe o diretorio atual na pasta
+    do .exe) e o connectionString "${configsetting:item=ConnectionStrings.LogConnection}".
+
+
+2. appsettings.json
+-------------------
+
+2.1 ServiceConfiguration.ServiceName / DisplayName
+    Tirar o "_Staging". Ex.: "_OneCrawford EmailIndexingService HostedService".
+
+2.2 ConnectionStrings
+    DefaultConnection, LogConnection e LocalizationsConnection com o servidor e os bancos de
+    PRODUCAO. A chave do banco principal tem que se chamar DefaultConnection (ou BRSCloudConnection).
+
+2.3 RabbitMQ
+    Host e Username do RabbitMQ de PRODUCAO (o mesmo da API e do servico de integracao).
+    Password: hoje em texto puro; CRIPTOGRAFAR com DPAPI no servidor de producao.
+
+2.4 Files.Temp / Files.Attachments
+    Pastas de PRODUCAO. O Files.Temp tem que ser a MESMA pasta que o servico de integracao do
+    Brasil le (o Brasil usa hasFile = 0). Se a integracao roda em outro servidor, usar caminho de
+    rede (no JSON: "\\\\servidor\\pasta").
+
+2.5 Integration.*Url
+    Hoje estao "https://localhost:44309" (ambiente de desenvolvimento). Usar as URLs de producao.
+
+2.6 Graph
+    TenantId / ClientId: iguais, se for o mesmo aplicativo do Azure.
+    ClientSecret: CRIPTOGRAFAR DE NOVO NO SERVIDOR DE PRODUCAO. Valor criptografado em outra
+    maquina nao abre e o servico cai ao iniciar ("Critical failure ... via DPAPI").
+
+2.7 ServiceUser.UserName
+    GUID (UniqueId de usr.UserX) do usuario de servico NO BANCO DE PRODUCAO, ativo, do Brasil e com
+    acesso a todas as operacoes.
+
+Como criptografar com DPAPI (rodar NO servidor de producao, PowerShell):
+    Add-Type -AssemblyName System.Security
+    $texto = Read-Host "Valor"
+    [Convert]::ToBase64String([Security.Cryptography.ProtectedData]::Protect([Text.Encoding]::UTF8.GetBytes($texto), $null, 'LocalMachine'))
+  Colar o resultado (comeca com AQAAANCM) no campo do appsettings.
+
+
+3. Banco de producao
+--------------------
+3.1 Scripts do LTDEV-2 (ja executados em producao): conferir.
+3.2 ParameterRoot do Brasil preenchido:
+      select RootId, CountryCode, EmailIndexingMailbox, EmailIndexingManualBox,
+             EmailIndexingStore, EmailIndexingStoreDays, EmailIndexingLocalDomains, EmailIndexingAlertBox
+      from ParameterRoot where RootId = 1
+    EmailIndexingMailbox vazio = o servico nao varre ("No mailbox configured" no log).
+3.3 Tabela dbo.Logs no banco da LogConnection (a conta do servico precisa de insert nela).
+
+
+4. Instalacao do servico
+------------------------
+4.1 As connection strings usam Integrated Security: instalar com uma conta que acesse os bancos
+    de producao (Local System entra com a conta da maquina e costuma nao ter acesso):
+        EmailIndexingService.exe install -username "DOMINIO\usuario" -password "senha"
+        EmailIndexingService.exe start
+    (prompt como administrador, na pasta publicada; conta com senha)
+
+4.2 Se o servidor tiver o aplicativo de video da Intel (Intel Graphics Command Center), o servico
+    cai com "Critical failure while describing key 'IGCCSVC_DB' via DPAPI". Contorno, so para o
+    servico (PowerShell como administrador, usar o ServiceName do appsettings):
+        New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\<ServiceName>" -Name Environment -PropertyType MultiString -Value @('IGCCSVC_DB=nao-usado') -Force
+        Restart-Service "<ServiceName>"
+
+
+5. Como conferir depois de iniciar
+----------------------------------
+- Arquivo: <pasta do servico>\log\Debug.log com uma linha
+      Scan: read=... indexed=... rejected=... failed=... purged=...
+  a cada intervalo (Indexing.IntervalMinutes, padrao 10).
+- Banco: select top 20 Logged, Level, Message, Exception from dbo.Logs
+         where ServiceName = 'EmailIndexingService' order by Id desc
+- Se o servico nao subir: Visualizador de Eventos > Logs do Windows > Aplicativo.
+- Se nada aparecer no log: log\internal-nlog.txt mostra o motivo (ex.: Login failed).
