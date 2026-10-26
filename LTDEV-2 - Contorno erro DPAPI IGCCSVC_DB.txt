@@ -1,0 +1,95 @@
+LTDEV-2 - CONTORNO DO ERRO DPAPI "IGCCSVC_DB" (MAQUINA DE TESTE)
+================================================================
+
+O ERRO
+------
+Ao iniciar o EmailIndexingService:
+
+  Unhandled exception. System.InvalidOperationException: Critical failure while
+  describing key 'IGCCSVC_DB' via DPAPI.
+  ---> WindowsCryptographicException: Os dados sao invalidos.
+     at Crawford.Framework.Cryptography.Provider.DpapiConfigurationProvider.Load()
+
+
+A CAUSA
+-------
+- IGCCSVC_DB NAO e configuracao nossa. E uma variavel de ambiente do Windows criada
+  pelo Intel Graphics Command Center (aplicativo da placa de video Intel), com um
+  valor criptografado pela conta do USUARIO (comeca com AQAAANCM).
+- O servico le tambem as variaveis de ambiente. O DpapiConfigurationProvider do
+  Crawford-Framework tenta abrir TODO valor que comeca com AQAAANCM, com o escopo da
+  MAQUINA. O valor da Intel nao abre e o servico cai.
+- Acontece em qualquer maquina com o aplicativo da Intel. Nao acontece na maquina do
+  Nelson (sem a variavel) nem em producao (que esta funcionando).
+- Nao apagar a variavel: o aplicativo da Intel usa e ela pode voltar com o driver.
+
+O contorno abaixo deixa a variavel VAZIA SO PARA O NOSSO SERVICO. O codigo nao muda.
+
+
+PASSO A PASSO (escolher conforme o jeito de rodar)
+--------------------------------------------------
+
+A) Rodando pelo cmd / .exe na mao
+   1. Abrir o cmd na pasta do servico.
+   2. Antes de rodar, limpar a variavel SO nesta janela:
+
+        set IGCCSVC_DB=
+        EmailIndexingService.exe
+
+   (Toda janela nova do cmd precisa do "set IGCCSVC_DB=" de novo.)
+
+
+B) Rodando pelo Visual Studio (F5)
+   1. Criar o arquivo:
+        <repositorio>\Service-ClaimEmailAutomation\EmailIndexingService\Properties\launchSettings.json
+      com este conteudo:
+
+        {
+          "profiles": {
+            "EmailIndexingService": {
+              "commandName": "Project",
+              "environmentVariables": {
+                "IGCCSVC_DB": ""
+              }
+            }
+          }
+        }
+
+   2. Para esse arquivo NUNCA subir no git, ignorar so nesta maquina: abrir o arquivo
+        <repositorio>\Service-ClaimEmailAutomation\.git\info\exclude
+      e acrescentar a linha:
+
+        EmailIndexingService/Properties/launchSettings.json
+
+   3. Fechar e abrir a solution (ou recarregar o projeto) e rodar com F5.
+   4. Conferir: "git status" no repositorio nao deve listar o launchSettings.json.
+
+
+C) Instalado como servico do Windows
+   1. Instalar o servico normalmente (EmailIndexingService.exe install).
+   2. Num PowerShell COMO ADMINISTRADOR (trocar o nome se o ServiceName do
+      appsettings for outro):
+
+        $nome = '_OneCrawford EmailIndexingService HostedService'
+        New-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\$nome" -Name Environment -PropertyType MultiString -Value @('IGCCSVC_DB=') -Force
+        Restart-Service $nome
+
+   3. Se o servico ja tiver outras variaveis nessa chave Environment (ex.:
+      DOTNET_ENVIRONMENT=Staging), incluir todas na mesma lista, por exemplo:
+        -Value @('IGCCSVC_DB=', 'DOTNET_ENVIRONMENT=Staging')
+   (Ao desinstalar o servico, a configuracao sai junto.)
+
+
+COMO CONFERIR
+-------------
+- O servico sobe sem o erro "Critical failure while describing key 'IGCCSVC_DB'".
+- No log (pasta log ao lado do .exe) aparece a linha:
+    Scan: read=... indexed=... rejected=... failed=... purged=...
+
+
+OBSERVACAO
+----------
+O mesmo problema afeta o Service-Email e o Service-IntegracaoBRS (mesmo padrao de
+configuracao) em maquinas com o aplicativo da Intel. Se um dia aparecer num servidor,
+a correcao definitiva e no DpapiConfigurationProvider do Crawford-Framework
+(ignorar valores que nao abrem, ou ler o DPAPI so dos arquivos de configuracao).
