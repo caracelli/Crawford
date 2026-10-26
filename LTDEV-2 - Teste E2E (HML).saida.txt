@@ -1,12 +1,12 @@
 ﻿**********************
 Início da transcrição do Windows PowerShell
-Hora de início: 20261026132801
+Hora de início: 20261026133543
 Nome de Usuário: CRAWFORDBRASIL\nelson.diniz
 Executar como Usuário: CRAWFORDBRASIL\nelson.diniz
 Nome da Configuração: 
 Computador: CRW-3584 (Microsoft Windows NT 10.0.26200.0)
 Aplicativo Host: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File LTDEV-2 - Teste E2E (HML).ps1
-ID do Processo: 13868
+ID do Processo: 39096
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -22,25 +22,18 @@ SerializationVersion: 1.1.0.1
    bin-NLog.config
    projeto-appsettings.json
    projeto-NLog.config
-appsettings usado: C:\Users\nelson.diniz\ltdev2-backup-20261026-132801\bin-appsettings.json
+appsettings usado: C:\Users\nelson.diniz\ltdev2-backup-20261026-133543\bin-appsettings.json
 banco: 10.122.0.11 / CarolOneCrawfordDB
 Files.Temp: c:\Temp\PicUpload
 
 == 2. Desinstalando o servico
-Removendo '_Staging OneCrawford EmailIndexingService HostedService'
 
 == 3. Codigo: main (com a PR #4)
-Saved working directory and index state On LTDEV-2-brscloud-connection: ltdev2-antes-do-e2e-2610-132801
-alteracoes locais guardadas no stash ltdev2-antes-do-e2e-2610-132801
-remote: Enumerating objects: 1, done.
-remote: Counting objects: 100% (1/1), done.
-remote: Total 1 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
-Unpacking objects: 100% (1/1), 959 bytes | 191.00 KiB/s, done.
-From https://github.com/crawfordbrasil/Service-ClaimEmailAutomation
-   84925e8..50ac4d2  main       -> origin/main
-Switched to branch 'main'
-Your branch is behind 'origin/main' by 3 commits, and can be fast-forwarded.
-  (use "git pull" to update your local branch)
+Saved working directory and index state On main: ltdev2-antes-do-e2e-2610-133543
+alteracoes locais guardadas no stash ltdev2-antes-do-e2e-2610-133543
+
+Already on 'main'
+Your branch is up to date with 'origin/main'.
 HEAD is now at 50ac4d2 Merge pull request #4 from crawfordbrasil/LTDEV-2-brscloud-connection
    commit: 50ac4d2 Merge pull request #4 from crawfordbrasil/LTDEV-2-brscloud-connection
    tem a PR #4: True
@@ -54,16 +47,16 @@ C:\Program Files\dotnet\sdk\9.0.316\Sdks\Microsoft.NET.Sdk\targets\Microsoft.NET
 de suporte.
 C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Application\OneCrawford.Application.csproj : warning NU1903: O pacote 'AutoMapper' 9.0.0 tem uma alta vulnerabilidade de
 gravidade conhecida, https://github.com/advisories/GHSA-rvv3-g6hj-g44x
-C:\Users\nelson.diniz\Crawford-Framework\Crawford.Framework.EventBus\Crawford.Framework.EventBus.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 t
-em uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
 C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Application\OneCrawford.Application.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 tem uma mod
 erado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
+C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Domain.Access\OneCrawford.Domain.Access.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 tem uma
+ moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
+C:\Users\nelson.diniz\Crawford-Framework\Crawford.Framework.EventBus\Crawford.Framework.EventBus.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 t
+em uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
 C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Infra.CrossCutting.IoC\OneCrawford.Infra.CrossCutting.IoC.csproj : warning NU1902: O pacote 'System.Data.SqlClient' 4.8.1
  tem uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-8g2p-5pqh-5jmc
 C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Infra.CrossCutting.IoC\OneCrawford.Infra.CrossCutting.IoC.csproj : warning NU1903: O pacote 'System.Data.SqlClient' 4.8.1
  tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-98g6-xh36-x2p7
-C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Domain.Access\OneCrawford.Domain.Access.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 tem uma
- moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
 C:\Users\nelson.diniz\.nuget\packages\system.text.encodings.web\8.0.0\buildTransitive\netcoreapp2.0\System.Text.Encodings.Web.targets(4,5): warning : System.Text.Encodings.
 Web 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also set <SuppressTfmSupportBui
 ldWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
@@ -100,26 +93,6 @@ essTfmSupportBuildWarnings> in the project file to ignore this warning and attem
 C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
 ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
 essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.formats.asn1\8.0.0\buildTransitive\netcoreapp2.0\System.Formats.Asn1.targets(4,5): warning : System.Formats.Asn1 8.0.0 doesn't
-support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</S
-uppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
-ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
-essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
-.Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
-t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
- your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
-ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
-essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.formats.asn1\8.0.0\buildTransitive\netcoreapp2.0\System.Formats.Asn1.targets(4,5): warning : System.Formats.Asn1 8.0.0 doesn't
-support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</S
-uppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
-.Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
-t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
- your own risk.
 C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
 ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
 essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
@@ -136,23 +109,13 @@ C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\bu
 .Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
 t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
  your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
-ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
-essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
 C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
 .Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
 t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
  your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
-.Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
-t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
- your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
-ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
-essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
-C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
-ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
-essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.formats.asn1\8.0.0\buildTransitive\netcoreapp2.0\System.Formats.Asn1.targets(4,5): warning : System.Formats.Asn1 8.0.0 doesn't
+support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</S
+uppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
 C:\Users\nelson.diniz\.nuget\packages\system.formats.asn1\8.0.0\buildTransitive\netcoreapp2.0\System.Formats.Asn1.targets(4,5): warning : System.Formats.Asn1 8.0.0 doesn't
 support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</S
 uppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
@@ -166,6 +129,13 @@ uppressTfmSupportBuildWarnings> in the project file to ignore this warning and a
 C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
 ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
 essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
+ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
+essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
+.Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
+t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
+ your own risk.
 C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
 .Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
 t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
@@ -173,9 +143,32 @@ t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the
 C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
 ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
 essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
+.Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
+t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
+ your own risk.
 C:\Users\nelson.diniz\.nuget\packages\system.formats.asn1\8.0.0\buildTransitive\netcoreapp2.0\System.Formats.Asn1.targets(4,5): warning : System.Formats.Asn1 8.0.0 doesn't
 support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</S
 uppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
+ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
+essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
+ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
+essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
+ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
+essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
+.Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
+t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
+ your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.formats.asn1\8.0.0\buildTransitive\netcoreapp2.0\System.Formats.Asn1.targets(4,5): warning : System.Formats.Asn1 8.0.0 doesn't
+support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</S
+uppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
+C:\Users\nelson.diniz\.nuget\packages\system.io.hashing\9.0.12\buildTransitive\netcoreapp2.0\System.IO.Hashing.targets(4,5): warning : System.IO.Hashing 9.0.12 doesn't supp
+ort netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net8.0 or later. You may also set <SuppressTfmSupportBuildWarnings>true</Suppr
+essTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at your own risk.
 C:\Users\nelson.diniz\.nuget\packages\system.security.cryptography.pkcs\8.0.0\buildTransitive\netcoreapp2.0\System.Security.Cryptography.Pkcs.targets(4,5): warning : System
 .Security.Cryptography.Pkcs 8.0.0 doesn't support netcoreapp3.1 and has not been tested with it. Consider upgrading your TargetFramework to net6.0 or later. You may also se
 t <SuppressTfmSupportBuildWarnings>true</SuppressTfmSupportBuildWarnings> in the project file to ignore this warning and attempt to run in this unsupported configuration at
@@ -197,23 +190,20 @@ C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Application\OneCrawford.Appli
 gravidade conhecida, https://github.com/advisories/GHSA-rvv3-g6hj-g44x
 C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Application\OneCrawford.Application.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 tem uma mod
 erado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
+C:\Users\nelson.diniz\Crawford-Framework\Crawford.Framework.EventBus\Crawford.Framework.EventBus.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 t
+em uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
 C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Infra.CrossCutting.IoC\OneCrawford.Infra.CrossCutting.IoC.csproj : warning NU1902: O pacote 'System.Data.SqlClient' 4.8.1
  tem uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-8g2p-5pqh-5jmc
 C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Infra.CrossCutting.IoC\OneCrawford.Infra.CrossCutting.IoC.csproj : warning NU1903: O pacote 'System.Data.SqlClient' 4.8.1
  tem uma alta vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-98g6-xh36-x2p7
-C:\Users\nelson.diniz\Crawford-Framework\Crawford.Framework.EventBus\Crawford.Framework.EventBus.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 t
-em uma moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
 C:\Users\nelson.diniz\BRSCloud-Backend\OneCrawford.Domain.Access\OneCrawford.Domain.Access.csproj : warning NU1902: O pacote 'System.IdentityModel.Tokens.Jwt' 6.5.0 tem uma
  moderado vulnerabilidade de gravidade conhecida, https://github.com/advisories/GHSA-59j7-ghrg-fj52
-C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\Injectors\BrsCloudInjector.cs(25,71): warning CS0618: "ConnectionStrings.DefaultConnection" é obsole
-to: "Utilize o BRSCloudConnection"
 
 == 4. Sinistro de teste e modo de gravacao de arquivos
-PS>TerminatingError(): "Exceção ao chamar "Open" com "0" argumento(s): "Erro de rede ou específico à instância ao estabelecer conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome da instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provider: Named Pipes Provider, error: 40 - Não foi possível abrir uma conexão com o SQL Server)""
 
-FALHA: Exceção ao chamar "Open" com "0" argumento(s): "Erro de rede ou específico à instância ao estabelecer conexão com o SQL Server. O servidor não foi encontrado ou não estava acessível. Verifique se o nome da instância está correto e se o SQL Server está configurado para permitir conexões remotas. (provider: Named Pipes Provider, error: 40 - Não foi possível abrir uma conexão com o SQL Server)"
-Backup da configuracao: C:\Users\nelson.diniz\ltdev2-backup-20261026-132801
+FALHA: Nenhum sinistro aberto com acesso do usuario de servico neste banco.
+Backup da configuracao: C:\Users\nelson.diniz\ltdev2-backup-20261026-133543
 **********************
 Fim da transcrição do Windows PowerShell
-Hora de término: 20261026132913
+Hora de término: 20261026133617
 **********************
