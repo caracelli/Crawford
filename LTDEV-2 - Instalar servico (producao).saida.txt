@@ -1,0 +1,75 @@
+﻿**********************
+Início da transcrição do Windows PowerShell
+Hora de início: 20261026140630
+Nome de Usuário: CRAWFORDBRASIL\nelson.diniz
+Executar como Usuário: CRAWFORDBRASIL\nelson.diniz
+Nome da Configuração: 
+Computador: CRW-3584 (Microsoft Windows NT 10.0.26200.0)
+Aplicativo Host: powershell -NoProfile -ExecutionPolicy Bypass -File C:\Antlia\Crawford\LTDEV-2 - Instalar servico (producao).ps1 -Pasta C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1 -SoVerificar
+ID do Processo: 19884
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+== Pasta
+C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1 | maquina CRW-3584 | usuario CRAWFORDBRASIL\nelson.diniz | administrador: False
+  [OK]      EmailIndexingService.exe
+  [OK]      appsettings.json
+  [OK]      NLog.config
+
+== appsettings.json
+  [OK]      ServiceName: _Staging OneCrawford EmailIndexingService HostedService
+  [ATENCAO] ServiceName contem 'Staging' (em producao, tirar o prefixo)
+  [OK]      ConnectionStrings.DefaultConnection -> 10.122.0.11 / CarolOneCrawfordDB
+  [OK]      ConnectionStrings.LogConnection -> 10.122.0.11 / StagingLogDB
+  [ATENCAO] ConnectionStrings.LogConnection aponta para banco de STAGING
+  [OK]      ConnectionStrings.LocalizationsConnection -> 10.122.0.11 / StagingLocalizationsDB
+  [ATENCAO] ConnectionStrings.LocalizationsConnection aponta para banco de STAGING
+  [OK]      RabbitMQ: servidor localhost, vhost enviroment, usuario enviroment
+  [OK]      RabbitMQ.Password criptografada e abre nesta maquina
+  [OK]      Graph TenantId e ClientId preenchidos
+  [OK]      Graph.ClientSecret criptografado e abre nesta maquina
+  [OK]      Files.Temp existe e aceita escrita (com a conta atual): c:\Temp\PicUpload
+  [OK]      Files.Attachments existe e aceita escrita (com a conta atual): c:\Temp\Attachments
+  [ATENCAO] Integration.*Url com localhost (usar as URLs do ambiente)
+  [OK]      ServiceUser.UserName: 1F83FC45-C029-485F-A49C-22FFCB231270
+
+== NLog.config
+  [OK]      destinos: arquivo, console
+  [OK]      regra minlevel=Info writeTo=arquivo,console
+
+== Bancos (somente leitura, com a conta atual: CRAWFORDBRASIL\nelson.diniz)
+  [OK]      acesso ao banco principal (10.122.0.11 / CarolOneCrawfordDB)
+  [OK]      usuario de servico: reguladorautomatico@crawfordbrasil.com.br
+  [ERRO]    usuario de servico sem acesso a NENHUMA operacao (nao encontra nenhum sinistro)
+  [OK]      caixa monitorada: central.recebimento@crawfordbrasil.com.br
+PS>TerminatingError(): "Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLogDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.""
+  [ATENCAO] banco de log inacessivel com a conta atual: Cannot open database "StagingLogDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLogDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'."
+PS>TerminatingError(): "Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLocalizationsDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.""
+  [ATENCAO] banco de traducoes inacessivel com a conta atual (mensagens sairiam com a chave): Cannot open database "StagingLocalizationsDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLocalizationsDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'."
+
+== Servidor
+  [OK]      RabbitMQ responde em localhost:5672
+  [ATENCAO] variavel IGCCSVC_DB (Intel) presente: o contorno sera aplicado ao servico
+  [ATENCAO] servico '_Staging OneCrawford EmailIndexingService HostedService' ja instalado (status Running): sera reinstalado
+
+== Resumo
+ERROS: 1 | ATENCAO: 8
+
+So verificacao (-SoVerificar): nada foi instalado.
+**********************
+Fim da transcrição do Windows PowerShell
+Hora de término: 20261026140651
+**********************
