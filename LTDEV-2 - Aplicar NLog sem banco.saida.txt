@@ -1,0 +1,98 @@
+﻿**********************
+Início da transcrição do Windows PowerShell
+Hora de início: 20261026122030
+Nome de Usuário: CRAWFORDBRASIL\nelson.diniz
+Executar como Usuário: CRAWFORDBRASIL\nelson.diniz
+Nome da Configuração: 
+Computador: CRW-3584 (Microsoft Windows NT 10.0.26200.0)
+Aplicativo Host: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File LTDEV-2 - Aplicar NLog sem banco.ps1
+ID do Processo: 17396
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+== Aplicando o NLog.config sem banco
+   C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\NLog.config
+   C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1\NLog.config
+   internalLogFile="${currentdir}\log\internal-nlog.txt">
+   fileName="${currentdir}\log\emailindexing-${shortdate}.log"
+   <logger name="*" minlevel="Info" writeTo="arquivo,console" />
+
+== Reiniciando '_Staging OneCrawford EmailIndexingService HostedService' (conta CRAWFORDBRASIL\nelson.diniz)
+AVISO: Aguardando que o serviço '_Staging OneCrawford EmailIndexingService HostedService (_Staging OneCrawford EmailIndexingService HostedService)' seja parado...
+AVISO: Aguardando que o serviço '_Staging OneCrawford EmailIndexingService HostedService (_Staging OneCrawford EmailIndexingService HostedService)' seja parado...
+AVISO: Aguardando que o serviço '_Staging OneCrawford EmailIndexingService HostedService (_Staging OneCrawford EmailIndexingService HostedService)' seja parado...
+AVISO: Aguardando que o serviço '_Staging OneCrawford EmailIndexingService HostedService (_Staging OneCrawford EmailIndexingService HostedService)' seja parado...
+AVISO: Aguardando que o serviço '_Staging OneCrawford EmailIndexingService HostedService (_Staging OneCrawford EmailIndexingService HostedService)' seja parado...
+AVISO: Aguardando que o serviço '_Staging OneCrawford EmailIndexingService HostedService (_Staging OneCrawford EmailIndexingService HostedService)' seja iniciado...
+AVISO: Aguardando que o serviço '_Staging OneCrawford EmailIndexingService HostedService (_Staging OneCrawford EmailIndexingService HostedService)' seja iniciado...
+
+
+Name      : _Staging OneCrawford EmailIndexingService HostedService
+State     : Running
+StartName : CRAWFORDBRASIL\nelson.diniz
+
+== Onde ha log do EmailIndexingService (pastas log/logs)
+   C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1\log\emailindexing-2026-10-26.log  20885 bytes  26/10/2026 12:21:51
+   C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1\log\internal-nlog.txt  303984 bytes  26/10/2026 12:20:44
+   C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\log\internal-nlog.txt  14770 bytes  26/10/2026 09:56:59
+   C:\antlia\crawford\log\internal-nlog.txt  23643 bytes  26/10/2026 11:18:34
+   C:\Windows\System32\log\internal-nlog.txt  40827 bytes  26/10/2026 11:18:28
+
+== Ultimas linhas do log da pasta do servico
+-- emailindexing-2026-10-26.log
+2026-10-26 12:17:17.4126|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:17:27.6540|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:17:27.6574|INFO|EmailIndexingService.Consumers.IndexingWorker|Scan: read=0 indexed=0 rejected=0 failed=0 purged=0
+2026-10-26 12:18:27.7046|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:18:37.9606|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:18:48.1414|INFO|EmailIndexingService.Consumers.IndexingWorker|Scan: read=0 indexed=0 rejected=0 failed=0 purged=0
+2026-10-26 12:19:48.1800|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:19:58.5530|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:19:58.5530|INFO|EmailIndexingService.Consumers.IndexingWorker|Scan: read=0 indexed=0 rejected=0 failed=0 purged=0
+2026-10-26 12:20:34.5866|INFO|Microsoft.Hosting.Lifetime|Application is shutting down...
+2026-10-26 12:20:50.3568|INFO|Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager|User profile is available. Using 'C:\Users\nelson.diniz\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2026-10-26 12:20:50.5420|INFO|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+2026-10-26 12:20:50.5522|INFO|Microsoft.Hosting.Lifetime|Hosting environment: Production
+2026-10-26 12:20:50.5522|INFO|Microsoft.Hosting.Lifetime|Content root path: C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1\
+2026-10-26 12:20:51.4143|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:20:51.4342|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:20:51.4434|INFO|EmailIndexingService.Consumers.IndexingWorker|Scan: read=0 indexed=0 rejected=0 failed=0 purged=0
+2026-10-26 12:21:51.4965|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:21:51.5293|WARN|EmailIndexingService.Application.Services.MailboxIndexer|No mailbox configured for the service user's country; scan skipped.
+2026-10-26 12:21:51.5383|INFO|EmailIndexingService.Consumers.IndexingWorker|Scan: read=0 indexed=0 rejected=0 failed=0 purged=0
+-- internal-nlog.txt
+Error Number:4060,State:1,Class:11
+2026-10-26 12:20:44.8050 Error DatabaseTarget(Name=database): Error when writing to database. Exception: System.Data.SqlClient.SqlException (0x80131904): Cannot open database "StagingLogDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.
+   at System.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken)
+   at System.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at System.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionFactory.TryGetConnection(DbConnection owningConnection, TaskCompletionSource`1 retry, DbConnectionOptions userOptions, DbConnectionInternal oldConnection, DbConnectionInternal& connection)
+   at System.Data.ProviderBase.DbConnectionInternal.TryOpenConnectionInternal(DbConnection outerConnection, DbConnectionFactory connectionFactory, TaskCompletionSource`1 retry, DbConnectionOptions userOptions)
+   at System.Data.SqlClient.SqlConnection.TryOpen(TaskCompletionSource`1 retry)
+   at System.Data.SqlClient.SqlConnection.Open()
+   at NLog.Targets.DatabaseTarget.OpenConnection(String connectionString)
+   at NLog.Targets.DatabaseTarget.EnsureConnectionOpen(String connectionString)
+   at NLog.Targets.DatabaseTarget.WriteEventToDatabase(LogEventInfo logEvent, String connectionString)
+   at NLog.Targets.DatabaseTarget.Write(LogEventInfo logEvent)
+ClientConnectionId:88564dea-6e06-45d2-bc78-83b9aaa6c9ac
+Error Number:4060,State:1,Class:11
+
+== Erros recentes no Visualizador de Eventos
+10/26/2026 12:20:50 | _Staging OneCrawford EmailIndexingService HostedService | Service started successfully.
+10/26/2026 12:20:44 | _Staging OneCrawford EmailIndexingService HostedService | Service stopped successfully.
+**********************
+Fim da transcrição do Windows PowerShell
+Hora de término: 20261026122209
+**********************
