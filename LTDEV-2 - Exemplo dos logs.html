@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LTDEV-2 – Exemplo dos logs</title>
+<style>
+  :root {
+    --bg: #f6f7f9; --card: #ffffff; --text: #1d2330; --muted: #5d6677; --line: #dfe3ea;
+    --code-bg: #0f1724; --code-text: #d7e0ee; --accent: #1f5fa8;
+    --info: #1f7a4a; --warn: #a66300; --error: #b3261e;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { --bg: #11151c; --card: #191f29; --text: #e3e8f0; --muted: #9aa5b6; --line: #2b3341;
+            --code-bg: #0a0f17; --accent: #6aa5ec; --info: #57c48b; --warn: #e3a64a; --error: #f07a72; }
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text);
+         font: 15px/1.55 "Segoe UI", system-ui, sans-serif; }
+  main { max-width: 1100px; margin: 0 auto; padding: 28px 16px 60px; }
+  h1 { font-size: 24px; margin: 0 0 4px; }
+  h2 { font-size: 18px; margin: 34px 0 10px; }
+  .sub { color: var(--muted); margin: 0 0 22px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin: 12px 0; }
+  .path { font-family: Consolas, monospace; font-size: 13.5px; background: var(--bg); padding: 2px 6px; border-radius: 4px; }
+  pre { background: var(--code-bg); color: var(--code-text); border-radius: 10px; padding: 14px 16px;
+        overflow-x: auto; font: 12.5px/1.6 Consolas, monospace; margin: 10px 0; }
+  .lv-INFO { color: #7fd6a3; } .lv-WARN { color: #f2c36b; } .lv-ERROR { color: #ff8f86; }
+  .dim { color: #8391a7; }
+  .scroll { overflow-x: auto; border: 1px solid var(--line); border-radius: 10px; background: var(--card); }
+  table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  th, td { border-bottom: 1px solid var(--line); padding: 7px 10px; text-align: left; vertical-align: top; }
+  th { background: var(--bg); font-weight: 600; white-space: nowrap; }
+  td.mono { font-family: Consolas, monospace; font-size: 12px; }
+  td.nw { white-space: nowrap; }
+  .tag { display: inline-block; padding: 1px 8px; border-radius: 10px; font-size: 12px; font-weight: 600; color: #fff; }
+  .t-Info { background: var(--info); } .t-Warn { background: var(--warn); } .t-Error { background: var(--error); }
+  ul { margin: 6px 0 0 18px; padding: 0; }
+  .note { border-left: 4px solid var(--accent); }
+</style>
+</head>
+<body>
+<main>
+  <h1>LTDEV-2 – Exemplo dos logs do EmailIndexingService</h1>
+  <p class="sub">Dados reais dos testes de 23/10/2026 (máquina local). No staging muda só o
+    <b>ServiceName</b> (<span class="path">Staging EmailIndexingService</span>) e o <b>MachineName</b> (nome do servidor).</p>
+
+  <div class="card note">
+    O <span class="path">NLog.config</span> grava o mesmo evento em três lugares:
+    <ul>
+      <li><b>Arquivo:</b> <span class="path">&lt;pasta do .exe&gt;\log\emailindexing-AAAA-MM-DD.log</span> (um por dia)</li>
+      <li><b>Banco:</b> <span class="path">LogDB.dbo.Logs</span>, via <span class="path">ConnectionStrings.LogConnection</span></li>
+      <li><b>Console:</b> a janela do serviço, quando roda na mão</li>
+    </ul>
+    Nível mínimo: <b>Info</b> (Info, Warn, Error).
+  </div>
+
+  <h2>1. No arquivo</h2>
+  <p>Formato de cada linha: <span class="path">data hora | NÍVEL | origem | mensagem [exceção]</span></p>
+<pre><span class="dim">2026-10-23 08:48:29.1877</span>|<span class="lv-INFO">INFO</span>|Microsoft.Hosting.Lifetime|Application started. Press Ctrl+C to shut down.
+<span class="dim">2026-10-23 08:55:46.7421</span>|<span class="lv-INFO">INFO</span>|EmailIndexingService.Consumers.IndexingWorker|Scan: read=2 indexed=2 rejected=0 failed=0 purged=0
+<span class="dim">2026-10-23 09:08:28.0742</span>|<span class="lv-ERROR">ERROR</span>|EmailIndexingService.Application.Services.MailboxIndexer|Email not indexed: &lt;BY5PR17MB38570EE2938C12D458F5E313BE642@BY5PR17MB3857.namprd17.prod.outlook.com&gt; System.InvalidOperationException:  Could not find file 'C:\Temp\PicUpload\46c81508-e42b-4830-924f-5448fe3f1ca6.LEIAME'.
+   at EmailIndexingService.Application.Services.ClaimEmailService...  <span class="dim">(pilha completa da exceção)</span>
+<span class="dim">2026-10-23 09:08:32.6940</span>|<span class="lv-INFO">INFO</span>|EmailIndexingService.Consumers.IndexingWorker|Scan: read=3 indexed=2 rejected=0 failed=1 purged=0
+<span class="dim">2026-10-23 10:27:30.5047</span>|<span class="lv-INFO">INFO</span>|EmailIndexingService.Consumers.IndexingWorker|Scan: read=0 indexed=0 rejected=0 failed=0 purged=0
+<span class="dim">2026-10-23 10:28:40.5998</span>|<span class="lv-WARN">WARN</span>|EmailIndexingService.Application.Services.IndexingConfigurationProvider|Could not read the configuration from BRS Cloud; using the last one. EmailIndexingService.Application.Services.BrsCloudUnavailableException: BRS Cloud database unavailable: Não é possível abrir o banco de dados "CarolOneCrawfordDB" solicitado pelo logon. Falha de logon.
+<span class="dim">2026-10-23 10:28:42.1842</span>|<span class="lv-ERROR">ERROR</span>|EmailIndexingService.Consumers.IndexingWorker|Scan failed. EmailIndexingService.Application.Services.BrsCloudUnavailableException: BRS Cloud database unavailable: Não é possível abrir o banco de dados "CarolOneCrawfordDB" solicitado pelo logon. Falha de logon.</pre>
+
+  <h2>2. No banco (LogDB.dbo.Logs)</h2>
+  <p>As mesmas ocorrências, uma linha por evento (mais recentes primeiro):</p>
+  <div class="scroll">
+  <table>
+    <tr><th>Id</th><th>CreateDate (UTC)</th><th>MachineName</th><th>ServiceName</th><th>Logged (UTC)</th><th>Level</th><th>Logger</th><th>Message</th><th>Properties</th><th>CallSite</th><th>Exception</th></tr>
+    <tr><td>46</td><td class="nw">2026-10-23 13:28:42.187</td><td>DESKTOP-AIAB0V6</td><td class="nw">EmailIndexingService</td><td class="nw">2026-10-23 13:28:42.184</td><td><span class="tag t-Error">Error</span></td><td class="mono">...Consumers.IndexingWorker</td><td>Scan failed.</td><td></td><td class="mono">IndexingWorker+&lt;RunOnceAsync&gt;</td><td class="mono">BrsCloudUnavailableException: BRS Cloud database unavailable: Não é possível abrir o banco de dados "CarolOneCrawfordDB"... (pilha completa)</td></tr>
+    <tr><td>45</td><td class="nw">2026-10-23 13:28:40.713</td><td>DESKTOP-AIAB0V6</td><td class="nw">EmailIndexingService</td><td class="nw">2026-10-23 13:28:40.599</td><td><span class="tag t-Warn">Warn</span></td><td class="mono">...IndexingConfigurationProvider</td><td>Could not read the configuration from BRS Cloud; using the last one.</td><td></td><td class="mono">IndexingConfigurationProvider+&lt;GetAsync&gt;</td><td class="mono">BrsCloudUnavailableException: BRS Cloud database unavailable... (pilha completa)</td></tr>
+    <tr><td>44</td><td class="nw">2026-10-23 13:27:30.508</td><td>DESKTOP-AIAB0V6</td><td class="nw">EmailIndexingService</td><td class="nw">2026-10-23 13:27:30.504</td><td><span class="tag t-Info">Info</span></td><td class="mono">...Consumers.IndexingWorker</td><td>Scan: read=0 indexed=0 rejected=0 failed=0 purged=0</td><td class="mono">Read=0|Indexed=0|Rejected=0|Failed=0|Purged=0</td><td class="mono">IndexingWorker+&lt;RunOnceAsync&gt;</td><td></td></tr>
+    <tr><td>29</td><td class="nw">2026-10-23 12:08:32.698</td><td>DESKTOP-AIAB0V6</td><td class="nw">EmailIndexingService</td><td class="nw">2026-10-23 12:08:32.694</td><td><span class="tag t-Info">Info</span></td><td class="mono">...Consumers.IndexingWorker</td><td>Scan: read=3 indexed=2 rejected=0 failed=1 purged=0</td><td class="mono">Read=3|Indexed=2|Rejected=0|Failed=1|Purged=0</td><td class="mono">IndexingWorker+&lt;RunOnceAsync&gt;</td><td></td></tr>
+    <tr><td>28</td><td class="nw">2026-10-23 12:08:28.180</td><td>DESKTOP-AIAB0V6</td><td class="nw">EmailIndexingService</td><td class="nw">2026-10-23 12:08:28.074</td><td><span class="tag t-Error">Error</span></td><td class="mono">...Services.MailboxIndexer</td><td>Email not indexed: &lt;BY5PR17MB3857...@...outlook.com&gt;</td><td class="mono">InternetMessageId=&lt;BY5PR17MB3857...@...outlook.com&gt;</td><td class="mono">MailboxIndexer+&lt;ProcessBatchAsync&gt;</td><td class="mono">System.InvalidOperationException: Could not find file 'C:\Temp\PicUpload\46c81508-...LEIAME'. (pilha completa)</td></tr>
+    <tr><td>23</td><td class="nw">2026-10-23 11:55:46.749</td><td>DESKTOP-AIAB0V6</td><td class="nw">EmailIndexingService</td><td class="nw">2026-10-23 11:55:46.742</td><td><span class="tag t-Info">Info</span></td><td class="mono">...Consumers.IndexingWorker</td><td>Scan: read=2 indexed=2 rejected=0 failed=0 purged=0</td><td class="mono">Read=2|Indexed=2|Rejected=0|Failed=0|Purged=0</td><td class="mono">IndexingWorker+&lt;RunOnceAsync&gt;</td><td></td></tr>
+  </table>
+  </div>
+
+  <h3>O que é cada coluna</h3>
+  <div class="scroll">
+  <table>
+    <tr><th>Coluna</th><th>Conteúdo</th></tr>
+    <tr><td>CreateDate</td><td>Hora em que o banco gravou a linha (<span class="path">SYSDATETIMEOFFSET()</span>)</td></tr>
+    <tr><td>MachineName</td><td>Servidor onde o serviço roda</td></tr>
+    <tr><td>ServiceName</td><td>Fixo no NLog.config: <span class="path">EmailIndexingService</span> (no staging, <span class="path">Staging EmailIndexingService</span>)</td></tr>
+    <tr><td>Logged</td><td>Hora do evento, em UTC (no Brasil, subtrair 3 horas)</td></tr>
+    <tr><td>Level</td><td>Info, Warn ou Error</td></tr>
+    <tr><td>Logger</td><td>Classe do serviço que gerou o evento</td></tr>
+    <tr><td>Message</td><td>A mensagem</td></tr>
+    <tr><td>Properties</td><td>Valores da mensagem separados por <span class="path">|</span> (bom para filtrar: <span class="path">Failed=1</span>, <span class="path">InternetMessageId=...</span>)</td></tr>
+    <tr><td>CallSite</td><td>Método onde aconteceu</td></tr>
+    <tr><td>Exception</td><td>Erro completo, com a pilha (vazio quando não há erro)</td></tr>
+  </table>
+  </div>
+
+  <h2>3. O que aparece em cada situação</h2>
+  <div class="scroll">
+  <table>
+    <tr><th>Situação</th><th>Nível</th><th>Mensagem</th></tr>
+    <tr><td>Fim de cada varredura (a cada IntervalMinutes)</td><td><span class="tag t-Info">Info</span></td><td class="mono">Scan: read=N indexed=N rejected=N failed=N purged=N</td></tr>
+    <tr><td>E-mail que falhou ao indexar (vai para Rejeitados e é encaminhado com o motivo)</td><td><span class="tag t-Error">Error</span></td><td class="mono">Email not indexed: &lt;id do e-mail&gt; + exceção</td></tr>
+    <tr><td>Banco fora na leitura da configuração (usa a última lida)</td><td><span class="tag t-Warn">Warn</span></td><td class="mono">Could not read the configuration from BRS Cloud; using the last one.</td></tr>
+    <tr><td>Varredura inteira falhou (banco, Graph ou pasta): dispara o aviso por e-mail</td><td><span class="tag t-Error">Error</span></td><td class="mono">Scan failed. + exceção</td></tr>
+    <tr><td>País sem caixa configurada no ParameterRoot</td><td><span class="tag t-Warn">Warn</span></td><td class="mono">No mailbox configured for the service user's country; scan skipped.</td></tr>
+    <tr><td>Não conseguiu mover / encaminhar / avisar o regulador</td><td><span class="tag t-Warn">Warn</span></td><td class="mono">Could not move ... / Could not forward ... / Main adjuster not notified ...</td></tr>
+    <tr><td>Aviso de erro crítico sem destinatário (EmailIndexingAlertBox vazio)</td><td><span class="tag t-Warn">Warn</span></td><td class="mono">Critical error alert not sent (no AlertBox/Mailbox configured)</td></tr>
+  </table>
+  </div>
+  <p class="sub" style="margin-top:12px">E-mail indexado ou recusado com sucesso não gera linha própria: entra só na contagem do <span class="path">Scan</span>.
+    Para ver cada um: pastas Processados/Rejeitados da caixa e os anexos do sinistro.</p>
+
+  <h2>4. Consultas úteis no LogDB</h2>
+<pre>-- últimas ocorrências do serviço
+select top 50 Logged, Level, Message, Exception
+from dbo.Logs where ServiceName = 'Staging EmailIndexingService'
+order by Id desc
+
+-- só erros e alertas do dia
+select Logged, Level, Message, Exception
+from dbo.Logs
+where ServiceName = 'Staging EmailIndexingService' and Level in ('Warn','Error')
+  and Logged &gt;= cast(sysutcdatetime() as date)
+order by Id desc
+
+-- varreduras com falha
+select Logged, Message from dbo.Logs
+where ServiceName = 'Staging EmailIndexingService' and Properties like '%Failed=[1-9]%'
+order by Id desc</pre>
+</main>
+</body>
+</html>

@@ -1,0 +1,110 @@
+LTDEV-2 - ERRO "ConnectionString property has not been initialized" (STAGING)
+===========================================================================
+
+O QUE O LOG MOSTRA
+------------------
+Servico rodando em: D:\Sites\services\staging\EmailIndexingService\publish\
+
+  INFO|User profile is available. Using '...\ASP.NET\DataProtection-Keys' ...
+      -> NAO E ERRO. Aviso informativo do ASP.NET sobre onde guarda as chaves.
+
+  INFO|Hosting environment: Production
+      -> NAO E ERRO. Rotulo do host (ver nota no fim). Nao afeta a configuracao.
+
+  WARN|Could not read the configuration from BRS Cloud; using the last one.
+       The ConnectionString property has not been initialized.
+      -> ESTE E O PROBLEMA. O servico tentou ler a tabela dbo.ParameterRoot no banco
+         e a connection string chegou VAZIA.
+
+  WARN|No mailbox configured for the service user's country; scan skipped.
+      -> CONSEQUENCIA do erro acima: sem ler o ParameterRoot, o servico nao sabe
+         qual caixa varrer e pula a varredura.
+
+  INFO|Scan: read=0 indexed=0 rejected=0 failed=0 purged=0
+      -> nada foi lido por causa do erro.
+
+
+CAUSA ENCONTRADA
+----------------
+O nome da chave DefaultConnection tinha sido trocado no appsettings.json.
+O backend le EXATAMENTE ConnectionStrings:DefaultConnection
+(FluentDataContext: settings.Value.ConnectionStrings.DefaultConnection).
+Qualquer variacao no nome (ex.: "DefaultConnections") faz o valor chegar vazio.
+Correcao: voltar o nome para DefaultConnection e reiniciar o servico
+(nao precisa recompilar).
+
+
+POR QUE A CONNECTION STRING CHEGA VAZIA
+---------------------------------------
+O servico le a configuracao nesta ordem:
+  1. appsettings.json                       (sempre)
+  2. appsettings.{ambiente}.json            (so se existir)
+  3. User Secrets                           (SO no ambiente Development)
+  4. variaveis de ambiente
+  5. valores criptografados (AQAAANCM...)   (abertos pelo DPAPI)
+
+O ambiente vem da variavel DOTNET_ENVIRONMENT ou ASPNETCORE_ENVIRONMENT.
+Sem nenhuma das duas, o servico usa Development.
+
+Causas provaveis no staging:
+
+  A) O appsettings.json da pasta publish esta sem ConnectionStrings.DefaultConnection
+     (ou com o nome da chave diferente).
+
+  B) No staging, a API le as connection strings de um appsettings.Staging.json e o
+     ambiente "Staging" esta definido so no IIS (no pool da API). O servico NAO
+     herda isso: sem a variavel, ele so le o appsettings.json, onde nao ha
+     connection string.
+
+
+COMO RESOLVER
+-------------
+1. Abrir D:\Sites\services\staging\EmailIndexingService\publish\appsettings.json
+   e conferir a secao ConnectionStrings:
+
+   "ConnectionStrings": {
+     "DefaultConnection":       "<a mesma da API de staging>",
+     "LogConnection":           "<a mesma da API de staging>",
+     "RedisConnection":         "<a mesma da API de staging>",
+     "LocalizationsConnection": "<a mesma da API de staging>"
+   }
+
+   Os nomes das chaves precisam ser exatamente esses.
+
+2. Escolher UMA das saidas:
+
+   Saida 1 (mais simples): colocar as connection strings direto no appsettings.json
+   do servico, copiadas da API de staging.
+
+   Saida 2: usar o mesmo arquivo da API:
+     - copiar o appsettings.Staging.json da API para a pasta publish do servico;
+     - definir a variavel DOTNET_ENVIRONMENT = Staging para o servico
+       (variavel de ambiente do Windows, no servidor).
+
+3. Rodar o servico de novo. No log, deve sumir o "ConnectionString property has not
+   been initialized" e aparecer a varredura lendo a caixa.
+
+
+ATENCAO NO STAGING (fora de Development)
+----------------------------------------
+- User Secrets NAO sao lidos fora de Development. Graph.ClientSecret, senha do
+  RabbitMQ e senhas de banco precisam estar no appsettings, CRIPTOGRAFADOS com DPAPI
+  NESTE SERVIDOR (ver "LTDEV-2 - Criptografar o ClientSecret.txt").
+  Valor criptografado em outra maquina nao abre aqui.
+- Se a connection string tiver senha, criptografar a connection string inteira
+  do mesmo jeito e colar o AQAAANCM... no lugar.
+- Os 4 scripts do LTDEV-2 e o update do dbo.ParameterRoot precisam ter rodado no
+  banco de STAGING (nao so no de dev):
+    1. LTDEV-2 OneCrawfordDB.sql            (OneCrawfordDB)
+    2. LTDEV-2 Index OneCrawfordDB.sql      (OneCrawfordDB)
+    3. LTDEV-2 LocalizationsDB.sql          (LocalizationsDB)
+    4. LTDEV-2 Export Tags OneCrawfordDB.sql (OneCrawfordDB)
+- ServiceUser.UserName = GUID de um usuario ATIVO do usr.UserX no banco de staging.
+
+
+NOTA: "Hosting environment: Production"
+---------------------------------------
+E so o rotulo do host do .NET, que foi criado sem informar o ambiente e por padrao
+mostra Production. A configuracao (appsettings, User Secrets) usa a variavel
+DOTNET_ENVIRONMENT, ou Development se ela nao existir. Nada no servico depende
+desse rotulo. Correcao prevista no codigo: .UseEnvironment(...) no HostBuilder.
