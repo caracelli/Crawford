@@ -3,6 +3,7 @@
 #   powershell -ExecutionPolicy Bypass -File "<pasta>\LTDEV-2 - Diagnostico RabbitMQ.ps1"
 # O resultado aparece na tela e fica em "LTDEV-2 - Diagnostico RabbitMQ.saida.txt", na mesma pasta.
 
+$ErrorActionPreference = 'Continue'
 $saida = Join-Path $PSScriptRoot 'LTDEV-2 - Diagnostico RabbitMQ.saida.txt'
 Start-Transcript -Path $saida -Force | Out-Null
 
@@ -35,11 +36,13 @@ if (Test-Path $cfg) {
 'RABBITMQ_BASE: ' + [Environment]::GetEnvironmentVariable('RABBITMQ_BASE', 'Machine')
 
 Titulo 'Cookie do Erlang (o CLI precisa do mesmo do servico)'
-$c1 = 'C:\Windows\System32\config\systemprofile\.erlang.cookie'
-$c2 = Join-Path $env:USERPROFILE '.erlang.cookie'
-'cookie do servico existe: ' + (Test-Path $c1)
-'cookie do usuario existe: ' + (Test-Path $c2)
-if ((Test-Path $c1) -and (Test-Path $c2)) { 'cookies iguais: ' + ((Get-FileHash $c1).Hash -eq (Get-FileHash $c2).Hash) }
+try {
+    $c1 = 'C:\Windows\System32\config\systemprofile\.erlang.cookie'
+    $c2 = Join-Path $env:USERPROFILE '.erlang.cookie'
+    'cookie do servico existe: ' + (Test-Path $c1 -ErrorAction Stop)
+    'cookie do usuario existe: ' + (Test-Path $c2 -ErrorAction Stop)
+    if ((Test-Path $c1) -and (Test-Path $c2)) { 'cookies iguais: ' + ((Get-FileHash $c1).Hash -eq (Get-FileHash $c2).Hash) }
+} catch { 'nao foi possivel ler o cookie do servico (rodar como administrador): ' + $_.Exception.Message }
 
 Titulo 'Portas'
 '5672 (AMQP): '   + (Test-NetConnection localhost -Port 5672 -InformationLevel Quiet -WarningAction SilentlyContinue)
