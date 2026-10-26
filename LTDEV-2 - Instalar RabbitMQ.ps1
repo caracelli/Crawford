@@ -59,6 +59,11 @@ if (-not (Get-Service RabbitMQ -ErrorAction SilentlyContinue)) {
 Set-Service RabbitMQ -StartupType Automatic
 if ((Get-Service RabbitMQ).Status -ne 'Running') { Start-Service RabbitMQ }
 
+# O instalador do Erlang cria ERLANG_HOME para a maquina, mas esta sessao do PowerShell, aberta antes, nao a
+# enxerga; sem ela o rabbitmqctl falha com "ERLANG_HOME not set correctly"
+$env:ERLANG_HOME = [Environment]::GetEnvironmentVariable('ERLANG_HOME', 'Machine')
+if (-not $env:ERLANG_HOME) { $env:ERLANG_HOME = 'C:\Program Files\Erlang OTP' }
+
 $sbin = (Get-ChildItem 'C:\Program Files\RabbitMQ Server' -Recurse -Filter rabbitmqctl.bat | Select-Object -First 1).DirectoryName
 $ctl  = Join-Path $sbin 'rabbitmqctl.bat'
 $plg  = Join-Path $sbin 'rabbitmq-plugins.bat'

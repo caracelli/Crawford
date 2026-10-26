@@ -49,6 +49,8 @@ Titulo 'Portas'
 '15672 (painel): ' + (Test-NetConnection localhost -Port 15672 -InformationLevel Quiet -WarningAction SilentlyContinue)
 
 Titulo 'rabbitmqctl status / vhosts / usuarios'
+$env:ERLANG_HOME = [Environment]::GetEnvironmentVariable('ERLANG_HOME', 'Machine')
+if (-not $env:ERLANG_HOME) { $env:ERLANG_HOME = 'C:\Program Files\Erlang OTP' }
 $ctl = Get-ChildItem 'C:\Program Files\RabbitMQ Server' -Recurse -Filter rabbitmqctl.bat -ErrorAction SilentlyContinue | Select-Object -First 1
 if ($ctl) {
     & $ctl.FullName status 2>&1 | Select-Object -First 15
