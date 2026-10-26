@@ -51,9 +51,11 @@ function Descreve([string]$cs) {
     "servidor $($b.DataSource), banco $($b.InitialCatalog), " + $(if ($b.IntegratedSecurity) { 'Integrated Security' } else { "usuario SQL $($b.UserID)" })
 }
 
-# Executa um script .sql (blocos separados por GO) mostrando PRINTs e mensagens
-function RodarScript([string]$cs, [string]$arquivo) {
+# Executa um script .sql (blocos separados por GO) mostrando PRINTs e mensagens.
+# $ajustar: scriptblock opcional que recebe o texto e devolve o texto adaptado ao banco.
+function RodarScript([string]$cs, [string]$arquivo, [scriptblock]$ajustar = $null) {
     $texto = [IO.File]::ReadAllText($arquivo, [Text.Encoding]::UTF8)
+    if ($ajustar) { $texto = & $ajustar $texto }
     $blocos = [regex]::Split($texto, '(?im)^\s*GO\s*;?\s*$') | Where-Object { $_.Trim() }
     $cn = New-Object Data.SqlClient.SqlConnection($cs)
     $cn.add_InfoMessage({ param($s, $e) foreach ($m in $e.Errors) { "   [sql] $($m.Message)" | Write-Host } })
@@ -143,6 +145,18 @@ try {
             # traducoes sao opcionais para o teste: sem acesso ao banco, as mensagens saem com a chave
             try { RodarScript $s.Cs (Join-Path $exec $s.Arq) }
             catch { Write-Host "ATENCAO: traducoes NAO aplicadas (sem acesso ao banco de traducoes?): $($_.Exception.Message). O servico funciona; as mensagens saem com a chave (ex.: EmailIndexing.ClaimCode.NotFound)." -ForegroundColor Yellow }
+        } elseif ($s.Arq -eq 'LTDEV-2 OneCrawfordDB.sql' -and
+                  (Valor $csMain "select COL_LENGTH('AttachmentFolder','IsIntermediateDocument')") -is [DBNull]) {
+            # Banco de HML anterior ao card "Data Relatorio Interino": AttachmentFolder sem IsIntermediateDocument.
+            # O insert das pastas mestre roda sem essa coluna; o resto do script fica igual.
+            Write-Host 'ATENCAO: AttachmentFolder.IsIntermediateDocument nao existe neste banco (banco desatualizado); pastas mestre criadas sem ela.' -ForegroundColor Yellow
+            RodarScript $s.Cs (Join-Path $exec $s.Arq) {
+                param($t)
+                $a = 'IsBasicDocument, IsPreliminarDocument, IsFinalDocument, IsIntermediateDocument)'
+                $b = 'null, 1, 1, null, 0, 0, 0, 0'
+                if (-not $t.Contains($a) -or -not $t.Contains($b)) { throw 'Trecho das pastas mestre nao encontrado no script; ajuste manual necessario.' }
+                $t.Replace($a, 'IsBasicDocument, IsPreliminarDocument, IsFinalDocument)').Replace($b, 'null, 1, 1, null, 0, 0, 0')
+            }
         } else {
             RodarScript $s.Cs (Join-Path $exec $s.Arq)
         }
