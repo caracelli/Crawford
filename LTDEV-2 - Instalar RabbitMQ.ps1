@@ -10,6 +10,8 @@
 # Pede a senha do usuario "enviroment": usar a mesma do RabbitMQ:Password do appsettings/User Secrets.
 
 $ErrorActionPreference = 'Stop'
+# Sem a barra de progresso: no PowerShell 5 ela deixa o Invoke-WebRequest muitas vezes mais lento
+$ProgressPreference    = 'SilentlyContinue'
 $erlangVersao   = '28.5.0.6'
 $rabbitVersao   = '4.3.6'
 $vhost          = 'enviroment'
