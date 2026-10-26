@@ -1,0 +1,228 @@
+﻿**********************
+Início da transcrição do Windows PowerShell
+Hora de início: 20261026092240
+Nome de Usuário: CRAWFORDBRASIL\nelson.diniz
+Executar como Usuário: CRAWFORDBRASIL\nelson.diniz
+Nome da Configuração: 
+Computador: CRW-3584 (Microsoft Windows NT 10.0.26200.0)
+Aplicativo Host: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File LTDEV-2 - Diagnostico RabbitMQ.ps1
+ID do Processo: 1400
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+== Maquina
+CRW-3584 | usuario nelson.diniz | admin: True
+
+== Servico RabbitMQ
+
+
+Name      : RabbitMQ
+State     : Running
+StartMode : Auto
+StartName : LocalSystem
+PathName  : "C:\Program Files\Erlang OTP\erts-16.4.0.6\bin\erlsrv.exe"
+
+== Erlang e RabbitMQ instalados
+erl.exe existe: True
+C:\Program Files\Erlang OTP
+C:\Program Files\RabbitMQ Server
+OTP 28.5.0.6
+rabbitmq_server-4.3.6
+
+== Instaladores baixados (%TEMP%\ltdev2-rabbitmq)
+otp_win64_28.5.0.6.exe  146,7 MB
+rabbitmq-server-4.3.6.exe  22,8 MB
+
+== Configuracao (%APPDATA%\RabbitMQ)
+db
+log
+advanced.config
+enabled_plugins
+rabbitmq.conf
+-- rabbitmq.conf
+# ambiente local LTDEV-2: MassTransit (request/response) usa filas temporarias nao exclusivas
+deprecated_features.permit.transient_nonexcl_queues = true
+-- enabled_plugins
+[rabbitmq_management].
+ERLANG_HOME: C:\Program Files\Erlang OTP
+RABBITMQ_BASE:
+
+== Cookie do Erlang (o CLI precisa do mesmo do servico)
+cookie do servico existe: True
+cookie do usuario existe: True
+cookies iguais: True
+
+== Portas
+5672 (AMQP): True
+15672 (painel): True
+
+== rabbitmqctl status / vhosts / usuarios
+rabbitmqctl.bat : Get-Command : O termo 'erl.exe' não é reconhecido como nome de cmdlet, função, arquivo de script ou
+programa operável.
+No C:\antlia\crawford\LTDEV-2 - Diagnostico RabbitMQ.ps1:51 caractere:5
++     & $ctl.FullName status 2>&1 | Select-Object -First 15
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Get-Command : O...rama operável. :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Verifique a grafia do nome ou, se um caminho tiver sido incluído, veja se o caminho está correto e tente novamente.
+No linha:1 caractere:2
++ (Get-Command erl.exe).Definition
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (erl.exe:String) [Get-Command], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
+
+
+******************************
+ERLANG_HOME not set correctly.
+******************************
+
+Please either set ERLANG_HOME to point to your Erlang installation or place the
+RabbitMQ server distribution in the Erlang lib folder.
+rabbitmqctl.bat : Get-Command : O termo 'erl.exe' não é reconhecido como nome de cmdlet, função, arquivo de script ou
+programa operável.
+No C:\antlia\crawford\LTDEV-2 - Diagnostico RabbitMQ.ps1:52 caractere:5
++     & $ctl.FullName list_vhosts 2>&1
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Get-Command : O...rama operável. :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Verifique a grafia do nome ou, se um caminho tiver sido incluído, veja se o caminho está correto e tente novamente.
+No linha:1 caractere:2
++ (Get-Command erl.exe).Definition
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (erl.exe:String) [Get-Command], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
+
+rabbitmqctl.bat : Get-Command : O termo 'erl.exe' não é reconhecido como nome de cmdlet, função, arquivo de script ou
+programa operável.
+No C:\antlia\crawford\LTDEV-2 - Diagnostico RabbitMQ.ps1:52 caractere:5
++     & $ctl.FullName list_vhosts 2>&1
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Get-Command : O...rama operável. :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Verifique a grafia do nome ou, se um caminho tiver sido incluído, veja se o caminho está correto e tente novamente.
+No linha:1 caractere:2
++ (Get-Command erl.exe).Definition
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (erl.exe:String) [Get-Command], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
+
+
+******************************
+ERLANG_HOME not set correctly.
+******************************
+
+Please either set ERLANG_HOME to point to your Erlang installation or place the
+RabbitMQ server distribution in the Erlang lib folder.
+rabbitmqctl.bat : Get-Command : O termo 'erl.exe' não é reconhecido como nome de cmdlet, função, arquivo de script ou
+programa operável.
+No C:\antlia\crawford\LTDEV-2 - Diagnostico RabbitMQ.ps1:53 caractere:5
++     & $ctl.FullName list_users 2>&1
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Get-Command : O...rama operável. :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Verifique a grafia do nome ou, se um caminho tiver sido incluído, veja se o caminho está correto e tente novamente.
+No linha:1 caractere:2
++ (Get-Command erl.exe).Definition
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (erl.exe:String) [Get-Command], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
+
+rabbitmqctl.bat : Get-Command : O termo 'erl.exe' não é reconhecido como nome de cmdlet, função, arquivo de script ou
+programa operável.
+No C:\antlia\crawford\LTDEV-2 - Diagnostico RabbitMQ.ps1:53 caractere:5
++     & $ctl.FullName list_users 2>&1
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Get-Command : O...rama operável. :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Verifique a grafia do nome ou, se um caminho tiver sido incluído, veja se o caminho está correto e tente novamente.
+No linha:1 caractere:2
++ (Get-Command erl.exe).Definition
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (erl.exe:String) [Get-Command], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
+
+
+******************************
+ERLANG_HOME not set correctly.
+******************************
+
+Please either set ERLANG_HOME to point to your Erlang installation or place the
+RabbitMQ server distribution in the Erlang lib folder.
+rabbitmqctl.bat : Get-Command : O termo 'erl.exe' não é reconhecido como nome de cmdlet, função, arquivo de script ou
+programa operável.
+No C:\antlia\crawford\LTDEV-2 - Diagnostico RabbitMQ.ps1:54 caractere:5
++     & $ctl.FullName list_permissions -p enviroment 2>&1
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Get-Command : O...rama operável. :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Verifique a grafia do nome ou, se um caminho tiver sido incluído, veja se o caminho está correto e tente novamente.
+No linha:1 caractere:2
++ (Get-Command erl.exe).Definition
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (erl.exe:String) [Get-Command], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
+
+rabbitmqctl.bat : Get-Command : O termo 'erl.exe' não é reconhecido como nome de cmdlet, função, arquivo de script ou
+programa operável.
+No C:\antlia\crawford\LTDEV-2 - Diagnostico RabbitMQ.ps1:54 caractere:5
++     & $ctl.FullName list_permissions -p enviroment 2>&1
++     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (Get-Command : O...rama operável. :String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+
+Verifique a grafia do nome ou, se um caminho tiver sido incluído, veja se o caminho está correto e tente novamente.
+No linha:1 caractere:2
++ (Get-Command erl.exe).Definition
++  ~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (erl.exe:String) [Get-Command], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException,Microsoft.PowerShell.Commands.GetCommandCommand
+
+
+******************************
+ERLANG_HOME not set correctly.
+******************************
+
+Please either set ERLANG_HOME to point to your Erlang installation or place the
+RabbitMQ server distribution in the Erlang lib folder.
+
+== Ultimos erros do RabbitMQ/Erlang no Visualizador de Eventos (24h)
+
+== Log do RabbitMQ (ultimas linhas)
+-- rabbit@CRW-3584.log
+2026-10-26 09:20:32.835000-03:00 [info] <0.805.0> Resetting node maintenance status
+2026-10-26 09:20:32.884000-03:00 [warning] <0.822.0> Deprecated features: `management_metrics_collection`: Feature `management_metrics_collection` is deprecated.
+2026-10-26 09:20:32.884000-03:00 [warning] <0.822.0> By default, this feature can still be used for now.
+2026-10-26 09:20:32.884000-03:00 [warning] <0.822.0> Its use will not be permitted by default in a future minor RabbitMQ version and the feature will be removed from a future major RabbitMQ version; actual versions to be determined.
+2026-10-26 09:20:32.884000-03:00 [warning] <0.822.0> To continue using this feature when it is not permitted by default, set the following parameter in your configuration:
+2026-10-26 09:20:32.884000-03:00 [warning] <0.822.0>     "deprecated_features.permit.management_metrics_collection = true"
+2026-10-26 09:20:32.884000-03:00 [warning] <0.822.0> To test RabbitMQ as if the feature was removed, set this in your configuration:
+2026-10-26 09:20:32.884000-03:00 [warning] <0.822.0>     "deprecated_features.permit.management_metrics_collection = false"
+2026-10-26 09:20:32.903000-03:00 [warning] <0.823.0> Could not execute handle.exe, please install from https://learn.microsoft.com/en-us/sysinternals/downloads/handle
+2026-10-26 09:20:33.081000-03:00 [info] <0.858.0> Management plugin: HTTP (non-TLS) listener started on port 15672
+2026-10-26 09:20:33.081000-03:00 [info] <0.886.0> Statistics database started.
+2026-10-26 09:20:33.081000-03:00 [info] <0.885.0> Starting worker pool 'management_worker_pool' with 3 processes in it
+2026-10-26 09:20:33.081000-03:00 [info] <0.805.0> Ready to start client connection listeners
+2026-10-26 09:20:33.087000-03:00 [info] <0.910.0> started TCP listener on [::]:5672
+2026-10-26 09:20:33.093000-03:00 [info] <0.928.0> started TCP listener on 0.0.0.0:5672
+2026-10-26 09:20:33.946000-03:00 [info] <0.805.0> Server startup complete; 3 plugins started.
+2026-10-26 09:20:33.946000-03:00 [info] <0.805.0>  * rabbitmq_management
+2026-10-26 09:20:33.946000-03:00 [info] <0.805.0>  * rabbitmq_management_agent
+2026-10-26 09:20:33.946000-03:00 [info] <0.805.0>  * rabbitmq_web_dispatch
+2026-10-26 09:20:34.058000-03:00 [info] <0.10.0> Time to start RabbitMQ: 6287 ms
+**********************
+Fim da transcrição do Windows PowerShell
+Hora de término: 20261026092251
+**********************
