@@ -1,0 +1,49 @@
+﻿**********************
+Início da transcrição do Windows PowerShell
+Hora de início: 20261026122253
+Nome de Usuário: CRAWFORDBRASIL\nelson.diniz
+Executar como Usuário: CRAWFORDBRASIL\nelson.diniz
+Nome da Configuração: 
+Computador: CRW-3584 (Microsoft Windows NT 10.0.26200.0)
+Aplicativo Host: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File LTDEV-2 - Scripts de banco (HML).ps1
+ID do Processo: 27620
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+
+== Configuracao (appsettings.json do servico desta maquina)
+Banco principal (OneCrawford): servidor 10.122.0.11, banco CarolOneCrawfordDB, Integrated Security
+Banco de traducoes:            servidor 10.122.0.11, banco StagingLocalizationsDB, Integrated Security
+Banco de log:                  servidor 10.122.0.11, banco StagingLogDB, Integrated Security
+Usuario de servico (GUID):     1F83FC45-C029-485F-A49C-22FFCB231270
+
+== Scripts (repositorio C:\Users\nelson.diniz\BRSCloud-Backend)
+Branch do backend: staging-latam (precisa ser staging-latam)
+   LTDEV-2 OneCrawfordDB.sql
+   LTDEV-2 Index OneCrawfordDB.sql
+   LTDEV-2 LocalizationsDB.sql
+   LTDEV-2 Export Tags OneCrawfordDB.sql
+
+== Situacao atual do banco principal
+ParameterRoot.CountryCode (DEVLATAM-523): NAO existe
+Colunas do LTDEV-2:                      NAO existem
+
+Vai ALTERAR o banco acima (homologacao).
+
+== Pre-requisito DEVLATAM-523 (ParameterRoot.CountryCode)
+   OK (2 blocos)
+
+== LTDEV-2 OneCrawfordDB.sql
+PS>TerminatingError(): "bloco 4 de LTDEV-2 OneCrawfordDB.sql: Invalid column name 'IsIntermediateDocument'.Exceção ao chamar "ExecuteNonQuery" com "0" argumento(s): "Invalid column name 'IsIntermediateDocument'.""
+
+FALHA: bloco 4 de LTDEV-2 OneCrawfordDB.sql: Invalid column name 'IsIntermediateDocument'.Exceção ao chamar "ExecuteNonQuery" com "0" argumento(s): "Invalid column name 'IsIntermediateDocument'."
+**********************
+Fim da transcrição do Windows PowerShell
+Hora de término: 20261026122418
+**********************
