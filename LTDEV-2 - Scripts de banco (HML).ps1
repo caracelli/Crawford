@@ -139,7 +139,13 @@ try {
     }
     foreach ($s in $scripts) {
         Titulo $s.Arq
-        RodarScript $s.Cs (Join-Path $exec $s.Arq)
+        if ($s.Cs -eq $csLoc) {
+            # traducoes sao opcionais para o teste: sem acesso ao banco, as mensagens saem com a chave
+            try { RodarScript $s.Cs (Join-Path $exec $s.Arq) }
+            catch { Write-Host "ATENCAO: traducoes NAO aplicadas (sem acesso ao banco de traducoes?): $($_.Exception.Message). O servico funciona; as mensagens saem com a chave (ex.: EmailIndexing.ClaimCode.NotFound)." -ForegroundColor Yellow }
+        } else {
+            RodarScript $s.Cs (Join-Path $exec $s.Arq)
+        }
     }
 
     # ------------------------------------------------------------------ ParameterRoot do pais do usuario de servico
@@ -199,7 +205,8 @@ where RootId = @root
     Titulo 'Conferencia'
     'Cronologia (LastEmailReceivedDoneDate): ' + -not ((Valor $csMain "select COL_LENGTH('ClaimChronology','LastEmailReceivedDoneDate')") -is [DBNull])
     'Anexo (ExternalMessageId):              ' + -not ((Valor $csMain "select COL_LENGTH('AttachmentClaim','ExternalMessageId')") -is [DBNull])
-    'Traducoes EmailIndexing.*:              ' + (Valor $csLoc "select count(*) from Localizations where ResourceId like 'EmailIndexing.%'")
+    try { 'Traducoes EmailIndexing.*:              ' + (Valor $csLoc "select count(*) from Localizations where ResourceId like 'EmailIndexing.%'") }
+    catch { 'Traducoes EmailIndexing.*:              (sem acesso ao banco de traducoes)' }
     Write-Host "`nPronto. O servico rele o ParameterRoot a cada varredura (nao precisa reiniciar)." -ForegroundColor Green
 }
 catch {
