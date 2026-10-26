@@ -1,12 +1,12 @@
 ﻿**********************
 Início da transcrição do Windows PowerShell
-Hora de início: 20261026122253
+Hora de início: 20261026123546
 Nome de Usuário: CRAWFORDBRASIL\nelson.diniz
 Executar como Usuário: CRAWFORDBRASIL\nelson.diniz
 Nome da Configuração: 
 Computador: CRW-3584 (Microsoft Windows NT 10.0.26200.0)
 Aplicativo Host: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File LTDEV-2 - Scripts de banco (HML).ps1
-ID do Processo: 27620
+ID do Processo: 37796
 PSVersion: 5.1.26100.9711
 PSEdition: Desktop
 PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
@@ -31,19 +31,75 @@ Branch do backend: staging-latam (precisa ser staging-latam)
    LTDEV-2 Export Tags OneCrawfordDB.sql
 
 == Situacao atual do banco principal
-ParameterRoot.CountryCode (DEVLATAM-523): NAO existe
+ParameterRoot.CountryCode (DEVLATAM-523): existe
 Colunas do LTDEV-2:                      NAO existem
 
 Vai ALTERAR o banco acima (homologacao).
 
-== Pre-requisito DEVLATAM-523 (ParameterRoot.CountryCode)
+== LTDEV-2 OneCrawfordDB.sql
+ATENCAO: AttachmentFolder.IsIntermediateDocument nao existe neste banco (banco desatualizado); pastas mestre criadas sem ela.
+   OK (11 blocos)
+
+== LTDEV-2 Index OneCrawfordDB.sql
    OK (2 blocos)
 
-== LTDEV-2 OneCrawfordDB.sql
-PS>TerminatingError(): "bloco 4 de LTDEV-2 OneCrawfordDB.sql: Invalid column name 'IsIntermediateDocument'.Exceção ao chamar "ExecuteNonQuery" com "0" argumento(s): "Invalid column name 'IsIntermediateDocument'.""
+== LTDEV-2 LocalizationsDB.sql
+PS>TerminatingError(): "Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLocalizationsDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.""
+ATENCAO: traducoes NAO aplicadas (sem acesso ao banco de traducoes?): Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLocalizationsDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.". O servico funciona; as mensagens saem com a chave (ex.: EmailIndexing.ClaimCode.NotFound).
 
-FALHA: bloco 4 de LTDEV-2 OneCrawfordDB.sql: Invalid column name 'IsIntermediateDocument'.Exceção ao chamar "ExecuteNonQuery" com "0" argumento(s): "Invalid column name 'IsIntermediateDocument'."
+== LTDEV-2 Export Tags OneCrawfordDB.sql
+   [sql] LTDEV-2: view Vw_ExportClaimFilter alterada.
+   [sql] LTDEV-2: view Vw_ClaimReportTag_Argentina alterada.
+   [sql] LTDEV-2: view Vw_ClaimReportTag_Brazil alterada.
+   [sql] LTDEV-2: view Vw_ClaimReportTag_Chile alterada.
+   [sql] LTDEV-2: view Vw_ClaimReportTag_Colombia alterada.
+   [sql] LTDEV-2: view Vw_ClaimReportTag_Mexico alterada.
+   [sql] LTDEV-2: view Vw_ClaimReportTag_Peru alterada.
+   OK (4 blocos)
+
+== ParameterRoot do pais do usuario de servico
+Valores atuais:
+
+
+RootId                    : 1
+CountryCode               : BR
+EmailIndexingMailbox      : 
+EmailIndexingManualBox    : 
+EmailIndexingStore        : 
+EmailIndexingStoreDays    : 
+EmailIndexingLocalDomains : 
+EmailIndexingAlertBox     :
+Linhas atualizadas: 1
+
+
+RootId                    : 1
+CountryCode               : BR
+hasFile                   : False
+EmailIndexingMailbox      : central.recebimento@crawfordbrasil.com.br
+EmailIndexingManualBox    : nelson.diniz.contractor@crawfordbrasil.com.br
+EmailIndexingStore        : True
+EmailIndexingStoreDays    : 0
+EmailIndexingLocalDomains : crawfordbrasil.com.br
+EmailIndexingAlertBox     : nelson.diniz.contractor@crawfordbrasil.com.br
+
+== Tabela dbo.Logs no banco de log
+PS>TerminatingError(): "Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLogDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.""
+ATENCAO: nao foi possivel acessar o banco de log (Cannot open database "StagingLogDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLogDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'."). O log continua no arquivo; para ir ao banco, ajuste LogConnection ou o acesso.
+
+== Conferencia
+Cronologia (LastEmailReceivedDoneDate): True
+Anexo (ExternalMessageId):              True
+PS>TerminatingError(): "Exceção ao chamar "Open" com "0" argumento(s): "Cannot open database "StagingLocalizationsDB" requested by the login. The login failed.
+Login failed for user 'CRAWFORDBRASIL\nelson.diniz'.""
+Traducoes EmailIndexing.*:              (sem acesso ao banco de traducoes)
+
+Pronto. O servico rele o ParameterRoot a cada varredura (nao precisa reiniciar).
 **********************
 Fim da transcrição do Windows PowerShell
-Hora de término: 20261026122418
+Hora de término: 20261026123643
 **********************
