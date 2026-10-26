@@ -1,0 +1,88 @@
+﻿== Maquina
+CRW-3584 | usuario CRAWFORDBRASIL\nelson.diniz | 26/10/2026 11:08:27
+== Servicos EmailIndexing instalados
+
+
+Name        : _Staging OneCrawford EmailIndexingService HostedService
+DisplayName : _Staging OneCrawford EmailIndexingService HostedService
+State       : Running
+StartMode   : Auto
+StartName   : CRAWFORDBRASIL\nelson.diniz
+ExitCode    : 0
+PathName    : "C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1\EmailIndexingService.exe"  -displayname "_Staging 
+              OneCrawford EmailIndexingService HostedService" -servicename "_Staging OneCrawford EmailIndexingService HostedService"
+
+
+
+
+-- variaveis de ambiente do servico (registro)
+IGCCSVC_DB=nao-usado-pelo-EmailIndexingService
+-- pasta do servico: C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1
+   appsettings.json  10/26/2026 10:22:52
+   DbResourceConfiguration.json  10/26/2026 10:18:23
+   EmailIndexingService.deps.json  10/26/2026 09:34:48
+   EmailIndexingService.runtimeconfig.dev.json  10/26/2026 09:34:48
+   EmailIndexingService.runtimeconfig.json  10/26/2026 09:34:48
+   NLog.config existe: True
+   EmailIndexingService.dll: 10/26/2026 09:34:47
+-- NLog.config (destinos e regras)
+   internalLogFile="${currentdir}\log\internal-nlog.txt">
+   <target xsi:type="File"
+   FileName="${currentdir}\log\Debug.log"
+   archiveFileName="${currentdir}\log\Debug.{#}.log"
+   <target xsi:type="Database"
+   commandText="insert into [dbo].[Logs](CreateDate, MachineName, ServiceName, Logged, Level,
+   <!--<logger name="*" writeTo="database" minlevel="Debug" />-->
+   <logger name="*" minlevel="Info" writeTo="arquivo,console" />
+-- arquivos nas pastas log/logs
+   log\internal-nlog.txt  145728 bytes  10/26/2026 10:30:12
+-- ultimas linhas de log\internal-nlog.txt
+2026-10-26 10:30:12.7376 Debug Setting 'DatabaseParameterInfo.layout' to '${all-event-properties:separator=|}'
+2026-10-26 10:30:12.7376 Debug Setting 'AllEventPropertiesLayoutRenderer.separator' to '|'
+2026-10-26 10:30:12.7376 Debug Setting 'DatabaseParameterInfo.name' to '@CallSite'
+2026-10-26 10:30:12.7376 Debug Setting 'DatabaseParameterInfo.layout' to '${callsite}'
+2026-10-26 10:30:12.7376 Debug Setting 'DatabaseParameterInfo.name' to '@Exception'
+2026-10-26 10:30:12.7376 Debug Setting 'DatabaseParameterInfo.layout' to '${exception:tostring}'
+2026-10-26 10:30:12.7376 Debug Setting 'ExceptionLayoutRenderer.Format' to 'tostring'
+2026-10-26 10:30:12.7376 Info Adding target DatabaseTarget(Name=database)
+2026-10-26 10:30:12.7527 Debug Registered target database: NLog.Targets.DatabaseTarget
+2026-10-26 10:30:12.7527 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'arquivo' not found for logging rule: *.
+2026-10-26 10:30:12.7527 Warn Error has been raised. Exception: NLog.NLogConfigurationException: Target 'console' not found for logging rule: *.
+2026-10-26 10:30:12.7527 Debug Unused target checking is started... Rule Count: 1, Target Count: 2
+2026-10-26 10:30:12.7527 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: logFile
+2026-10-26 10:30:12.7527 Warn Unused target detected. Add a rule for this target to the configuration. TargetName: database
+2026-10-26 10:30:12.7527 Debug Unused target checking is completed. Total Rule Count: 1, Total Target Count: 2, Unused Target Count: 2
+2026-10-26 10:30:12.7767 Debug Watching path 'C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1' filter 'NLog.config' for changes.
+2026-10-26 10:30:12.7767 Debug --- NLog configuration dump ---
+2026-10-26 10:30:12.7767 Debug Targets:
+2026-10-26 10:30:12.7767 Debug File Target[logFile]
+2026-10-26 10:30:12.7767 Debug Database Target[database]
+2026-10-26 10:30:12.7767 Debug Rules:
+2026-10-26 10:30:12.7767 Debug logNamePattern: (:All) levels: [ Info Warn Error Fatal ] appendTo: [ ]
+2026-10-26 10:30:12.7767 Debug --- End of NLog configuration dump ---
+2026-10-26 10:30:12.7851 Info Found 51 configuration items
+2026-10-26 10:30:12.7851 Debug Missing DefaultConfiguration. Remember to register IConfiguration by calling UseNLog
+-- arquivos de log em C:\Windows\System32\log (se o NLog gravou com o diretorio errado)
+   internal-nlog.txt  10/26/2026 11:02:53
+-- versao do codigo (git) da pasta do projeto
+   repositorio: C:\Users\nelson.diniz\Service-ClaimEmailAutomation
+   branch: main
+   commit: 6ba8bcc Merge pull request #3 from crawfordbrasil/LTDEV-2-solution-references
+   alteracoes locais:
+      M EmailIndexingService/Consumers/IndexingWorker.cs
+      M EmailIndexingService/Injectors/BrsCloudInjector.cs
+      M EmailIndexingService/Program.cs
+     ?? EmailIndexingService/Injectors/RabbitMqHostedService.cs
+     ?? EmailIndexingService/NLog.config
+     ?? EmailIndexingService/Properties/
+     ?? EmailIndexingService/appsettings.json
+     ?? "appsettings copy.json"
+== Visualizador de Eventos - Aplicativo (ultimas 3h)
+10/26/2026 11:02:52 | _Staging OneCrawford EmailIndexingService HostedService | Service started successfully.
+10/26/2026 11:02:45 | _Staging OneCrawford EmailIndexingService HostedService | Service stopped successfully.
+10/26/2026 11:01:26 | _Staging OneCrawford EmailIndexingService HostedService | Service started successfully.
+10/26/2026 11:01:18 | _Staging OneCrawford EmailIndexingService HostedService | Service stopped successfully.
+10/26/2026 10:46:21 | _Staging OneCrawford EmailIndexingService HostedService | Service started successfully.
+10/26/2026 10:42:03 | Application Error | Nome do aplicativo com falha: EmailIndexingService.exe, versão: 1.0.0.0, carimbo de data/hora: 0x63740000 Nome do módulo com falha: KERNELBASE.dll, versão: 10.0.26100.9711, carimbo de data/hora: 0xfb9071fb Código de exceção: 0xe0434352 Deslocamento de falha: 0x00000000000c408a ID do processo com falha: 0x8BBC Hora de início do aplicativo com falha: 0x1DD654FC7D31C51 Caminho do aplicativo com falha: C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1\EmailIndexingService.exe Caminho do módulo com falha: C:\WINDOWS\System32\KERNELBASE.dll ID do relatório: b50bc3b1-9b87-4332-bd3d-d3eeb22e069e Nome completo do pacote com falha: ID do aplicativo relativo ao pacote com falha: 
+== Visualizador de Eventos - Sistema / Service Control Manager (ultimas 3h)
+10/26/2026 10:46:15 | 7045 | Foi instalado um serviço no sistema Nome do Serviço: _Staging OneCrawford EmailIndexingService HostedService Nome do Arquivo de Serviço: "C:\Users\nelson.diniz\Service-ClaimEmailAutomation\EmailIndexingService\bin\Debug\netcoreapp3.1\EmailIndexingService.exe" Tipo de Serviço: serviço de modo de usuário Tipo de Início de Serviço: iniciar automaticamente Conta de Serviço: CRAWFORDBRASIL\nelson.diniz
