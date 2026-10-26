@@ -18,6 +18,10 @@ param(
 $ErrorActionPreference = 'Stop'
 Start-Transcript -Path (Join-Path $PSScriptRoot 'LTDEV-2 - Instalar servico (teste).saida.txt') -Force | Out-Null
 
+# Contorno IGCCSVC_DB tambem para ESTE processo: o "EmailIndexingService.exe install/uninstall" executa o
+# proprio servico (le a configuracao antes de instalar) e herda as variaveis deste PowerShell
+$env:IGCCSVC_DB = 'nao-usado-pelo-EmailIndexingService'
+
 function Titulo($t) { Write-Host "`n== $t" -ForegroundColor Cyan }
 
 # Remove comentarios // de JSON (o .NET aceita, o ConvertFrom-Json nao), sem mexer no que esta entre aspas
@@ -152,13 +156,17 @@ catch {
 finally {
     if ($nome -and -not $Desinstalar) {
         $svc = Get-Service -Name $nome -ErrorAction SilentlyContinue
-        if ($svc -and $svc.Status -ne 'Running') {
-            Titulo 'Servico nao esta rodando: ultimo erro no Visualizador de Eventos'
-            Get-WinEvent -FilterHashtable @{LogName = 'Application'; ProviderName = $nome} -MaxEvents 1 -ErrorAction SilentlyContinue |
-                ForEach-Object { $m = $_.Message -replace '\s+', ' '; $m.Substring(0, [Math]::Min(900, $m.Length)) }
+        if (-not $svc) {
+            Write-Host "`nO servico '$nome' NAO ficou instalado." -ForegroundColor Red
+        } else {
+            if ($svc.Status -ne 'Running') {
+                Titulo 'Servico nao esta rodando: ultimo erro no Visualizador de Eventos'
+                Get-WinEvent -FilterHashtable @{LogName = 'Application'; ProviderName = $nome} -MaxEvents 1 -ErrorAction SilentlyContinue |
+                    ForEach-Object { $m = $_.Message -replace '\s+', ' '; $m.Substring(0, [Math]::Min(900, $m.Length)) }
+            }
+            Write-Host "`nO servico '$nome' esta instalado (status: $($svc.Status)). Para remover:" -ForegroundColor Green
+            Write-Host "  powershell -ExecutionPolicy Bypass -File `"$PSCommandPath`" -Pasta `"$Pasta`" -Desinstalar" -ForegroundColor Green
         }
-        Write-Host "`nO servico fica instalado. Para remover:" -ForegroundColor Green
-        Write-Host "  powershell -ExecutionPolicy Bypass -File `"$PSCommandPath`" -Pasta `"$Pasta`" -Desinstalar" -ForegroundColor Green
     }
     Stop-Transcript | Out-Null
 }
