@@ -75,7 +75,6 @@ try {
     $nlog = if (Test-Path (Join-Path $backup 'bin-NLog.config')) { Join-Path $backup 'bin-NLog.config' } else { Join-Path $backup 'projeto-NLog.config' }
     $cfg = SemComentarios (Get-Content $appsettings -Raw -Encoding UTF8) | ConvertFrom-Json
     $cs = Abrir $cfg.ConnectionStrings.DefaultConnection; if (-not $cs) { $cs = Abrir $cfg.ConnectionStrings.BRSCloudConnection }
-    $mailboxCfg = $cfg.Graph
     "appsettings usado: $appsettings"
     "banco: " + (New-Object Data.SqlClient.SqlConnectionStringBuilder($cs)).DataSource + ' / ' + (New-Object Data.SqlClient.SqlConnectionStringBuilder($cs)).InitialCatalog
     "Files.Temp: $($cfg.Files.Temp)"
@@ -109,18 +108,33 @@ try {
     Titulo '4. Sinistro de teste e modo de gravacao de arquivos'
     $root = (Sql $cs 'select RootId from usr.UserX where UniqueId = @g' @{ '@g' = $cfg.ServiceUser.UserName }).Rows[0].RootId
     $userId = (Sql $cs 'select Id from usr.UserX where UniqueId = @g' @{ '@g' = $cfg.ServiceUser.UserName }).Rows[0].Id
-    $claim = (Sql $cs @'
-select top 1 c.ClaimCode, c.UniqueId from Claim c
-join Situation s on s.Id = c.SituationId
-where c.RootId = @r and c.IsDeleted = 0 and s.IsCancelled = 0 and s.IsLast = 0
+    $acesso = @'
   and c.OperationId in (select distinct goa.OperationId from usr.GroupUserOperationAccess goa
                         join usr.GroupUser gu on gu.Id = goa.GroupUserId
                         join usr.GroupUserAccess gua on gua.GroupUserId = gu.Id
                         where goa.IsDeleted = 0 and gua.IsDeleted = 0 and gua.UserId = @u)
-order by c.Id desc
-'@ @{ '@r' = $root; '@u' = $userId }).Rows[0]
-    if (-not $claim) { throw 'Nenhum sinistro aberto com acesso do usuario de servico neste banco.' }
-    "sinistro de teste: $($claim.ClaimCode)"
+'@
+    # 1o: aberto (nem encerrado nem cancelado); 2o: qualquer nao cancelado (encerrado tambem aceita anexo)
+    $claim = (Sql $cs ("select top 1 c.ClaimCode, c.UniqueId from Claim c join Situation s on s.Id = c.SituationId " +
+        "where c.RootId = @r and c.IsDeleted = 0 and s.IsCancelled = 0 and s.IsLast = 0 $acesso order by c.Id desc") @{ '@r' = $root; '@u' = $userId }).Rows | Select-Object -First 1
+    if (-not $claim) {
+        $claim = (Sql $cs ("select top 1 c.ClaimCode, c.UniqueId from Claim c left join Situation s on s.Id = c.SituationId " +
+            "where c.RootId = @r and c.IsDeleted = 0 and isnull(s.IsCancelled, 0) = 0 $acesso order by c.Id desc") @{ '@r' = $root; '@u' = $userId }).Rows | Select-Object -First 1
+        if ($claim) { 'Nenhum sinistro aberto com acesso; usando um nao cancelado (encerrado tambem aceita anexo).' }
+    }
+    if (-not $claim) {
+        Write-Host 'ATENCAO: nenhum sinistro com acesso do usuario de servico. Segue so com o teste de recusa. Diagnostico:' -ForegroundColor Yellow
+        (Sql $cs @'
+select
+  (select count(*) from Claim where RootId = @r and IsDeleted = 0) as SinistrosDoPais,
+  (select count(*) from Claim c join Situation s on s.Id = c.SituationId where c.RootId = @r and c.IsDeleted = 0 and s.IsCancelled = 0 and s.IsLast = 0) as Abertos,
+  (select count(distinct goa.OperationId) from usr.GroupUserOperationAccess goa join usr.GroupUser gu on gu.Id = goa.GroupUserId
+     join usr.GroupUserAccess gua on gua.GroupUserId = gu.Id where goa.IsDeleted = 0 and gua.IsDeleted = 0 and gua.UserId = @u) as OperacoesDoUsuarioDeServico,
+  (select UserName from usr.UserX where Id = @u) as UsuarioDeServico
+'@ @{ '@r' = $root; '@u' = $userId }) | Format-List | Out-String
+    } else {
+        "sinistro de teste: $($claim.ClaimCode)"
+    }
     $param = (Sql $cs 'select hasFile, hasFinance, AttachmentFolderPath from ParameterRoot where RootId = @r' @{ '@r' = $root }).Rows[0]
     "ParameterRoot: hasFile=$($param.hasFile) hasFinance=$($param.hasFinance) AttachmentFolderPath=$($param.AttachmentFolderPath)"
     if (-not $param.hasFile) {
@@ -152,7 +166,7 @@ order by c.Id desc
         $ms = New-Object IO.MemoryStream; $bmp.Save($ms, [Drawing.Imaging.ImageFormat]::Png); $gr.Dispose(); $bmp.Dispose(); [Convert]::ToBase64String($ms.ToArray())
     }
     Add-Type -AssemblyName System.Drawing
-    $assuntoOk  = "$($claim.ClaimCode) LTDEV-2 E2E $marca"
+    $assuntoOk  = if ($claim) { "$($claim.ClaimCode) LTDEV-2 E2E $marca" } else { $null }
     $assuntoRej = "LTDEV-2 E2E sem numero $marca"
     $msgOk = @{ message = @{ subject = $assuntoOk; body = @{ contentType = 'HTML'; content = '<p>Teste E2E LTDEV-2.</p><p>--<br/><img src="cid:logo001"/></p>' }
         toRecipients = @(@{ emailAddress = @{ address = $mailbox } })
@@ -162,20 +176,21 @@ order by c.Id desc
         saveToSentItems = $false }
     $msgRej = @{ message = @{ subject = $assuntoRej; body = @{ contentType = 'Text'; content = 'Teste E2E LTDEV-2 sem numero de sinistro.' }
         toRecipients = @(@{ emailAddress = @{ address = $mailbox } }) }; saveToSentItems = $false }
-    foreach ($m in $msgOk, $msgRej) {
+    $assuntos = @($assuntoOk, $assuntoRej) | Where-Object { $_ }
+    foreach ($m in @($(if ($claim) { $msgOk }), $msgRej) | Where-Object { $_ }) {
         Invoke-RestMethod -Method Post "$base/sendMail" -Headers $H -ContentType 'application/json' -Body ($m | ConvertTo-Json -Depth 8) | Out-Null
     }
-    "enviados: '$assuntoOk' (com foto e logotipo) e '$assuntoRej'"
+    "enviados: " + (($assuntos | ForEach-Object { "'$_'" }) -join ' e ')
     $ids = @{}
-    for ($i = 0; $i -lt 12 -and $ids.Count -lt 2; $i++) {
+    for ($i = 0; $i -lt 12 -and $ids.Count -lt $assuntos.Count; $i++) {
         Start-Sleep -Seconds 5
-        foreach ($a in $assuntoOk, $assuntoRej) {
+        foreach ($a in $assuntos) {
             $f = [uri]::EscapeDataString("subject eq '$a'")
             $r = (Invoke-RestMethod "$base/messages?`$filter=$f&`$select=internetMessageId,receivedDateTime" -Headers $H).value
             if ($r) { $ids[$a] = $r[0].internetMessageId }
         }
     }
-    "chegaram na caixa: $($ids.Count) de 2"
+    "chegaram na caixa: $($ids.Count) de $($assuntos.Count)"
 
     # ------------------------------------------------------------------ 6. instalar e iniciar
     $nome = $cfg.ServiceConfiguration.ServiceName
@@ -197,9 +212,9 @@ order by c.Id desc
         if ($fid) { $folders[$fn] = $fid }
     }
     $onde = @{}
-    for ($i = 0; $i -lt 24 -and $onde.Count -lt 2; $i++) {
+    for ($i = 0; $i -lt 24 -and $onde.Count -lt $assuntos.Count; $i++) {
         Start-Sleep -Seconds 10
-        foreach ($a in $assuntoOk, $assuntoRej) {
+        foreach ($a in $assuntos) {
             if ($onde.ContainsKey($a)) { continue }
             foreach ($fn in $folders.Keys) {
                 $f = [uri]::EscapeDataString("subject eq '$a'")
@@ -207,18 +222,20 @@ order by c.Id desc
             }
         }
     }
-    foreach ($a in $assuntoOk, $assuntoRej) { "   '$a' -> " + $(if ($onde[$a]) { $onde[$a] } else { 'ainda na Caixa de Entrada' }) }
+    foreach ($a in $assuntos) { "   '$a' -> " + $(if ($onde[$a]) { $onde[$a] } else { 'ainda na Caixa de Entrada' }) }
 
     Titulo 'Anexos gravados no sinistro (pelo ExternalMessageId do e-mail)'
-    if ($ids[$assuntoOk]) {
+    if ($assuntoOk -and $ids[$assuntoOk]) {
         (Sql $cs @'
 select a.Id, a.OriginalFileName, a.Description, a.CreateDate, f.Name as Pasta
 from AttachmentClaim ac join Attachment a on a.Id = ac.Id left join AttachmentFolder f on f.Id = a.AttachmentFolderId
 where ac.ExternalMessageId = @m order by a.Id
 '@ @{ '@m' = $ids[$assuntoOk] }) | Format-Table -AutoSize | Out-String -Width 220
     }
+    if ($claim) {
     'Cronologia (LastEmailReceivedDoneDate) do sinistro (remetente interno: deve continuar como estava):'
     (Sql $cs 'select cc.LastEmailReceivedDoneDate from ClaimChronology cc join Claim c on c.Id = cc.ClaimId where c.ClaimCode = @c' @{ '@c' = $claim.ClaimCode }) | Format-Table | Out-String
+    }
 
     Titulo 'Encaminhamento da recusa (Itens Enviados nao guardam: conferir no e-mail de EmailIndexingManualBox)'
     'Destino: ' + (Sql $cs 'select EmailIndexingManualBox from ParameterRoot where RootId = @r' @{ '@r' = $root }).Rows[0].EmailIndexingManualBox
