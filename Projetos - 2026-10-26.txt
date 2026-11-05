@@ -1,0 +1,706 @@
+Projetos — transcrição da reunião
+Data: 26/10/2026 | Horário exibido no Teams: 14:37–15:35
+Origem: transcrição automática do Microsoft Teams; pode conter erros de reconhecimento.
+
+[0] Transcrição. Use as teclas de direção para navegar entre entradas de transcrição. Selecione uma entrada para navegar pela mídia até a hora da entrada. Caroline Poteria começou a transcrição — Caroline Poteria começou a transcrição
+[1] Nelson Diniz 0 minutos 8 segundos — Hey, Cortana, been linda about.
+[2] Caroline Poteria 0 minutos 10 segundos — Ainda não estou não. Eu estou na craft hoje, mas aqui está meio feio o tempo também aqui em São Paulo.
+[3] Nelson Diniz 0 minutos 13 segundos — Okay.
+[4] Nelson Diniz 0 minutos 17 segundos — começou agora caiu
+[5] Caroline Poteria 0 minutos 19 segundos — Espero que aqui não faça isso, que na rua é complicado.
+[6] Nelson Diniz 0 minutos 24 segundos — Erica.
+[7] Nelson Diniz 0 minutos 29 segundos — I bought a lot.
+[8] Caroline Poteria 0 minutos 31 segundos — Então, o primeiro projeto da lista seria esse daqui, agenda do regulador. Então, o que eles me passaram? Criar um projeto, uma agenda, projeto para criar uma agenda para o regulador no BRS Cloud, se possível vincular no Outlook.
+[9] Nelson Diniz 0 minutos 34 segundos — But
+[10] Caroline Poteria 0 minutos 48 segundos — Com as vistorias e atividades, ajustar a tela de vistoria para notificar o regulador com o agendamento da vistoria é mandar um e-mail, um WhatsApp, igual a ou um SMS. Qual que é a ideia aqui?
+[11] Nelson Diniz 0 minutos 59 segundos — aí que aquele que a gente falou da última vez não é que era a ideia que criar o metro no portal né
+[12] Caroline Poteria 1 minuto 2 segundos — Isso.
+[13] Caroline Poteria 1 minuto 5 segundos — E aí eu conversei exato. Eu conversei aqui com a moça que faz essa atividade aqui dentro. Aí o que ela me mostrou? Primeiro ela faz o trabalho dela manual, que é entrar em contato com o segurado. Aí ela vai alterando situações conforme o contato.
+[14] Caroline Poteria 1 minuto 22 segundos — Aí tudo bem, essa parte ainda vai ser manual.
+[15] Caroline Poteria 1 minuto 25 segundos — Aí o que acontece quando a partir do momento que ela consegue o contato e ela vai agendar a vistoria, ela tem alguns contatos com o regulador, né? Porque ela linha com ele umas coisas ou outras relacionadas ao horário, né? Mas ela tem essa agendinha aqui dentro do Outlook.
+[16] Caroline Poteria 1 minuto 44 segundos — Aqui no Outlook, eles têm um calendário compartilhado, mas esse calendário ele não acessa a máquina, o Outlook pessoal das pessoas, tá? É um calendário compartilhado mesmo. Então tipo esse pessoal que saiu de férias aqui.
+[17] Caroline Poteria 2 minutos 1 segundo — Eles vieram aqui manualmente, colocaram férias, tá? Então assim, é um calendário bem manual mesmo. Então, nesse quesito, eu acho que faz mais sentido a gente trazer ele, trazer ele assim, eu digo, recriar isso aqui dentro do sistema.
+[18] Nelson Diniz 2 minutos 6 segundos — Central.
+[19] Caroline Poteria 2 minutos 17 segundos — E não no e não mais no Outlook. O que a gente poderia fazer talvez é que pode que faça sentido. A gente tem que criar essa telinha desse calendário e a partir do momento que uma vistoria for agendada.
+[20] Nelson Diniz 2 minutos 17 segundos — Thank you.
+[21] Caroline Poteria 2 minutos 32 segundos — Ele enviar, talvez por e-mail do regulador, um e-mail com aquele ponto ICS, que é a extensão de de agenda de reunião. Acho que é isso que aí ele marca um calendário, tipo mandar uma reunião mesmo, como se fosse uma reunião.
+[22] Caroline Poteria 2 minutos 48 segundos — É uma opção, tá? Não necessariamente vai ser uma opção.
+[23] Nelson Diniz 2 minutos 51 segundos — Um.
+[24] Nelson Diniz 2 minutos 53 segundos — O ICF eu não recomendo muito.
+[25] Caroline Poteria 2 minutos 57 segundos — Mm.
+[26] Nelson Diniz 2 minutos 58 segundos — AE porque dependendo da máquina ele dá problema de leitura e não consegue anicar no calendar, mas se a gente tiver que nem o graph, tiver um token do graph, alguma coisa assim, a gente consegue enviar o invite direto pra agenda.
+[27] Caroline Poteria 3 minutos 2 segundos — No agenda.
+[28] Caroline Poteria 3 minutos 14 segundos — Entendi, porque assim, a ideia seria.
+[29] Nelson Diniz 3 minutos 14 segundos — porque todo mundo no Outlook certo todo mundo
+[30] Caroline Poteria 3 minutos 18 segundos — Isso aqui é todo mundo é Outlook.
+[31] Nelson Diniz 3 minutos 21 segundos — daria para enviar algo direto.
+[32] Caroline Poteria 3 minutos 23 segundos — Tá, a gente vai ajudar para uma etapa 2, então.
+[33] Nelson Diniz 3 minutos 26 segundos — No.
+[34] Caroline Poteria 3 minutos 27 segundos — Porque assim, nesse primeiro momento, como tudo é por aqui pela agenda, eles controlam por aqui.
+[35] Caroline Poteria 3 minutos 34 segundos — Até mesmo os próprios reguladores, eles entram aqui para ver se tem alguma coisa na agenda deles. Pelo que eu entendi, ela me mostrou quando ela agenda aqui.
+[36] Nelson Diniz 3 minutos 42 segundos — Okay.
+[37] Caroline Poteria 3 minutos 43 segundos — Ela não manda para ele, ela coloca direto no sinistro.
+[38] Caroline Poteria 3 minutos 47 segundos — Então ele entra aqui depois para ver os dados, sabe? Então eu pensei agora em fazer um envio por e-mail dele, só para tipo, para falar que tem alguma coisa ali no e-mail, caso ele não olhe aqui, ele não olhe na ferramenta. Mas tipo, seria um plus, tá? A ideia é recriar este calendário.
+[39] Nelson Diniz 3 minutos 50 segundos — That.
+[40] Nelson Diniz 4 minutos 1 segundo — Sim.
+[41] Caroline Poteria 4 minutos 4 segundos — Dentro do meu BRS cloud, deixa eu pegar ele aqui, recriar esse calendário dentro do BRS cloud em algum lugar, né? Tipo, talvez nessa, nessa própria, nem nessa tela inicial, a gente criaria um menu, eu acho que é melhor.
+[42] Nelson Diniz 4 minutos 5 segundos — Okay.
+[43] Caroline Poteria 4 minutos 20 segundos — Um menu de tipo vistorias.
+[44] Nelson Diniz 4 minutos 23 segundos — O.
+[45] Caroline Poteria 4 minutos 24 segundos — Aí vamos imaginar esse daqui, por exemplo.
+[46] Nelson Diniz 4 minutos 27 segundos — Olha, eu optaria por um menu agenda.
+[47] Caroline Poteria 4 minutos 31 segundos — É, pode ser. Agenda, pode ser.
+[48] Nelson Diniz 4 minutos 32 segundos — Que aí eu vou querer deixar aberto para qualquer outro projeto futuro de agenda.
+[49] Caroline Poteria 4 minutos 36 segundos — Pode ser, porque aí qual é a ideia? O que é que ela coloca aqui? Se você olhar, ela coloca o nome do regulador, o nome do regulador que vai fazer essa vistoria, que é o regulador principal do processo, o número do processo, com quem é a vistoria, que pode ser com segurado, pode ser com terceiro, com reclamante, etc.
+[50] Caroline Poteria 4 minutos 55 segundos — Caso seja uma vistoria presencial, ela coloca aqui o endereço.
+[51] Nelson Diniz 4 minutos 59 segundos — Sure.
+[52] Caroline Poteria 5 minutos — né? E caso seja remota, ela só escreve remota aí aqui nem aqui, tá vendo? Aqui no caso é uma vistoria remota e ela põe aqui aí property por conta da operação da pessoa. Tá vendo aí? Então ela faz isso. Só que tudo isso eu já tenho dentro do meu sinistro.
+[53] Nelson Diniz 5 minutos 11 segundos — Yeah.
+[54] Caroline Poteria 5 minutos 17 segundos — Quando eu abro um sinistro.
+[55] Caroline Poteria 5 minutos 20 segundos — É no meu sinistro, eu já tenho o regulador principal, o número do sinistro, o regulador, eu tenho o endereço aqui.
+[56] Nelson Diniz 5 minutos 22 segundos — Central.
+[57] Caroline Poteria 5 minutos 32 segundos — Eu tenho já o endereço.
+[58] Caroline Poteria 5 minutos 34 segundos — Opa, aqui é o nome do segurado. Eu também já tenho aqui no dados básicos. E o que acontece quando ela faz isso? Ela cria esse agendamento aqui e depois, manualmente, ela cria a vistoria aqui.
+[59] Nelson Diniz 5 minutos 36 segundos — Yeah.
+[60] Caroline Poteria 5 minutos 50 segundos — dentro dessa telinha de vistoria. Então, qual é a ideia? A gente coloquei na agenda, ele já cria vistoria aqui.
+[61] Nelson Diniz 5 minutos 55 segundos — Okay.
+[62] Nelson Diniz 6 minutos — A.
+[63] Caroline Poteria 6 minutos 1 segundo — Tá, ele já vai criar, porque como ela tem que passar o número do sinistro.
+[64] Nelson Diniz 6 minutos 2 segundos — Aí só pensando aqui, a ideia inicial é mandar por e-mail isso daí para ela criar, certo?
+[65] Caroline Poteria 6 minutos 9 segundos — Não, não. A ideia inicial é ela abrir essa mesma agendinha. A gente ter essa agenda aqui dentro do sistema e ela agenda e ela marcar aqui. Ela não vai mais usar o Outlook, ela vai usar aqui.
+[66] Caroline Poteria 6 minutos 21 segundos — Ele não precisa mandar e-mail nesse primeiro momento.
+[67] Nelson Diniz 6 minutos 21 segundos — Okay.
+[68] Caroline Poteria 6 minutos 25 segundos — Nesse primeiro momento, não.
+[69] Nelson Diniz 6 minutos 39 segundos — Vish, eu mandei o link de e-mail.
+[70] Caroline Poteria 6 minutos 43 segundos — Você diz um link direto para o regulador, está avisando que a vistoria está agendada?
+[71] Nelson Diniz 6 minutos 46 segundos — William.
+[72] Nelson Diniz 6 minutos 48 segundos — AE que ele vai ter acesso pelo portal também, não é isso?
+[73] Caroline Poteria 6 minutos 51 segundos — Ele tem, ele tem esse acesso. Ele tem.
+[74] Nelson Diniz 6 minutos 53 segundos — Então tem que abrir, abrir o portal e lá procurar o sinistro em Bank.
+[75] Caroline Poteria 6 minutos 59 segundos — Não, ele pode receber um e-mail falando que já está agendado. Isso ele pode, isso a gente já tem.
+[76] Nelson Diniz 7 minutos 2 segundos — Aí sim e com o link direto e o link direto para ele acessarem informação específica.
+[77] Caroline Poteria 7 minutos 6 segundos — Isso sim, pode sim, pode sim, mas isso a gente também já tem.
+[78] Nelson Diniz 7 minutos 12 segundos — That.
+[79] Caroline Poteria 7 minutos 12 segundos — A gente pode usar o microsserviço de e-mail, não precisa de graph nem nada.
+[80] Nelson Diniz 7 minutos 15 segundos — Sim.
+[81] Caroline Poteria 7 minutos 18 segundos — A gente já tem alguns e-mails que fazem isso de reiteração e assim por diante. Aí aqui desse jeitinho é como ela guarda a informação dentro do da agendinha. Tá vendo? Então ela coloca o nome, qual o nome do segurado, a data.
+[82] Nelson Diniz 7 minutos 28 segundos — That.
+[83] Nelson Diniz 7 minutos 33 segundos — Discovered.
+[84] Caroline Poteria 7 minutos 33 segundos — E aqui ela coloca um textinho, a vistoria remota, agendada. E o nome da pessoa que vai acompanhar esses dados aqui, alguns ela pega do telefone. Então eu acho que deixar um campo de texto para ela informar como descrição para ela informar.
+[85] Nelson Diniz 7 minutos 45 segundos — Okay.
+[86] Nelson Diniz 7 minutos 47 segundos — No.
+[87] Caroline Poteria 7 minutos 48 segundos — Algum contato, alguma informação que não esteja no sistema.
+[88] Nelson Diniz 7 minutos 51 segundos — Okay.
+[89] Caroline Poteria 7 minutos 53 segundos — Mas é desse jeitinho que ela guarda.
+[90] Nelson Diniz 7 minutos 54 segundos — You pra.
+[91] Nelson Diniz 7 minutos 56 segundos — Que pode ir aí também.
+[92] Caroline Poteria 7 minutos 57 segundos — Oi?
+[93] Nelson Diniz 7 minutos 59 segundos — Para uma consulta rápida, até dela mesmo, o link da agenda pode ir aí também o link do acerto.
+[94] Caroline Poteria 8 minutos 2 segundos — Mm.
+[95] Caroline Poteria 8 minutos 5 segundos — Pode também, pode. Mas eu acho que também ele tem que ficar desse mesmo jeitinho. Eu fechei, fechei. Mas eu acho que ele tem que ficar também desse uma agenda. Ela tem que manter desse mesmo jeitinho aqui, porque aí.
+[96] Caroline Poteria 8 minutos 20 segundos — Quando ela, porque como ela usa isso aqui também, ela conversa primeiro com o regulador, ele fala a marca, sei lá, para tal dia de manhã. Ela vem aqui e ela olha para ver se já não tem nada no nome dele, né? E ela coloca no horário que não tem nada. Então ela vai precisar também continuar com essa visualização aqui.
+[97] Caroline Poteria 8 minutos 40 segundos — dentro da agenda. Por isso que eu comentei a ideia do calendário.
+[98] Nelson Diniz 8 minutos 40 segundos — No.
+[99] Nelson Diniz 8 minutos 44 segundos — Eu não sei se o calendário certinho, certinho, no mesmo layout fiel, fiel a gente consegue.
+[100] Caroline Poteria 8 minutos 50 segundos — Não, não, você é fiel, mas tem que ser na mesma ideia.
+[101] Nelson Diniz 8 minutos 53 segundos — É, vou tentar chegar uma próxima. Deixa eu te perguntar, existe caso de reagendamento, cancelamento?
+[102] Caroline Poteria 9 minutos — Exist.
+[103] Nelson Diniz 9 minutos 1 segundo — Time.
+[104] Caroline Poteria 9 minutos 4 segundos — Pode acontecer.
+[105] Nelson Diniz 9 minutos 5 segundos — Central com teu serviço ativo, desculpa, mudar o fundo. Central com teu serviço ativo, aí eu estou com o meu.
+[106] Caroline Poteria 9 minutos 8 segundos — Mhm.
+[107] Caroline Poteria 9 minutos 12 segundos — O messing.
+[108] Nelson Diniz 9 minutos 15 segundos — Let me have.
+[109] Caroline Poteria 9 minutos 15 segundos — ele tá ele tá lá no servidor tá ativo no servidor se você quiser eu paro
+[110] Nelson Diniz 9 minutos 19 segundos — Não que chegou aqui, mas eu não sei se foi o meu ou foi o seu, mas depois a gente vê isso daí.
+[111] Caroline Poteria 9 minutos 23 segundos — Eu acho que não é meu não, porque eu não mexi.
+[112] Nelson Diniz 9 minutos 26 segundos — Então o meu chegou aqui o meio aqui, eu parei meu serviço.
+[113] Caroline Poteria 9 minutos 29 segundos — William Meire.
+[114] Caroline Poteria 9 minutos 31 segundos — Do jeito aquela hora que você mandou a mensagem, eu estava almoçando, eu voltei agora, então eu ainda não mexi no webset, só acertar.
+[115] Nelson Diniz 9 minutos 35 segundos — Hello, tudo bem.
+[116] Caroline Poteria 9 minutos 39 segundos — Então acho que não o meu ainda não.
+[117] Nelson Diniz 9 minutos 41 segundos — A.
+[118] Nelson Diniz 9 minutos 43 segundos — Tá é voltando, desculpa interromper.
+[119] Caroline Poteria 9 minutos 44 segundos — Imagina então aí assim, eu sei que não precisa ser fiel desse jeito, mas eu acho que tem que ter assim ainda uma questão, ou talvez o que a gente pode fazer.
+[120] Caroline Poteria 9 minutos 58 segundos — que de repente fique de uma maneira fácil quer ver tem uma tela aqui
+[121] Caroline Poteria 10 minutos 3 segundos — No.
+[122] Caroline Poteria 10 minutos 4 segundos — Cadê aqui? Tem uma tela aqui que é de gerenciamento de equipe.
+[123] Caroline Poteria 10 minutos 11 segundos — Mas o que seria legal, tá vendo aqui? Eu tenho as equipes e eu tenho aqui membros da equipe. Eu posso escolher uma pessoa específica. Aí o que eu acho que a gente pode fazer aqui? A gente cria um.
+[124] Caroline Poteria 10 minutos 26 segundos — É que essa tela só está disponível para os gestores, tá? É, mas assim, a gente poderia recriar uma dessa telinha inicial mesmo, porque como essa moça, ela só ela é responsável só por isso, pela essa parte de contato, é, ou a gente cria uma tela com esse menu para ela.
+[125] Caroline Poteria 10 minutos 42 segundos — ou a gente deixa na tela inicial também para facilitar para ela a localização, né? E, por exemplo, do jeito que está essa tela aqui. O que eu acho legal, a gente conseguiria carregando ou eu que não a tá.
+[126] Nelson Diniz 10 minutos 48 segundos — Mm.
+[127] Caroline Poteria 10 minutos 58 segundos — O que eu acho que ficaria legal é, eu consigo escolher se eu quero ver de um membro específico e aí de repente tem aqui um como tem esses menus, esses mesmos menus que eu tenho, tipo, teria um menu aqui de agenda, eu posso ver.
+[128] Nelson Diniz 11 minutos 7 segundos — Okay.
+[129] Caroline Poteria 11 minutos 12 segundos — Se eu procurar por uma pessoa específica,
+[130] Caroline Poteria 11 minutos 16 segundos — Any.
+[131] Caroline Poteria 11 minutos 18 segundos — Ele vai trazer aqui para mim. É só dessa pessoa, é. E se eu não colocar nada, ele traz de todo mundo. Ué, porque que estão carregando? AI, caramba, agora carregou.
+[132] Nelson Diniz 11 minutos 31 segundos — Okay.
+[133] Caroline Poteria 11 minutos 31 segundos — Aí a ideia seria mais ou menos a mesma coisa, né? Só que tipo, numa tela, essa tela aqui, esse gerenciamento, é só gestor que tem acesso hoje. Como essa moça, ela não é gestora, a gente precisaria de uma outra tela pra.
+[134] Nelson Diniz 11 minutos 41 segundos — Yeah.
+[135] Caroline Poteria 11 minutos 47 segundos — Para facilitar essa.
+[136] Caroline Poteria 11 minutos 50 segundos — Como é que fala? Para facilitar essa visualização para ela, né? Porque eu não posso dar acesso para ela aqui por conta de nível de acesso. Eu não posso dar acesso para ela no grupo de gestão, mas a gente pode criar uma de agenda. E eu acho que esse pedacinho aqui seria legal, porque hoje todo mundo está separado por equipe.
+[137] Nelson Diniz 11 minutos 55 segundos — Okay.
+[138] Caroline Poteria 12 minutos 9 segundos — Todo mundo pertence a uma equipe dentro do sistema, tá? E por que a gente tem isso? Para a gente conseguir entender quem está onde, quem é gestor de quem e assim por diante. Então aqui eu tenho uma tela de equipe onde eu tenho, tirando, tem uma aqui que é reguladores total, que está todo mundo.
+[139] Caroline Poteria 12 minutos 26 segundos — Mas eu tenho aqui os separado por áreas e as pessoas que são dentro daquela área e os seus gestores correspondentes. Por que que eu tenho isso? Porque eu tenho umas telas de trava que só o gestor pode destravar, então ele usa essa tela.
+[140] Caroline Poteria 12 minutos 41 segundos — Aquela tela de gerenciamento de equipe que eu estava mostrando agora há pouco, só os gestores daqui, eles conseguem visualizar só dos seus próprios para não ficar aberto tudo para todo mundo. Então eu acho que essa tela poderia ser, é.
+[141] Caroline Poteria 12 minutos 54 segundos — Reutilizada nessa situação também, até porque para ela também vai ser mais fácil, porque ela tem o.
+[142] Caroline Poteria 13 minutos 2 segundos — Porque aí ela consegue visualizar exatamente porque hoje, se você olhar aqui no desenho dela, ela fala que, por exemplo, eu vistoria a property. Esse property é uma equipe. Essa primeira equipe aqui é a equipe de property. Tá vendo? Então ela sabe que aquela pessoa.
+[143] Nelson Diniz 13 minutos 8 segundos — Okay.
+[144] Caroline Poteria 13 minutos 17 segundos — É dentro desse grupo.
+[145] Nelson Diniz 13 minutos 19 segundos — Yeah.
+[146] Caroline Poteria 13 minutos 20 segundos — Tá, então por isso que seria legal já veri já utilizar essa tela de.
+[147] Caroline Poteria 13 minutos 27 segundos — Essa tela de equipe, né? Então.
+[148] Nelson Diniz 13 minutos 30 segundos — É, eu replicaria o mesmo layout.
+[149] Caroline Poteria 13 minutos 33 segundos — Pode ser, pode ser. Só que acho que em uma só em outra tela, mas pode ser. Aí aqui a gente tiraria tudo e ficaria só a agenda. Aí a gente pode buscar por pessoas específicas ou por todo mundo.
+[150] Nelson Diniz 13 minutos 34 segundos — No.
+[151] Nelson Diniz 13 minutos 37 segundos — Right.
+[152] Nelson Diniz 13 minutos 45 segundos — É que a agenda entraria lá em cima onde tá relatório, essas coisas.
+[153] Caroline Poteria 13 minutos 46 segundos — AE.
+[154] Nelson Diniz 13 minutos 50 segundos — No.
+[155] Caroline Poteria 13 minutos 52 segundos — Eu acho.
+[156] Caroline Poteria 13 minutos 54 segundos — Que faz mais sentido? Deixa eu pensar, a gente poderia. Eu estou pensando se faz sentido deixar aqui nessa tela.
+[157] Caroline Poteria 14 minutos 2 segundos — Inicial.
+[158] Caroline Poteria 14 minutos 4 segundos — Oh.
+[159] Caroline Poteria 14 minutos 6 segundos — Se faz sentido?
+[160] Caroline Poteria 14 minutos 8 segundos — De repente, deixar aqui em processo, a gente deixar aqui a agenda ou criar um.
+[161] Caroline Poteria 14 minutos 16 segundos — O menu aqui em cima, nessa linha primeira que não faz sentido. Esse operacional, ele é mais de cadastro.
+[162] Nelson Diniz 14 minutos 24 segundos — É porque assim eu tô eu tô pensando o futuro, tá? Eu tô pensando assim, não vai trabalhar com agenda só em cima do regulador agora. A ideia é para que se futuramente tiver mais algum item que precisa adicionar a agenda, deve ser uma coisa que pode atender qualquer um.
+[163] Caroline Poteria 14 minutos 28 segundos — Mhm.
+[164] Caroline Poteria 14 minutos 33 segundos — Mm-hmm.
+[165] Caroline Poteria 14 minutos 39 segundos — Sing, sing.
+[166] Caroline Poteria 14 minutos 42 segundos — É porque hoje a ideia é essa agenda para processos. Hoje a gente só tem sinistro, mas a gente vai ter outros no decorrer do caminho. A gente tem essa tela de gerencial. Hoje eu só tenho uma busca aqui de descrições de faturamento. A gente pode colocar no menu aqui.
+[167] Nelson Diniz 14 minutos 46 segundos — That.
+[168] Caroline Poteria 14 minutos 59 segundos — Que esse gerencial aqui está com nome errado. A gente tem que renomear, porque isso aqui é para área de operações. E essa moça que faz isso é dessa área de operações, entendeu? Então ela já vai ter acesso a essa página. A gente pode colocar essa agenda aqui.
+[169] Caroline Poteria 15 minutos 14 segundos — Porque a gente vai renomear isso aqui no futuro, quando eu não sei, porque isso aqui é só para gerar um relatório de faturamento, sabe? Mas geralmente as mesmas pessoas, elas são gerenciadas pela mesma área, essa moça que faz o cadastro, o agendamento e a parte do faturamento, todas elas hoje estão dentro do mesmo guarda-chuva.
+[170] Caroline Poteria 15 minutos 32 segundos — Eu acho que a gente pode criar um menu aqui.
+[171] Nelson Diniz 15 minutos 33 segundos — Have got it.
+[172] Nelson Diniz 15 minutos 35 segundos — Eu posso por aí, mas eu optaria lá em cima.
+[173] Caroline Poteria 15 minutos 38 segundos — Aqui em Simão, né?
+[174] Nelson Diniz 15 minutos 40 segundos — O botão único agenda que a pessoa loga e já vai direto para o que ela precisa, mas pode por no gerencial também, não tem problema que optaria assim uma coisa de fácil acesso.
+[175] Caroline Poteria 15 minutos 41 segundos — É.
+[176] Caroline Poteria 15 minutos 44 segundos — Mm-hmm.
+[177] Caroline Poteria 15 minutos 47 segundos — Okay.
+[178] Caroline Poteria 15 minutos 50 segundos — Uhum é, eu acho que é melhor deixar aqui mesmo, porque a gente tem outras ideias para aqui para cima, sabe? Aqui em cima a gente deixa mais. É tipo, tem muita. A gente ainda tem muita coisa para colocar aqui, sabe? Então vai ficar muita coisa.
+[179] Nelson Diniz 16 minutos — Okay.
+[180] Nelson Diniz 16 minutos 3 segundos — É, futuramente vai ficar um monte de coisa e pode se perder.
+[181] Caroline Poteria 16 minutos 6 segundos — Exato, exato. Então acho que a gente pode manter aqui mesmo, porque você quer um acesso que vai ser dessa tela. A gente vai trocar isso aqui para tipo operações, algo do gênero. Mas o que eu acho que seria legal a gente manter aqui para ela, se for o caso, e a gente no gerenciamento de equipe também inclui isso porque por conta dos gestores.
+[182] Nelson Diniz 16 minutos 7 segundos — Thank you.
+[183] Nelson Diniz 16 minutos 26 segundos — Thank you.
+[184] Caroline Poteria 16 minutos 27 segundos — Aí aqui ficaria também do mesmo jeito, em nível de visualização, mas a gente conseguiria, mesmo que seja de repente só visualização da agenda, a gente manter aqui.
+[185] Nelson Diniz 16 minutos 38 segundos — No, double further.
+[186] Caroline Poteria 16 minutos 41 segundos — Mas aí a gente criaria um menu aqui dentro do gerencial. Aí a gente vai incluir esse calendário, vamos assim dizer, né? E conforme e aqui vai ficar a critério todo o todo mundo não mito, tá? Porque não pode ser só naquela tela, naquele
+[187] Caroline Poteria 16 minutos 58 segundos — Não aquele menu que eu estou pensando, porque os reguladores agora que eu vi aqui, os reguladores tem que ter acesso a isso também.
+[188] Caroline Poteria 17 minutos 7 segundos — Então eles também é podem.
+[189] Caroline Poteria 17 minutos 12 segundos — Acessar não vai ficar só a critério dessa moça, é aí a ideia vai ser os.
+[190] Nelson Diniz 17 minutos 17 segundos — Okay.
+[191] Caroline Poteria 17 minutos 20 segundos — Aqui acho que é melhor todo mundo ver por equipe, cada um da sua própria equipe é melhor a gente mantém assim, não exclusivo, tipo eu só vou ver o que é meu, não vejo da minha equipe, como assim ele já tem, porque acho que às vezes também um ajuda o outro e tal, eles conseguem compartilhar, então os dois, todo mundo acessando a mesma agenda, eles conseguem se dividir.
+[192] Caroline Poteria 17 minutos 40 segundos — É, tá, eu vou confirmar aqui se faz sentido.
+[193] Caroline Poteria 17 minutos 46 segundos — a gente criar dentro de, porque eu sei que todos eles têm acesso aqui, só que aqui é vinculado a sinistro. Amanhã a gente no futuro a gente vai ter outros tipos que não são só sinistro. Então não faz sentido mexer aqui. Talvez dentro de processo a gente cria um menu de agenda.
+[194] Nelson Diniz 18 minutos 4 segundos — Yeah.
+[195] Caroline Poteria 18 minutos 5 segundos — Pode ser também, mas eu vou confirmar aqui direitinho. Estou com a minha, com a minha parte de arquitetura, quais as ideias aqui para ver se faz sentido manter aqui ou a gente cria um menuzinho aqui a parte para todo mundo ter acesso.
+[196] Nelson Diniz 18 minutos 15 segundos — Tá, e essa agenda ela trabalharia como que nem hoje que tem opção lá no Outlook de ser diário, semanal ou mensal?
+[197] Caroline Poteria 18 minutos 21 segundos — Is.
+[198] Nelson Diniz 18 minutos 27 segundos — Aí tu tem que ser do esporte de construção.
+[199] Caroline Poteria 18 minutos 27 segundos — é esse daqui é não aqui tem que ser sempre o diário porque se eu colocar as outras ela vai ficar muito pequena e aqui você tá vendo do jeito que ela tem aqui ó já é o diário porque ela consegue visualizar
+[200] Nelson Diniz 18 minutos 33 segundos — Done.
+[201] Caroline Poteria 18 minutos 40 segundos — A do dia, então eu prefiro que seja só o diário.
+[202] Nelson Diniz 18 minutos 44 segundos — Tá tudo bem.
+[203] Caroline Poteria 18 minutos 45 segundos — E aí a gente já mata tipo fechado de um jeitinho, né?
+[204] Nelson Diniz 18 minutos 48 segundos — mas a gente pode usar futuramente alguma coisa semanal mensal com botãozinho de seleção
+[205] Caroline Poteria 18 minutos 54 segundos — Pode. No futuro, pode ser que sim. É que hoje, no cenário que eles trabalham hoje, é o diário é mais indicado, mas a gente pode deixar preparado para o futuro, sim.
+[206] Nelson Diniz 19 minutos 6 segundos — Stop.
+[207] Caroline Poteria 19 minutos 8 segundos — Tá aí, qual que é a ideia aqui? Ela vai fazer todo esse trabalho. A partir do momento que ela incluir alguma coisa nessa agenda, ela vai informar o número do sinistro.
+[208] Caroline Poteria 19 minutos 17 segundos — E automaticamente essa vistoria vai ser criada dentro da tela de vistoria. Ela vai ter todo aí tem que ver todos os parâmetros que vão ter que passar, que vai ter que ter em tela. Talvez ela escolha, de repente ela é.
+[209] Nelson Diniz 19 minutos 32 segundos — Okay.
+[210] Caroline Poteria 19 minutos 33 segundos — Ou não sei, de repente, de um jeito que crie o sinistro, crie aqui e ele já puxe na agenda ou crie da agenda, eu crio para cá algo assim aqui na vistoria, né? Que ela tem que preencher esses campos aqui da vistoria.
+[211] Caroline Poteria 19 minutos 51 segundos — Esses campos ela preenche hoje, quando ela está inserindo, tá? Ela insere todos eles manualmente, então todos eles ela vai ter que preencher de alguma maneira, tá?
+[212] Caroline Poteria 20 minutos 2 segundos — Então esse campo de dessa tela de vistoria vai ter que aparecer para ela de um jeito de alguma maneira. Ela tem aqui também localização que ela pode copiar do sinistro. Ela pode incluir também o endereço novo, que seria o endereço da vistoria. Então isso aqui também ela pode fazer. Hoje, como ela faz tudo na mão?
+[213] Caroline Poteria 20 minutos 20 segundos — Ela não usa nada disso, ela só usa essa tela aqui primeira e acabou, né? E ela preenche as coisas que ela tem que preencher. Quer ver? Eu posso até pegar esse processo aqui. Deixa eu pegar aqui esse processo aqui de exemplo é o 12376.
+[214] Caroline Poteria 20 minutos 36 segundos — 12376.
+[215] Nelson Diniz 20 minutos 40 segundos — Hoje é, ela tem que pegar a gente no outlook, entrar dentro do portal e olhar com as informações bem no modal para ela, certo?
+[216] Caroline Poteria 20 minutos 42 segundos — Oh.
+[217] Caroline Poteria 20 minutos 52 segundos — É isso, é porque hoje eu peguei esse daqui, foi o que ela criou.
+[218] Nelson Diniz 20 minutos 54 segundos — como a gente vai trabalhar dentro dentro do portal com agenda ele pode ter opção de ela abrir o dado da agenda ela abriu a agenda dela esse item específico
+[219] Nelson Diniz 21 minutos 9 segundos — E ela clicar lá, ele traz um modal para ela com dado, referia aqui o mesmo modal que você está mostrando dentro da agenda.
+[220] Caroline Poteria 21 minutos 14 segundos — Mm-hmm.
+[221] Caroline Poteria 21 minutos 16 segundos — Tá bom, pode ser, pode ser, porque aqui, tá vendo? Isso aqui foi o que ela preencheu. Então aqui é o nome do menino da Crawford para fazer a regulação. Isso aqui é o textinho que ela incluiu, o tipo de vistoria, a data que ela agendou e.
+[222] Caroline Poteria 21 minutos 32 segundos — Aqui está vendo? Ela não pôs nada e nem aqui eu acho que está, porque aqui tem o endereço, está vendo? Às vezes a vistoria é o mesmo endereço da apólice ou do sinistro, né? Mas às vezes não. Então, tanto que a gente tem aqui a opção de pesquisar, ele pode buscar do sinistro, do risco.
+[223] Caroline Poteria 21 minutos 51 segundos — Do segurado ou incluir um novo, dependendo do tipo do sinistro, pode ser que seja um outro lugar completamente diferente, está?
+[224] Caroline Poteria 22 minutos — Que mais? Aí essa é a ideia, ela entrar lá na telinha.
+[225] Caroline Poteria 22 minutos 5 segundos — Ela vai agendar como se ela tivesse agendando mesmo no Outlook e esse e isso automaticamente vai ser enviado. Vai ser gravado dentro do sinistro essas informações. Aí a gente vai disparar um e-mail para o regulador avisando que tem uma vistoria agendada.
+[226] Caroline Poteria 22 minutos 20 segundos — E a gente passa essas informações aqui para ele. E deixa eu pegar aqui um exemplo que ela, porque depois ela faz algumas coisas na mão. Ela tem que mandar um e-mail para o. Ela tem que mandar um e-mail para o.
+[227] Caroline Poteria 22 minutos 35 segundos — Segurado para o corretor, só que esses essa parte desse envio de e-mail vai ser um pouco mais complicado, porque hoje os nossos clientes, eles exigem que os e-mails sejam enviados.
+[228] Caroline Poteria 22 minutos 51 segundos — a partir do histórico do último e-mail. E o nosso Outlook não tem permissão para acessar o e-mail da pessoa para saber qual é o último e-mail para ele poder mandar em cima.
+[229] Caroline Poteria 23 minutos 2 segundos — Então a gente tem essa restrição. A gente não pode acessar uma caixa pessoal, né? Então a gente também não consegue disparar um e-mail com cópia. O nosso sistema sempre viu um e-mail novo. Ele sempre dispara a partir de um e-mail novo.
+[230] Nelson Diniz 23 minutos 6 segundos — Sure.
+[231] Nelson Diniz 23 minutos 14 segundos — Hello.
+[232] Nelson Diniz 23 minutos 16 segundos — aí caiu um negócio que eu tô falando com você mas minha cabeça tá mil aqui
+[233] Caroline Poteria 23 minutos 21 segundos — Mm-hmm.
+[234] Nelson Diniz 23 minutos 26 segundos — Como é que vamos ficar? Estamos saindo do Outlook.
+[235] Caroline Poteria 23 minutos 29 segundos — Mm-hmm.
+[236] Nelson Diniz 23 minutos 30 segundos — Estamos indo para uma agenda interna hoje o Outlook
+[237] Caroline Poteria 23 minutos 32 segundos — Checked.
+[238] Nelson Diniz 23 minutos 37 segundos — Quando está chegando perto do horário da agenda, ele abre uma janelinha para finalizar que está chegando no horário, certo? Como é que a gente poderia estar fazendo isso referente ao portal? Porque eu não vou ter reunião.
+[239] Caroline Poteria 23 minutos 42 segundos — Mhm.
+[240] Caroline Poteria 23 minutos 44 segundos — Certo.
+[241] Caroline Poteria 23 minutos 48 segundos — A gente pode mandar um e-mail. A gente pode mandar um e-mail. A gente já tem isso hoje. A gente tem alguns e-mails. Por exemplo, tem uma telinha de trava de alertas aqui de sistema. Hoje, quando os processos estão chegando dentro do prazo ou eles estouram o prazo, o sistema ele pega aqui, ele tem internamente uma data salva.
+[242] Caroline Poteria 24 minutos 8 segundos — Ele vai mandando e-mail para essa pessoa, tipo todos os dias, nesse caso, todos os dias. Nesse caso do da agenda, a gente pode determinar, tipo 2 dias antes, ele dispara um e-mail a partir de 2 dias, sabe? Tipo, pode deixar até parametrizado, se for o caso.
+[243] Nelson Diniz 24 minutos 15 segundos — He.
+[244] Caroline Poteria 24 minutos 24 segundos — A partir de 2 dias, ele dispara um e-mail, é ele dispara, vai disparando o e-mail até chegar o dia da vistoria, por exemplo.
+[245] Nelson Diniz 24 minutos 35 segundos — Era justamente isso que eu ia que eu ia sugerir de falar um e-mail.
+[246] Caroline Poteria 24 minutos 35 segundos — Para notificar.
+[247] Caroline Poteria 24 minutos 39 segundos — Mm-hmm.
+[248] Caroline Poteria 24 minutos 40 segundos — Não vou falar que vai surtir efeito, tá? Porque hoje os reguladores eles têm. A gente tem um péssimo histórico de visualização de e-mail, mas a gente pode garantir que o sistema avisou. Isso já serve para a gente em nível de auditoria, se for o caso.
+[249] Caroline Poteria 24 minutos 56 segundos — Porque é a responsabilidade do uso do regulador, né? Fica de olho nessas atividades.
+[250] Nelson Diniz 24 minutos 56 segundos — Thanks.
+[251] Nelson Diniz 24 minutos 59 segundos — E é legal, é legal a gente logar isso daí, logar que foi enviado o e-mail para pessoa.
+[252] Caroline Poteria 25 minutos 5 segundos — Se for o caso, dá para até salvar esse e-mail dentro do sinistro também, né? Mas acho que talvez nesse caso não. Mas a gente tem o a gente todos os e-mails hoje, quando eles são disparados automaticamente, eles também são disparados para sistemas, né? Que é para os sistemas, não para o próprio no reply. Então.
+[253] Nelson Diniz 25 minutos 22 segundos — Okay.
+[254] Caroline Poteria 25 minutos 23 segundos — A gente também recebe uma cópia de todos os e-mails que são disparados, então às vezes acontece de alguém falar, não recebi tal e-mail e a gente vai lá no nosso servidor olhar.
+[255] Nelson Diniz 25 minutos 24 segundos — Yes.
+[256] Caroline Poteria 25 minutos 33 segundos — Então a gente hoje já tem isso.
+[257] Nelson Diniz 25 minutos 33 segundos — Esse serviço de e-mail index, ele não paga a leitura que a pessoa escreveu ou leu.
+[258] Caroline Poteria 25 minutos 38 segundos — Um.
+[259] Caroline Poteria 25 minutos 43 segundos — No serviço não. No nosso serviço não. A gente tem isso no nosso provedor de e-mail lá no Central Grid. Lá a gente consegue ter uma noção, mas o próprio e-mail não.
+[260] Nelson Diniz 25 minutos 54 segundos — Okay.
+[261] Nelson Diniz 25 minutos 57 segundos — Cara, porque a pessoa pode falar, eu não recebi nada, apagou e fala, não recebi nada.
+[262] Caroline Poteria 26 minutos 2 segundos — É, mas a gente consegue provar porque a gente tem no nosso histórico de e-mail.
+[263] Nelson Diniz 26 minutos 7 segundos — Okay.
+[264] Caroline Poteria 26 minutos 8 segundos — Ele tem no nosso histórico, a gente sempre recebe.
+[265] Nelson Diniz 26 minutos 12 segundos — Believe.
+[266] Caroline Poteria 26 minutos 14 segundos — Tudo que foi disparado pela pela ferramenta, aí a gente recebe.
+[267] Caroline Poteria 26 minutos 22 segundos — Aí que mais aí a ideia desse daqui da agenda é mais isso né de de
+[268] Nelson Diniz 26 minutos 30 segundos — Yeah.
+[269] Caroline Poteria 26 minutos 32 segundos — Aí então hoje a gente tem esse daqui que dispara o e-mail, então já é uma coisa. E o que eu acho que também pode ajudar essa moça é o seguinte hoje, quando ela termina tudo que ela beleza, ela foi e agendou, marcou no calendário do Outlook ali e depois.
+[270] Nelson Diniz 26 minutos 34 segundos — Okay.
+[271] Nelson Diniz 26 minutos 45 segundos — Okay.
+[272] Caroline Poteria 26 minutos 47 segundos — Só que tem um porém também, tá? Eu acho que esse Outlook que ela tem aqui, ele não sinaliza para o regulador, tá? Porque aqui se você olhar, ela não coloca, nome dele sim, tá aqui como obrigatório, tá certo? Então ele recebe sim, ele vai receber lá na agenda dele. Tá vendo isso aqui que é o tal do ISC que eu comentei.
+[273] Nelson Diniz 26 minutos 50 segundos — Okay.
+[274] Nelson Diniz 26 minutos 52 segundos — O.
+[275] Nelson Diniz 26 minutos 54 segundos — E.
+[276] Nelson Diniz 27 minutos 6 segundos — Tá aí agora, vamos lá, vamos questão de canaliga para o regulador. É o regulador e vai ter acesso com a agenda pelo portal também, certo?
+[277] Caroline Poteria 27 minutos 15 segundos — Isso.
+[278] Nelson Diniz 27 minutos 16 segundos — Tá, então ele vai receber o e-mail do mesmo jeito. Tá, mas tudo bem, tudo bem.
+[279] Caroline Poteria 27 minutos 19 segundos — Mm-hmm.
+[280] Caroline Poteria 27 minutos 23 segundos — Ele vai ter. Ele tem sim, porque ele tem por aqui. Ele todo, todo mundo vai ter que ter. E aí, hoje, o que ela faz ela? Depois que ela faz todo esse agendamento, ela envia para o corretor ou para a seguradora. Vai depender de quem solicitou ali.
+[281] Nelson Diniz 27 minutos 32 segundos — Okay.
+[282] Nelson Diniz 27 minutos 34 segundos — Yes.
+[283] Caroline Poteria 27 minutos 39 segundos — Do histórico do e-mail, um e-mail notificando que ela enviou esse esse texto, esse que já está agendada nessa vistoria. E ela também mandou um e-mail para o segurado, um e-mail não, um WhatsApp para o segurado.
+[284] Nelson Diniz 27 minutos 41 segundos — A back.
+[285] Nelson Diniz 27 minutos 44 segundos — Okay.
+[286] Nelson Diniz 27 minutos 52 segundos — Thank you.
+[287] Nelson Diniz 27 minutos 55 segundos — Central.
+[288] Caroline Poteria 27 minutos 55 segundos — Geral, ela falou que é mais WhatsApp, porque a maneira que eles mais se comunicam está É, ela manda um WhatsApp para o segurado. É com um texto meio que padrão. Está vendo com um texto meio que padrão é.
+[289] Nelson Diniz 27 minutos 58 segundos — Okay.
+[290] Caroline Poteria 28 minutos 12 segundos — É esse texto padrão que ela mesmo já criou, e isso aqui ela está mandando pro segurado para confirmar que foi agendada a vistoria, tá? Então ela dá um textinho.
+[291] Nelson Diniz 28 minutos 13 segundos — See?
+[292] Nelson Diniz 28 minutos 15 segundos — T
+[293] Nelson Diniz 28 minutos 20 segundos — Paulo entre aspas padrão e o WhatsApp é manual certo alguma coisa assim
+[294] Caroline Poteria 28 minutos 23 segundos — Mm-hmm.
+[295] Caroline Poteria 28 minutos 25 segundos — Isso aí, o que eu isso? Não, ela que ela criou, colocou num txt, ela sempre copia e cola. O que eu pensei tá para facilitar. Eu não sei. A gente pode pensar numa segunda etapa. A gente tem uma aplicação chamada Star Channel.
+[296] Nelson Diniz 28 minutos 34 segundos — Yeah.
+[297] Caroline Poteria 28 minutos 41 segundos — A gente pode pensar numa integração para fazer esse envio pelo WhatsApp, tá? Mas se a gente conseguisse liberar para ela esse texto para ela copiar e colar já pronto, assim já é facilitaria, tá? Porque.
+[298] Nelson Diniz 28 minutos 55 segundos — Então a gente pode criar um modelo padrão.
+[299] Caroline Poteria 28 minutos 58 segundos — Mm-hmm.
+[300] Nelson Diniz 28 minutos 58 segundos — Aonde, por exemplo, o nome vem 11 tag chave, nome chave, sei lá.
+[301] Caroline Poteria 29 minutos 3 segundos — Isso, a gente já tem isso nos nossos e-mails, os e-mails também. Mas os nossos e-mails e os nossos relatórios, eles já são desse jeito. Então isso que eu ia comentar, que a gente já tem os nossos serviços. Eles já estão preparados para isso. A gente tem uma view. Você viu mesmo essa view também mexendo nos relatórios desse projeto da LT2.
+[302] Nelson Diniz 29 minutos 6 segundos — Fernando.
+[303] Caroline Poteria 29 minutos 23 segundos — A gente já tem isso de O caramba, a gente já tem essa questão, então acho que dá para deixar o texto pronto e só as tags de substituição. Aí depois a gente disponibiliza de uma maneira que ela copie e cole isso para mandar pelo e-mail. O caramba.
+[304] Nelson Diniz 29 minutos 38 segundos — É um botãozinho copiando, eu cria um botãozinho copiar, ele joga para a memória e ela coloca no WhatsApp por enquanto.
+[305] Caroline Poteria 29 minutos 38 segundos — Para mandar pelo WhatsApp?
+[306] Caroline Poteria 29 minutos 42 segundos — Mhm.
+[307] Caroline Poteria 29 minutos 45 segundos — Pode ser uhum perfeito, porque a gente tem a opção do relatório, mas acho que não faz sentido gerar um relatório pra ela copiar e colar assim.
+[308] Caroline Poteria 29 minutos 53 segundos — Aí eu acho melhor deixar no copia e cola mesmo, acho que faz mais sentido.
+[309] Nelson Diniz 30 minutos — AE com o botão de copia e como que for para mesmo a automática botou, é como trocar o endpoint de botão para enviar e-mail.
+[310] Caroline Poteria 30 minutos 9 segundos — Mhm.
+[311] Nelson Diniz 30 minutos 10 segundos — Okay.
+[312] Caroline Poteria 30 minutos 11 segundos — Yeah.
+[313] Caroline Poteria 30 minutos 13 segundos — Aí esse daqui acabaria aqui, ela mandou os e-mails, agendou, problema resolvido.
+[314] Nelson Diniz 30 minutos 13 segundos — Okay.
+[315] Caroline Poteria 30 minutos 20 segundos — Pelo menos nesse primeiro momento, pode ser que depois que a gente a gente automatiza essa parte, ela queira mais coisa. Oi?
+[316] Nelson Diniz 30 minutos 27 segundos — Eu não sei como é que eu não sei como é que funciona hoje, mas vamos dizer assim, ela temos de ir hoje às 3:00.
+[317] Caroline Poteria 30 minutos 34 segundos — Mm.
+[318] Nelson Diniz 30 minutos 35 segundos — Três e meia não vou ver a agenda.
+[319] Caroline Poteria 30 minutos 38 segundos — Três e meio o quê?
+[320] Nelson Diniz 30 minutos 39 segundos — Não houve a agenda para algum problema de saúde, sei lá, ela não pode participar. Como é que funcionaria? Você precisa saber se ela participou da agenda ou não.
+[321] Caroline Poteria 30 minutos 41 segundos — Uh.
+[322] Caroline Poteria 30 minutos 43 segundos — Yeah.
+[323] Nelson Diniz 30 minutos 50 segundos — Que realmente houve, que é o regulador.
+[324] Caroline Poteria 30 minutos 51 segundos — Então, no caso, não vai ser, entendi, teria que ser com o regulador, mas acho que a gente não tem como controlar isso, né? Se eles entraram, porque assim a plataforma de se for a revistoria presencial, o cara tem que ir lá e a plataforma de vistoria remota, ela não tem.
+[325] Caroline Poteria 31 minutos 6 segundos — Não tem nenhum vínculo com o nosso sinistro também.
+[326] Nelson Diniz 31 minutos 10 segundos — Tá mas eu tô pensando na seguinte vertente Digamos que ela tem agenda dela das três a três e meio beleza deu três e 40 ela não deu um local na agenda
+[327] Caroline Poteria 31 minutos 18 segundos — Mm.
+[328] Caroline Poteria 31 minutos 23 segundos — Hmm.
+[329] Nelson Diniz 31 minutos 24 segundos — Então tem que finalizar pra alguém que essa agenda não foi cumprida.
+[330] Caroline Poteria 31 minutos 30 segundos — Entendi.
+[331] Nelson Diniz 31 minutos 31 segundos — Entendeu? Então, tipo que colocaria um prazo lá, vamos dizer assim, parametrizável, mas 10 minutos, 15 minutos, sei lá, se nesse 15 minutos ela não der um oka que a gente, ou ela ou o regulador, alguém tem que dar um oka, não der um oka que a agenda houve, realmente foi cumprida, ele avisar o responsável.
+[332] Caroline Poteria 31 minutos 37 segundos — Mm-hmm.
+[333] Caroline Poteria 31 minutos 43 segundos — Mm-hmm.
+[334] Caroline Poteria 31 minutos 49 segundos — Isso, o responsável pode ser o gestor que está dentro da equipe, o líder da equipe.
+[335] Nelson Diniz 31 minutos 55 segundos — Aí pede uma justificativa, alguma coisa que pode acontecer em coisa, sei lá, tropeçou, entendeu? Mas tem algum algum controle assim para você saber se as agendas foram cumpridas ou não?
+[336] Caroline Poteria 32 minutos — Mm-hmm.
+[337] Caroline Poteria 32 minutos 7 segundos — Mhm.
+[338] Caroline Poteria 32 minutos 8 segundos — Pode ser, sim.
+[339] Nelson Diniz 32 minutos 13 segundos — Yeah.
+[340] Caroline Poteria 32 minutos 18 segundos — É, pode aparecer um pop-up para ele aqui na tela, você tem uma vistoria neste momento, ok?
+[341] Nelson Diniz 32 minutos 23 segundos — É, já venceu o prazo da disponia, foi feita, OK?
+[342] Caroline Poteria 32 minutos 26 segundos — É.
+[343] Caroline Poteria 32 minutos 28 segundos — Uhum, é porque assim, se for uma vistoria presencial, dificilmente ele talvez entre no sistema para visualizar, entendeu? É.
+[344] Nelson Diniz 32 minutos 28 segundos — Alguma coisa?
+[345] Caroline Poteria 32 minutos 38 segundos — Agora a online pode ser que ele esteja aqui, porque ele vai estar com a vistoria remota aberta aqui, mas no presencial é mais difícil, mas a gente pode dar um prazo para ele, tipo para ele confirmar se aquela agenda foi realizada.
+[346] Nelson Diniz 32 minutos 53 segundos — É, se for remoto, vamos lá aqui uns para metralhar mais assim, 15 minutos. Se for presencial, um dia.
+[347] Caroline Poteria 33 minutos 1 segundo — Mm-hmm.
+[348] Nelson Diniz 33 minutos 1 segundo — Um dia útil, lógico, que não adianta meu cara pagar ainda nascer, mas aí que teria um dia útil, então no outro dia ele tem que entrar lá. Primeira coisa, ele entra lá e dá o cara todas as agendas no dia anterior.
+[349] Caroline Poteria 33 minutos 3 segundos — See.
+[350] Caroline Poteria 33 minutos 5 segundos — Mm-hmm.
+[351] Caroline Poteria 33 minutos 9 segundos — Okay.
+[352] Caroline Poteria 33 minutos 12 segundos — Uhum, pode ser, até porque seria legal isso, porque a gente tem 11 campo na tela de sinistro de vistoria realizada.
+[353] Caroline Poteria 33 minutos 22 segundos — aqui ó vistoria aqui dentro da vistoria ele tem aqui a data da realização eles nunca preenchem porque aqui é a data que foi agendado Pode ser que eles reagendaram beleza mas aqui seria a data que foi realmente realizada a vistoria
+[354] Nelson Diniz 33 minutos 23 segundos — Thank you.
+[355] Nelson Diniz 33 minutos 28 segundos — Yeah.
+[356] Caroline Poteria 33 minutos 38 segundos — Então a gente pode talvez deixar essa opção e, tipo, pergunte para ele, a vistoria foi reagendada? É, confirme o dia que foi feita a vistoria. Aí esse dia a gente joga aqui automaticamente.
+[357] Nelson Diniz 33 minutos 49 segundos — É, olha o que é só pra pra pra caber realmente que a coisa aconteceu, né?
+[358] Caroline Poteria 33 minutos 51 segundos — Mhm.
+[359] Caroline Poteria 33 minutos 53 segundos — Se foi. E aqui também tem essa situação. Quando cria por padrão, ela vem como em aberto, mas a gente tem uma opção aqui, realizado, cancelado, dispensado, falta contato. Está vendo? Também dá para trocar aqui e trocar o status para realizado.
+[360] Nelson Diniz 33 minutos 59 segundos — Okay.
+[361] Nelson Diniz 34 minutos 7 segundos — Sim.
+[362] Caroline Poteria 34 minutos 8 segundos — Porque hoje eles não fazem isso manualmente, eles nunca fazem.
+[363] Caroline Poteria 34 minutos 12 segundos — Então a ideia seria fazer algo realmente, então que fosse de uma maneira automatizada, porque hoje os reguladores eles não fazem.
+[364] Nelson Diniz 34 minutos 20 segundos — Okay.
+[365] Nelson Diniz 34 minutos 23 segundos — Aí o esse status poderia entrar o reagendado?
+[366] Caroline Poteria 34 minutos 27 segundos — Ele não tem reagendado aqui, ele tem só cancelado ou realizado. Ele não tem, não tem mesmo.
+[367] Nelson Diniz 34 minutos 28 segundos — Eu vi, eu vi que não tem aí é, eu vi que não tem.
+[368] Nelson Diniz 34 minutos 38 segundos — Ou ele, vamos dizer assim, quando ele reagenda, não sei se isso pode ser feito, como é que é o controle dentro, mas quando ele reagenda, ele pega, cancela e abre o novo.
+[369] Caroline Poteria 34 minutos 51 segundos — É, então é que eu só não sei se eles fazem isso hoje, eu acho que eles só editam aqui a data, viu?
+[370] Caroline Poteria 34 minutos 57 segundos — Isso se eles fazem isso, está que eu também não posso botar a mão no fogo.
+[371] Nelson Diniz 35 minutos 1 segundo — Mm.
+[372] Caroline Poteria 35 minutos 1 segundo — Eu teria que aí eu teria que entender e até porque cada área pode trabalhar de uma maneira diferente. Eu não sei se eles cancelam essa vistoria, marcam como cancelada, que deveria ser o certo e criam uma nova, né? Ou se eles só vem aqui e editam.
+[373] Nelson Diniz 35 minutos 19 segundos — Tá mas mesmo assim vamos lá Digamos que eles vão aí editam tá a gente queria ter um controle disso hoje não tem hoje ele só troca a data e acabou teria que ter um históricozinho se fosse uma tabela históricozinha de troca
+[374] Caroline Poteria 35 minutos 24 segundos — Mm-hmm.
+[375] Caroline Poteria 35 minutos 27 segundos — Mhm.
+[376] Caroline Poteria 35 minutos 30 segundos — Ting.
+[377] Nelson Diniz 35 minutos 35 segundos — A data.
+[378] Caroline Poteria 35 minutos 35 segundos — Mm-hmm, say.
+[379] Nelson Diniz 35 minutos 37 segundos — a justificativa para trocar cardato.
+[380] Caroline Poteria 35 minutos 40 segundos — Mm-hmm.
+[381] Nelson Diniz 35 minutos 41 segundos — Daria para pagar?
+[382] Caroline Poteria 35 minutos 42 segundos — Sim, entendi.
+[383] Caroline Poteria 35 minutos 47 segundos — Entendi.
+[384] Nelson Diniz 35 minutos 47 segundos — Eu estou pensando na questão mesmo de auditoria de controle de vocês, é?
+[385] Caroline Poteria 35 minutos 50 segundos — De histórico, auditoria. Uhum. Sim.
+[386] Caroline Poteria 35 minutos 54 segundos — É que eu tô pensando aqui é o.
+[387] Nelson Diniz 35 minutos 55 segundos — Aí, se você puder confirmar se eles cancelam e abre outra, beleza, aí é diferente. Agora, se não, se eles só trocam a data, seria interessante ter o históricozinho dele.
+[388] Caroline Poteria 36 minutos — É, eu vou confirmar, eu acho melhor.
+[389] Caroline Poteria 36 minutos 8 segundos — eu prefiro confirmar com eles primeiro essa parte porque assim o que essa o que para mim é certo como Sistemas às vezes pode acabar prejudicando o andamento da área então eu prefiro confirmar mesmo com o pessoal que faz tem costume de fazer para ver como que eles fazem
+[390] Nelson Diniz 36 minutos 10 segundos — Yeah.
+[391] Nelson Diniz 36 minutos 24 segundos — AE se for o cancelar e abrir outra é diferente, porque aqui vai ter. AE já tem o histórico do que tem. Aqui ele fala, não, a gente troca a data, beleza, então o código vai fazer o seguinte, que vão trocar a data, vai reagendar, ele vai pegar, colocar a linha anterior no histórico e colocar a linha atual.
+[392] Caroline Poteria 36 minutos 29 segundos — Mhm.
+[393] Nelson Diniz 36 minutos 41 segundos — Lá dentro vai ter o acompanhamento, aí vai ter quem que reagendou para quando reagendou e uma justificativa, só isso.
+[394] Caroline Poteria 36 minutos 48 segundos — Mhm.
+[395] Caroline Poteria 36 minutos 50 segundos — Beleza.
+[396] Caroline Poteria 36 minutos 52 segundos — Eu vou confirmar com eles então certinho, só como eles fazem hoje, mas eu tenho quase certeza que eles só trocam mesmo, quase certeza.
+[397] Nelson Diniz 36 minutos 55 segundos — Yeah.
+[398] Nelson Diniz 37 minutos 1 segundo — Não, mas é coisa fácil de fazer também, é só uma academia histórico.
+[399] Caroline Poteria 37 minutos 2 segundos — Mm-hmm.
+[400] Caroline Poteria 37 minutos 5 segundos — Beleza.
+[401] Caroline Poteria 37 minutos 7 segundos — Bem, acho que da parte dessa parte de contrato seria isso, do contrato. Oh, desculpa, essa parte da agenda é isso.
+[402] Nelson Diniz 37 minutos 13 segundos — Okay.
+[403] Caroline Poteria 37 minutos 16 segundos — Aí, que mais que eu tenho aqui?
+[404] Caroline Poteria 37 minutos 23 segundos — Esse beleza, aí eu tenho esse daqui de wipe que eu preciso, que tem que terminar a para verificação dos arquivos, pensamos em colocar uma em cada linha uma flag.
+[405] Nelson Diniz 37 minutos 25 segundos — Okay.
+[406] Caroline Poteria 37 minutos 38 segundos — Se foi aprovado, enviar um correio por Doc Sign para fazer a assinatura.
+[407] Nelson Diniz 37 minutos 41 segundos — Okay.
+[408] Caroline Poteria 37 minutos 47 segundos — E aprovação massiva, o que acontece? Esse daqui é um pedido da nossa.
+[409] Nelson Diniz 37 minutos 54 segundos — Okay.
+[410] Caroline Poteria 37 minutos 54 segundos — Gestora de fora, opa!
+[411] Nelson Diniz 37 minutos 55 segundos — No.
+[412] Caroline Poteria 37 minutos 58 segundos — Não é aqui também, é aqui. Aqui existem essas 3 telas de certificação, certificação, conformidade e reconciliação. Essas 3. Essa certificação, o IPE, tá vendo aqui, assinado a Marie, que é a nossa diretora.
+[413] Nelson Diniz 38 minutos 7 segundos — Okay.
+[414] Nelson Diniz 38 minutos 10 segundos — Things down.
+[415] Nelson Diniz 38 minutos 13 segundos — Okay.
+[416] Caroline Poteria 38 minutos 14 segundos — De finanças, ela.
+[417] Caroline Poteria 38 minutos 18 segundos — Cada controle de cada país é responsável por subir aqui os arquivos de certificação WIP. Então eles sobem esse arquivo aqui na ferramenta. Aí a Marie entra depois nessa ferramenta para certificar esse WIP. O que é certificar o WIP? É validar se esses valores estão certos.
+[418] Nelson Diniz 38 minutos 19 segundos — Sure.
+[419] Nelson Diniz 38 minutos 29 segundos — Okay.
+[420] Nelson Diniz 38 minutos 31 segundos — Okay.
+[421] Caroline Poteria 38 minutos 36 segundos — né? É uma auditoria que é feita dentro do valor de um IP do nosso sistema. Qual que é a ideia aqui, né? Se eu entrar aqui, ó, tá vendo? Eu tenho 18 PDFs aqui, né? Aí eu abro, beleza, tudo tal, aí tá vendo? Cada um tem um, cada país tem seu jeito de trabalhar, né? Tem os valores aqui, assinatura.
+[422] Nelson Diniz 38 minutos 37 segundos — Okay.
+[423] Nelson Diniz 38 minutos 39 segundos — Okay.
+[424] Nelson Diniz 38 minutos 44 segundos — Okay.
+[425] Nelson Diniz 38 minutos 46 segundos — This.
+[426] Nelson Diniz 38 minutos 48 segundos — Central.
+[427] Nelson Diniz 38 minutos 50 segundos — Okay.
+[428] Nelson Diniz 38 minutos 54 segundos — Okay.
+[429] Caroline Poteria 38 minutos 56 segundos — Cada regulador tem que fazer a sua própria certificação, então o pessoal, os controle só vem aqui a de cada regulador. É aí o que que a gente precisa fazer aqui? Uma opção de.
+[430] Nelson Diniz 38 minutos 57 segundos — Okay.
+[431] Nelson Diniz 38 minutos 59 segundos — Three.
+[432] Nelson Diniz 39 minutos 3 segundos — That.
+[433] Caroline Poteria 39 minutos 10 segundos — Assinatura massiva, porque hoje ela tem que entrar um por um para assinar. Aí ela clica aqui em assinar e o assinar é um OK. Não tem uma assinatura mesmo, sabe? Esse assinar aqui é só um OK, que aí ele vem aqui e coloca aqui o nome dela. Tá vendo aqui? A data da assinatura é assinado por.
+[434] Nelson Diniz 39 minutos 15 segundos — Hello!
+[435] Nelson Diniz 39 minutos 20 segundos — Okay.
+[436] Nelson Diniz 39 minutos 22 segundos — No.
+[437] Nelson Diniz 39 minutos 26 segundos — M.
+[438] Caroline Poteria 39 minutos 28 segundos — Puff.
+[439] Caroline Poteria 39 minutos 29 segundos — É isso, né? É aqui. Qual que é a ideia da gente criar essa opçãozinha de assinatura aprovação massiva, né? Então ela entraria, poderia selecionar aqui os quadrinhos mais de um e dar um aprovar.
+[440] Nelson Diniz 39 minutos 47 segundos — Okay.
+[441] Caroline Poteria 39 minutos 48 segundos — Assinar, né? E aqui, tá vendo? Aí teria uma flagzinha de em cada linha com esse aprovado, que é o que já está praticamente aqui, né? O tal assinado. Eu só preciso confirmar se o assinado é aprovado. Eles consideram a mesma coisa.
+[442] Nelson Diniz 39 minutos 59 segundos — Thank you.
+[443] Caroline Poteria 40 minutos 5 segundos — Ou se eles querem, além do assinado, um aprovado?
+[444] Nelson Diniz 40 minutos 8 segundos — Okay.
+[445] Caroline Poteria 40 minutos 9 segundos — Eu vou, vou confirmar, mas aqui eles querem uma fazer essa verificação aqui do da assinatura por docosign, aí aqui a gente teria que ver. Eu sei que a gente está em processo de compra de uma licença PDF.
+[446] Nelson Diniz 40 minutos 12 segundos — This.
+[447] Nelson Diniz 40 minutos 20 segundos — Beat.
+[448] Nelson Diniz 40 minutos 41 segundos — Let's see.
+[449] Caroline Poteria 40 minutos 42 segundos — Só que aí ele teria que assinar dentro de cada documento PDF. Aí eu não sei se faz muito sentido.
+[450] Nelson Diniz 40 minutos 44 segundos — Something.
+[451] Nelson Diniz 40 minutos 46 segundos — É a minha dúvida, é qual a diferença de assinado e aprovado?
+[452] Caroline Poteria 40 minutos 50 segundos — É isso que eu preciso confirmar, porque eu estou entendendo que este aprovado seria a mesma coisa de confirmado. Seria a mesma coisa de confirmar do assinado. Desculpa, aprovado, o assinado seria o mesmo. Eu preciso confirmar aqui se é isso mesmo ou se eles querem um step antes de assinado, que é o aprovado.
+[453] Caroline Poteria 41 minutos 9 segundos — Lado.
+[454] Nelson Diniz 41 minutos 10 segundos — That.
+[455] Caroline Poteria 41 minutos 11 segundos — Tá, mas eu acho, acredito eu, que seja a mesma coisa.
+[456] Caroline Poteria 41 minutos 17 segundos — Mas eu acho que nesse momento aqui, a principal que a gente precisa é essa aprovação massiva, que hoje, quando ela tem que aprovar, ela tem que entrar um a um aqui e daí se aprovar. No geral, a gente não faz isso. A gente obriga com que a pessoa entre dentro de cada um, mas no caso aqui.
+[457] Nelson Diniz 41 minutos 27 segundos — Mhm.
+[458] Caroline Poteria 41 minutos 33 segundos — Isso que a gente tá falando de um pessoal que a gente sabe que não presta muita atenção. Aqui a gente está falando da essa é a única mulher que tem acesso a essa assinatura, que é a diretora do financeiro, que é a se você for, se é fosse ou sei lá, sei que a mulher.
+[459] Caroline Poteria 41 minutos 48 segundos — fica né E então tipo e é coisa de dinheiro ela não vai assinar sem prestar atenção Então nesse caso por isso que a gente vai liberar essa aprovação massiva entendeu
+[460] Nelson Diniz 42 minutos — Okay.
+[461] Nelson Diniz 42 minutos 2 segundos — G.
+[462] Caroline Poteria 42 minutos 4 segundos — Aí esse eu só vou confirmar essa parte, mas eu sei que a certeza que tem é incluir a parte de, essa parte de, como que é o nome? Essa parte de assinado, aprovação massiva.
+[463] Nelson Diniz 42 minutos 12 segundos — Okay.
+[464] Nelson Diniz 42 minutos 16 segundos — Hello.
+[465] Nelson Diniz 42 minutos 21 segundos — No.
+[466] Nelson Diniz 42 minutos 23 segundos — Okay, that is the thing.
+[467] Caroline Poteria 42 minutos 23 segundos — Aí deixa eu pensar, eu acho que a gente tem é, eu acho que a gente tem um umas telinhas.
+[468] Caroline Poteria 42 minutos 32 segundos — Eu sei que documento a gente tem a seleção massiva, mas ele não faz aprovação porque a gente obriga. Aí foi uma opção mesmo que a gente obrigou que o regulador visualizasse antes de aprovar. Foi um caso à parte, né? Agora esse daqui eu só preciso fazer essa confirmação.
+[469] Nelson Diniz 42 minutos 53 segundos — AE que nem pra precisar alinhar um pouquinho mais pra poder ter uma ideia de como vai seguir. Eu to preocupado com essa diferença da aprovação e da assinatura. Eu entendo que seja assim, a aprovação é quando todo mundo assinou.
+[470] Caroline Poteria 42 minutos 59 segundos — Mm-hmm.
+[471] Caroline Poteria 43 minutos 3 segundos — É, eu vou, eu vou confirmar aqui, mas eu acho que é a mesma coisa.
+[472] Caroline Poteria 43 minutos 9 segundos — É só uma pessoa que vai assinar.
+[473] Nelson Diniz 43 minutos 11 segundos — Mm.
+[474] Caroline Poteria 43 minutos 11 segundos — É só ela.
+[475] Nelson Diniz 43 minutos 13 segundos — Yeah.
+[476] Caroline Poteria 43 minutos 13 segundos — É sempre só ela que assina, não existe outros.
+[477] Nelson Diniz 43 minutos 16 segundos — E não tem nenhum revisor, ninguém reviva do dinheiro, então não sei o que é que é preocupado com isso.
+[478] Caroline Poteria 43 minutos 18 segundos — No.
+[479] Caroline Poteria 43 minutos 20 segundos — Não.
+[480] Caroline Poteria 43 minutos 23 segundos — Uhum não, porque essa mulher é pica, então É Ela que olha eu falando palavrão, mas essa mulher é fodona, então ela que é geralmente ela que aprova tudo mesmo.
+[481] Nelson Diniz 43 minutos 35 segundos — Okay.
+[482] Nelson Diniz 43 minutos 37 segundos — AE isso daí rodaria o que? Esse daí rodaria como serviço?
+[483] Caroline Poteria 43 minutos 38 segundos — Mas eu vou confirmar certinho, eu vou confirmar certinho se o aprovação é igual. Hum?
+[484] Caroline Poteria 43 minutos 46 segundos — Não, não é direto na própria tela mesmo, não é um serviço não.
+[485] Caroline Poteria 43 minutos 50 segundos — Vai ser direto nessa tela aqui.
+[486] Caroline Poteria 43 minutos 53 segundos — ela tem que entrar aqui para visualizar antes de aprovar que ela tem que pelo menos dar um ok ela tem que selecionar para falar que ela viu para aprovar a gente não pode aprovar também a torto a direita
+[487] Nelson Diniz 43 minutos 53 segundos — Okay.
+[488] Nelson Diniz 44 minutos 3 segundos — Okay.
+[489] Nelson Diniz 44 minutos 4 segundos — Eu perguntei porque se fosse um serviço, não podia ter controle nenhum.
+[490] Caroline Poteria 44 minutos 7 segundos — Não, não, não é serviço não, vai ser direto na própria tela, não é serviço não.
+[491] Caroline Poteria 44 minutos 14 segundos — Now é now.
+[492] Nelson Diniz 44 minutos 14 segundos — Right.
+[493] Caroline Poteria 44 minutos 18 segundos — Till the.
+[494] Nelson Diniz 44 minutos 19 segundos — Entendi, não, agora ele tá.
+[495] Caroline Poteria 44 minutos 20 segundos — Hey.
+[496] Caroline Poteria 44 minutos 22 segundos — Hein, tô rapidinho. Tá, eu acho que, bem, falta 10 minutos para acabar aqui. Eu tenho reunião daqui a pouco. Deixa eu ver se dá tempo de passar mais algum. Se tem uma coisa, eu sei que tem, mas deixa eu ver se dá tempo de passar mais algum.
+[497] Nelson Diniz 44 minutos 37 segundos — Que ele está ficando chique aquela reunião.
+[498] Caroline Poteria 44 minutos 37 segundos — Take.
+[499] Caroline Poteria 44 minutos 40 segundos — Eu tenho reunião o dia inteiro. Meu Deus, não sei onde eu estou. Aí eu trabalho que nem eu fiz agora, trabalhei no fim de semana.
+[500] Nelson Diniz 44 minutos 42 segundos — Tive um cara.
+[501] Nelson Diniz 44 minutos 46 segundos — Ele me contratou na empresa, quando ele me contratou, ele era gerente de projetos, lá na William. É com 3 meses, ele pediu a Rego. Assim, ele era. Ele era de removedor Java. Aí promoveram ele a gerente de projetos. Aí fugiu o projeto, ele me convidou para trabalhar, me contratou.
+[502] Caroline Poteria 44 minutos 51 segundos — Mhm.
+[503] Caroline Poteria 44 minutos 57 segundos — Mhm.
+[504] Nelson Diniz 45 minutos 4 segundos — Com 3 no meio que ele pediu arrego e voltou aquele revolvedor.
+[505] Caroline Poteria 45 minutos 7 segundos — É que eu não quero mesmo voltar a ser desenvolvedora, então eu até gosto de fazer a reunião.
+[506] Nelson Diniz 45 minutos 12 segundos — não ele voltou Tipo ele trabalhava até que nem você 8 9 10 da noite ele falou não aguento não vou voltar a desenvolver ainda não
+[507] Caroline Poteria 45 minutos 20 segundos — H-.
+[508] Caroline Poteria 45 minutos 21 segundos — Mas quando eu era desenvolvedor eu trabalhava do mesmo jeito, você acredita?
+[509] Nelson Diniz 45 minutos 25 segundos — Mas aquele negócio mais ganha, porque quando você tem um cargo mais de confiança, você não ganha, não.
+[510] Caroline Poteria 45 minutos 29 segundos — É, não ganho. É, não mesmo. Um tostão.
+[511] Nelson Diniz 45 minutos 34 segundos — É.
+[512] Caroline Poteria 45 minutos 35 segundos — É, mas na verdade também, porque depende, porque as outras empresas que eu trabalhava eu ganhava. Se o cliente aprovasse pagar hora extra, né? Às vezes o cliente não aprova, mas você tem um monte de coisa para fazer. Eu trabalhava do mesmo jeito.
+[513] Nelson Diniz 45 minutos 45 segundos — Central às vezes não, quando você é consultor, na maioria das vezes.
+[514] Caroline Poteria 45 minutos 48 segundos — É, então aí eu estou sendo boazinha, eu estou tentando ser boazinha.
+[515] Caroline Poteria 45 minutos 54 segundos — Oh, céus, oh, vida.
+[516] Caroline Poteria 45 minutos 57 segundos — Bem, mas eu acho que por enquanto é isso. É, eu acho que por enquanto são esses 2 para começar as documentações e depois eu a gente agenda para passando os outros. Aí eu só vou ver com aí qualquer coisa eu vejo.
+[517] Nelson Diniz 46 minutos 3 segundos — Hello.
+[518] Nelson Diniz 46 minutos 7 segundos — O documentário eu vou deixar os pontos em aberto para a gente alinhar e ajustar a documentação depois.
+[519] Caroline Poteria 46 minutos 11 segundos — Tá.
+[520] Caroline Poteria 46 minutos 14 segundos — Tá, beleza. Aí você vê com o Bruno certinho, porque eu sei que tem mais um desenvolvedor com acesso, tá? Com a máquina pra talvez fazer os documentos enquanto você está terminando de você estar focado nos devs, porque a gente também precisa entregar esse dev do LT2.
+[521] Nelson Diniz 46 minutos 22 segundos — Simone.
+[522] Nelson Diniz 46 minutos 24 segundos — That.
+[523] Nelson Diniz 46 minutos 32 segundos — Okay.
+[524] Caroline Poteria 46 minutos 34 segundos — Aí eu vou ver agora o que você me passou aqui do que eu vi que você me mandou o negócio do cadê você aqui? Eu vi que você me mandou aqui o app settings, eu vou trocar lá.
+[525] Nelson Diniz 46 minutos 35 segundos — O.
+[526] Nelson Diniz 46 minutos 36 segundos — Yes.
+[527] Nelson Diniz 46 minutos 38 segundos — It.
+[528] Nelson Diniz 46 minutos 46 segundos — É, eu mandei isso e eu mandei um script para instalação, porque um problema também é o usuário do banco que está dando completo.
+[529] Caroline Poteria 46 minutos 55 segundos — Opera aí então.
+[530] Caroline Poteria 46 minutos 57 segundos — Deixa eu abrir o servidor aqui que a gente já.
+[531] Nelson Diniz 47 minutos 3 segundos — Olhe, eu apanhei com uma variável aqui, viu? Nossa, depois que subiu a PR2, ele estava pedindo a variável de DC, nossa senhora, não deixava eu passar aquela variável em ambiente.
+[532] Caroline Poteria 47 minutos 16 segundos — Ah, mas agora eu também lembro de uma coisa, você trocou já pra cone a connection string pra BRS ou ainda tá com default?
+[533] Caroline Poteria 47 minutos 25 segundos — Ah, entendi.
+[534] Caroline Poteria 47 minutos 27 segundos — Então tá.
+[535] Nelson Diniz 47 minutos 28 segundos — É porque o meu aqui está de full, aí para não ter que mudar todo o código, porque eu deixei para ficar com 2.
+[536] Caroline Poteria 47 minutos 35 segundos — Entendi, então vou dar um stop nesse.
+[537] Caroline Poteria 47 minutos 39 segundos — Deixa eu pegar aqui o
+[538] Nelson Diniz 47 minutos 39 segundos — Okay.
+[539] Nelson Diniz 47 minutos 41 segundos — Mhm.
+[540] Caroline Poteria 47 minutos 42 segundos — Deixa eu trocar aqui o websetting, papel websetting que você mandou.
+[541] Nelson Diniz 47 minutos 47 segundos — Aí o log não cai naquela pasta, tá?
+[542] Caroline Poteria 47 minutos 50 segundos — É, ele está direto no banco agora, né?
+[543] Nelson Diniz 47 minutos 51 segundos — Okay.
+[544] Nelson Diniz 47 minutos 53 segundos — não ele tá no banco mas o TXT também sai mas não é na pasta raiz do blog é na parte de bug ou é o tem um log lá dentro eu achei o meu aqui sem querer
+[545] Caroline Poteria 47 minutos 57 segundos — Sim.
+[546] Caroline Poteria 47 minutos 58 segundos — That.
+[547] Caroline Poteria 48 minutos 3 segundos — Yeah.
+[548] Caroline Poteria 48 minutos 6 segundos — Beleza.
+[549] Caroline Poteria 48 minutos 8 segundos — Deixa, eu estou vendo aqui o que mudou, está se mudou o que acho que é aqui embaixo, então será?
+[550] Nelson Diniz 48 minutos 13 segundos — Ele tem o.
+[551] Caroline Poteria 48 minutos 13 segundos — O que mudou no app settings?
+[552] Nelson Diniz 48 minutos 17 segundos — O app chat acho que não mudou quase nada, o que mudou mais foi no log, tá?
+[553] Caroline Poteria 48 minutos 21 segundos — Tá, eu tô só que eu tô aqui eu abri o website isso aqui, eu tô comparando um com o outro pra ver o que.
+[554] Nelson Diniz 48 minutos 22 segundos — Oh.
+[555] Nelson Diniz 48 minutos 25 segundos — É, não mudou quase nada no episode, se eu não me engano, foi só lá em cima lá, deixa eu lembrar aqui.
+[556] Caroline Poteria 48 minutos 32 segundos — Eu estou com ele aqui, oh.
+[557] Caroline Poteria 48 minutos 35 segundos — aqui e aqui vai ser o Cadê o servidor servidor Cadê o servidor tá vendo servidor aí cadê
+[558] Nelson Diniz 48 minutos 44 segundos — não se você que tá com a tela grande não tá achando mulher
+[559] Caroline Poteria 48 minutos 47 segundos — aqui não é isso aqui é o servidor Ah tá porque o servidor ele não vai deixar aqui ó pera aí então não meu filho que que eu fiz pai
+[560] Caroline Poteria 48 minutos 58 segundos — Aqui, pronto, aumenta aqui, pronto, aqui.
+[561] Nelson Diniz 49 minutos 4 segundos — Eu toco note pede mais mais, né? Eu não quero que tenho opção, ele tem um bom.
+[562] Caroline Poteria 49 minutos 7 segundos — Hey.
+[563] Nelson Diniz 49 minutos 10 segundos — uma peinha dele, um plugin dele que ele paga comparação automática porque
+[564] Caroline Poteria 49 minutos 13 segundos — É, eu uso, eu uso o immerge.
+[565] Nelson Diniz 49 minutos 16 segundos — não ele tem um negócio de compare eu joguei muito
+[566] Caroline Poteria 49 minutos 18 segundos — É que está um no um, está no servidor e o outro está no teams. Deixa eu pegar aqui. Aqui no emoji é mais rápido, control v que aí eu copio.
+[567] Nelson Diniz 49 minutos 24 segundos — Yeah.
+[568] Caroline Poteria 49 minutos 30 segundos — Oh, aqui só mudou aqui em cima.
+[569] Caroline Poteria 49 minutos 32 segundos — Porque tem que ter esse staging aqui que não tinha, foi a única coisa que mudou.
+[570] Caroline Poteria 49 minutos 37 segundos — Do seu com o servidor, então?
+[571] Nelson Diniz 49 minutos 40 segundos — É, então eu tirei porque estava dando problema.
+[572] Caroline Poteria 49 minutos 42 segundos — E.
+[573] Caroline Poteria 49 minutos 44 segundos — É, mas esse aqui ele tem que estar aqui mesmo, tá? O staging, ele tem que estar no ambiente de teste. O staging é o nome do ambiente aqui.
+[574] Nelson Diniz 49 minutos 50 segundos — é que no meu aqui eu não consegui de maneira nem com a Tusca por isso que eu tirei é no meu aqui não foi
+[575] Caroline Poteria 49 minutos 55 segundos — funcionar como staging mesmo
+[576] Caroline Poteria 49 minutos 59 segundos — Oxe! E o pior é que é o padrão, ele tem que funcionar.
+[577] Nelson Diniz 50 minutos 3 segundos — Não pode por. A gente tenta rodar ele. Pode ser que no servidor ele rode. O meu que pagou da grandiarra aqui, o revit não foi.
+[578] Caroline Poteria 50 minutos 4 segundos — É.
+[579] Caroline Poteria 50 minutos 7 segundos — É, Oh, porque aqui, Oh, se você olhar, está vendo, Oh, todos eles estão com padrão, Oh.
+[580] Nelson Diniz 50 minutos 13 segundos — Ah não mas o Stage não é nem no nome tá ele lá no e-mail deck service ele tava como esteja
+[581] Caroline Poteria 50 minutos 16 segundos — É.
+[582] Caroline Poteria 50 minutos 20 segundos — Ah, não, eu troquei só aqui. Oh, eu troquei aqui no esse appsite foi aqui, Oh, o stage aqui. O que eu estou falando que estava diferente. O appsite, a única diferença que deu foi essa. Esse stage aqui. Agora deixa eu abrir o log.
+[583] Nelson Diniz 50 minutos 25 segundos — And show up in the mail please.
+[584] Nelson Diniz 50 minutos 28 segundos — Mhm.
+[585] Caroline Poteria 50 minutos 38 segundos — NG log.
+[586] Caroline Poteria 50 minutos 47 segundos — Cadê você aqui no Teams?
+[587] Caroline Poteria 50 minutos 51 segundos — Eu acho que eu preciso.
+[588] Nelson Diniz 50 minutos 51 segundos — Então, log, quer ver, vai lá no log, está vendo se esteja e-mail service lá no log?
+[589] Caroline Poteria 50 minutos 56 segundos — Cadê aqui, pera aí, fechar aqui, log.
+[590] Caroline Poteria 51 minutos 3 segundos — I think about you.
+[591] Caroline Poteria 51 minutos 9 segundos — Sendo um bloco de notas, vou jogar ele aqui por coisa mesmo
+[592] Caroline Poteria 51 minutos 17 segundos — Okay.
+[593] Nelson Diniz 51 minutos 26 segundos — Okay.
+[594] Caroline Poteria 51 minutos 27 segundos — Aqui.
+[595] Nelson Diniz 51 minutos 28 segundos — Yeah.
+[596] Caroline Poteria 51 minutos 30 segundos — Esse daqui é o seu, aqui é o do servidor.
+[597] Nelson Diniz 51 minutos 34 segundos — E aí cara vamos lá o o debug tava jogando os arquivos tudo na pasta do debug tem que jogar o William para tirar tá
+[598] Caroline Poteria 51 minutos 42 segundos — That.
+[599] Nelson Diniz 51 minutos 43 segundos — O minuto eu mudei para ficar criando um monte de arquivo.
+[600] Caroline Poteria 51 minutos 47 segundos — That.
+[601] Nelson Diniz 51 minutos 49 segundos — E esse stage em e-mail service é o que ele não estava achando no banco, estava se perdendo porque ele não envia falar como e-mail desk sem service.
+[602] Caroline Poteria 51 minutos 55 segundos — Aqui.
+[603] Caroline Poteria 51 minutos 59 segundos — Tá, e aqui ficou só esse daqui, então vou copiar o seu e subescrever.
+[604] Nelson Diniz 52 minutos 5 segundos — Aí ele já era o lock certinho
+[605] Caroline Poteria 52 minutos 7 segundos — Tá.
+[606] Caroline Poteria 52 minutos 9 segundos — Deixa eu pegar o seu e-mail de novo. Cadê você aqui? Cadê a mensagem aqui? Control a, control c, control a, control v, salvar.
+[607] Nelson Diniz 52 minutos 19 segundos — Aí assim, web hatching, você tá com ele na pasta raiz, né?
+[608] Caroline Poteria 52 minutos 24 segundos — É, ele fica na pasta do próprio projeto mesmo aqui, aqui fica aqui é só para eu copiar quando a gente gera versão, mas ele está aqui.
+[609] Nelson Diniz 52 minutos 27 segundos — Thank.
+[610] Nelson Diniz 52 minutos 31 segundos — Então, aí na hora que você faz o build, você tem que jogar o os 2 na mesma parte do build também.
+[611] Caroline Poteria 52 minutos 36 segundos — Isso é isso mesmo, é isso mesmo. O jogo dentro aqui é fica no publish aqui.
+[612] Nelson Diniz 52 minutos 40 segundos — Yeah.
+[613] Caroline Poteria 52 minutos 41 segundos — Os 2 ficam aqui, agora eu vou pegar o que você mandou para instalar.
+[614] Caroline Poteria 52 minutos 47 segundos — Esse de instalação. Deixa o primeiro desinstalar esse aqui, né? Como é que eu faço para remover esse?
+[615] Nelson Diniz 52 minutos 48 segundos — Have to save Picot.
+[616] Nelson Diniz 52 minutos 54 segundos — É, coloca o nome lá no ponto de comando que coloca o nome dele e traz aqui, acho que é de instal, un instal é.
+[617] Caroline Poteria 52 minutos 56 segundos — Okay.
+[618] Caroline Poteria 53 minutos — SMD.
+[619] Caroline Poteria 53 minutos 3 segundos — Central nance.
+[620] Caroline Poteria 53 minutos 9 segundos — É, or no?
+[621] Caroline Poteria 53 minutos 12 segundos — Caraca, tem que deixa eu pegar o epite daqui, copiar, pera aí.
+[622] Caroline Poteria 53 minutos 21 segundos — Só que aqui eu tiro só esse, deixa aqui que estava como Luan Crawford.
+[623] Caroline Poteria 53 minutos 30 segundos — Control C.
+[624] Caroline Poteria 53 minutos 44 segundos — O ninstall, né? O é tracinho.
+[625] Nelson Diniz 53 minutos 47 segundos — Acho que era aqui onde estava.
+[626] Nelson Diniz 53 minutos 56 segundos — It don't remote.
+[627] Caroline Poteria 54 minutos — No.
+[628] Nelson Diniz 54 minutos 1 segundo — Tenta remove.
+[629] Caroline Poteria 54 minutos 4 segundos — Eu procuro aqui na internet, pera aí.
+[630] Nelson Diniz 54 minutos 7 segundos — Scare him more.
+[631] Caroline Poteria 54 minutos 8 segundos — Também não. Ele está dando pau, na verdade, desse one Craft. Eu tenho que voltar aqui, se eu tenho que ir lá para a pastinha dele.
+[632] Nelson Diniz 54 minutos 15 segundos — É, tem que rodar lá, porque senão ele tem que colocar todo o endereço dele.
+[633] Caroline Poteria 54 minutos 18 segundos — A.
+[634] Caroline Poteria 54 minutos 21 segundos — This photos.
+[635] Caroline Poteria 54 minutos 27 segundos — Agora eu venho aqui.
+[636] Caroline Poteria 54 minutos 41 segundos — Braço, eu tenho que pegar o nome dele, né? Do exe aqui.
+[637] Caroline Poteria 54 minutos 51 segundos — That's all.
+[638] Nelson Diniz 54 minutos 55 segundos — Se não for, você tenta remove término, tá?
+[639] Caroline Poteria 54 minutos 59 segundos — Uh, the will the service was not properly configurated.
+[640] Caroline Poteria 55 minutos 6 segundos — Ah, por causa do pera aí, deixa eu trocar o app settings aqui.
+[641] Caroline Poteria 55 minutos 15 segundos — Esse nome aqui não tem mesmo.
+[642] Caroline Poteria 55 minutos 19 segundos — Ele está com o tanto que ele está no nome errado. Central S. Agora eu volto aqui.
+[643] Caroline Poteria 55 minutos 27 segundos — I they will do many jeito.
+[644] Nelson Diniz 55 minutos 29 segundos — É, tem antes que retar no PowerShell, que tá no prompt.
+[645] Caroline Poteria 55 minutos 31 segundos — Não tô no, tô no CMD.
+[646] Nelson Diniz 55 minutos 34 segundos — É, vale tenta pelo prompt, desculpa, pelo polishop.
+[647] Caroline Poteria 55 minutos 38 segundos — Tá eu tenho uma reunião agora que eu já tô com 2 minutos atrasada mas quando eu terminar aqui eu já dou uma olhada tá aí qualquer coisa eu te aviso
+[648] Nelson Diniz 55 minutos 43 segundos — Tá esse daqui, esse daí que vai falar, ele vai falar com outro nome, qualquer coisa, tá? Você consegue escalar.
+[649] Caroline Poteria 55 minutos 48 segundos — Eu já vou colocar ele, deixa eu já acertar o nome aqui.
+[650] Caroline Poteria 55 minutos 57 segundos — That I install it, pera aí.
+[651] Caroline Poteria 56 minutos — E aí você já consegue testar PowerShell
+[652] Caroline Poteria 56 minutos 5 segundos — Aqui é assim, né? Deixa eu ver. Tem algum?
+[653] Nelson Diniz 56 minutos 9 segundos — Tem que ir até a parta lá quando você vive download.
+[654] Caroline Poteria 56 minutos 11 segundos — Também, né?
+[655] Nelson Diniz 56 minutos 21 segundos — Okay.
+[656] Caroline Poteria 56 minutos 33 segundos — Carolina.
+[657] Nelson Diniz 56 minutos 39 segundos — Okay.
+[658] Caroline Poteria 56 minutos 40 segundos — Suck saco.
+[659] Nelson Diniz 56 minutos 41 segundos — Okay.
+[660] Caroline Poteria 56 minutos 44 segundos — Beleza, entrei dentro da pasta.
+[661] Caroline Poteria 56 minutos 47 segundos — Agora, cadê o seu código aqui?
+[662] Caroline Poteria 56 minutos 51 segundos — Esse código todo aqui.
+[663] Nelson Diniz 56 minutos 55 segundos — É, roda o script direto.
+[664] Caroline Poteria 56 minutos 58 segundos — Tem que jogar esse script lá no servidor, é isso?
+[665] Nelson Diniz 57 minutos 1 segundo — é pode jogar local também
+[666] Caroline Poteria 57 minutos 2 segundos — Baixar.
+[667] Nelson Diniz 57 minutos 7 segundos — Para ver que tem que alterar qual endereço dele vai marcar o reputável.
+[668] Nelson Diniz 57 minutos 13 segundos — Ou joga na pasta do é, joga na pasta.
+[669] Caroline Poteria 57 minutos 14 segundos — Eu vou jogar aqui no publisher direto.
+[670] Nelson Diniz 57 minutos 17 segundos — Uh
+[671] Caroline Poteria 57 minutos 18 segundos — Deixa eu ver, cadê ele? Onde ele jogou? Aqui!
+[672] Caroline Poteria 57 minutos 25 segundos — Editar a pasta do serviço, cadê a pasta?
+[673] Caroline Poteria 57 minutos 34 segundos — Em algum lugar tem essa pasta, cadê?
+[674] Nelson Diniz 57 minutos 36 segundos — Não, se você acha que se você rodar direto, aí ele já ele pega o local, deixa eu abrir aqui.
+[675] Caroline Poteria 57 minutos 39 segundos — Ah tá, então fecha.
+[676] Caroline Poteria 57 minutos 42 segundos — Aí, mas aí é só executar isso daqui. Eu não preciso comprar shell aberto. Ah, então pera aí.
+[677] Nelson Diniz 57 minutos 46 segundos — É.
+[678] Nelson Diniz 57 minutos 48 segundos — Não, tem que tem que estar para shell como DM.
+[679] Caroline Poteria 57 minutos 52 segundos — Isso já tava, né?
+[680] Nelson Diniz 57 minutos 52 segundos — Então ele vai dar pra ver.
+[681] Caroline Poteria 57 minutos 55 segundos — Espera aí, então executar como?
+[682] Caroline Poteria 57 minutos 59 segundos — Open.
+[683] Nelson Diniz 58 minutos 2 segundos — não é vai no reparando porque tá no plantio não tá?
+[684] Caroline Poteria 58 minutos 4 segundos — Cadê o administrador? Eu estou perdido.
+[685] Caroline Poteria 58 minutos 7 segundos — So.
+[686] Nelson Diniz 58 minutos 8 segundos — Então é da hora que eu curto dentro do Power Shell.
+[687] Caroline Poteria 58 minutos 11 segundos — Aqui.
+[688] Nelson Diniz 58 minutos 12 segundos — Hmm.
+[689] Caroline Poteria 58 minutos 14 segundos — Assim, eu não sei, eu não. Eu dificilmente mexo com power shell, tem que trazer esse nome.
+[690] Nelson Diniz 58 minutos 17 segundos — Pera aí que eu vou te passar o comando Eita eu vou te passar o comando aí você roda dentro do PowerShell
+[691] Caroline Poteria 58 minutos 22 segundos — Tá deixa eu só avisar o pessoal que eu vou atrasar aqui também já começou
+[692] Nelson Diniz 58 minutos 25 segundos — Não, porque aí depois a gente vê, não tem problema.
+[693] Caroline Poteria 58 minutos 30 segundos — Está bom, eu vou indo lá, daqui a pouco eu te chamo, então vou deixar aberto aqui, você vai me mandando aí.
+[694] Nelson Diniz 58 minutos 33 segundos — eu te mandei o script eu troco o nome do script
+[695] Caroline Poteria 58 minutos 37 segundos — Tá, beleza.
+[696] Nelson Diniz 58 minutos 38 segundos — That.
+[697] Caroline Poteria 58 minutos 39 segundos — Tá bom, até mais.
+[698] Nelson Diniz 58 minutos 41 segundos — Yeah.
+[699] Nelson Diniz 58 minutos 43 segundos — Tchau.
+[700] Nelson Diniz 58 minutos 52 segundos — Eight.
+[701] Locutor/horário não informado — Caroline Poteria parou a transcrição
