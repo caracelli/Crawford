@@ -1,0 +1,2 @@
+Mensagem 547, Nível 16, Estado 1, Servidor DESKTOP-AIAB0V6, Linha 1
+A instrução ALTER TABLE conflitou com a restrição do FOREIGN KEY "FK_PersonBank_CreateByPersonId". O conflito ocorreu no banco de dados "CarolOneCrawfordDB", tabela "dbo.Person", column 'Id'.

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LTDEV-15 Cards</title>
+<style>
+:root{
+  --bg:#f4f5f7; --panel:#fff; --text:#172b4d; --muted:#5e6c84; --line:#dfe1e6;
+  --blue:#0c66e4; --blue-bg:#e9f2ff; --purple:#6e5dc6; --purple-bg:#f3f0ff;
+  --green:#216e4e; --green-bg:#dcfff1; --amber:#a54800; --amber-bg:#fff7d6; --check:#c1c7d0;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#1d2125; --panel:#22272b; --text:#dee4ea; --muted:#9fadbc; --line:#38414a;
+    --blue:#579dff; --blue-bg:#1c2b41; --purple:#9f8fef; --purple-bg:#2b273f;
+    --green:#7ee2b8; --green-bg:#1c3329; --amber:#f5cd47; --amber-bg:#332e1b; --check:#596773;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:14px/1.5 -apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+.wrap{max-width:1100px;margin:0 auto;padding:24px 16px 60px}
+.crumbs{color:var(--muted);font-size:13px;margin-bottom:6px}
+.crumbs b{color:var(--text);font-weight:600}
+h1{font-size:22px;margin:0 0 4px}
+.sub{color:var(--muted);margin:0 0 20px}
+.tree{background:var(--panel);border:1px solid var(--line);border-radius:8px;margin-bottom:20px}
+.row{display:grid;grid-template-columns:28px 110px 1fr 110px 90px;gap:10px;align-items:center;padding:10px 14px;border-top:1px solid var(--line);cursor:pointer}
+.row:first-child{border-top:0}
+.row:hover{background:var(--blue-bg)}
+.row.child{padding-left:38px}
+.ico{width:18px;height:18px;border-radius:4px;display:grid;place-items:center;color:#fff;font-size:11px;font-weight:700}
+.ico.epic{background:#904ee2}.ico.dev{background:#1d7afc}.ico.sub{background:#4bce97}
+.key{color:var(--blue);font-weight:600;font-size:13px}
+.hrs{color:var(--muted);font-size:13px;text-align:right}
+.pill{font-size:11px;font-weight:700;text-transform:uppercase;padding:2px 6px;border-radius:3px;background:var(--line);color:var(--muted);justify-self:end}
+.issue{display:none;background:var(--panel);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+.issue.on{display:grid;grid-template-columns:1fr 280px}
+.main{padding:22px 24px;border-right:1px solid var(--line);min-width:0}
+.side{padding:22px 20px}
+.type{display:flex;gap:8px;align-items:center;color:var(--muted);font-size:13px;margin-bottom:8px}
+.issue h2{font-size:20px;margin:0 0 18px}
+h3{font-size:14px;margin:20px 0 6px}
+.main p{margin:0 0 8px}
+ul{margin:0;padding-left:20px}
+ul.tasks{list-style:none;padding:0}
+ul.tasks li{display:flex;gap:8px;align-items:flex-start;padding:3px 0}
+ul.tasks li::before{content:"";flex:none;width:14px;height:14px;margin-top:3px;border:2px solid var(--check);border-radius:3px}
+code{background:var(--bg);border:1px solid var(--line);border-radius:3px;padding:0 4px;font-size:12px;word-break:break-word}
+.f{margin-bottom:14px}
+.f label{display:block;color:var(--muted);font-size:12px;font-weight:600;margin-bottom:2px}
+.tag{display:inline-block;padding:1px 6px;border-radius:3px;font-size:12px;background:var(--purple-bg);color:var(--purple)}
+.todo{background:var(--amber-bg);color:var(--amber);padding:1px 6px;border-radius:3px;font-size:12px}
+.avatar{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;background:var(--blue);color:#fff;font-size:10px;font-weight:700;margin-right:6px;vertical-align:middle}
+.note{margin-top:20px;padding:10px 14px;border-radius:6px;background:var(--amber-bg);color:var(--amber);font-size:13px}
+@media (max-width:760px){
+  .issue.on{grid-template-columns:1fr}
+  .main{border-right:0;border-bottom:1px solid var(--line)}
+  .row{grid-template-columns:22px 90px 1fr;}
+  .row .hrs,.row .pill{display:none}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="crumbs">Projeto <b>CRAWFORD</b> · mockup, nada criado ainda</div>
+  <h1>LTDEV-15 — Distribuição automática de processos</h1>
+  <p class="sub">Como os cards vão ficar no Jira, no padrão do DocWise Monitor (DOCW-160 a 164). Clique numa linha para ver o card.</p>
+
+  <div class="tree" id="tree"></div>
+  <div id="issues"></div>
+
+  <div class="note">Ainda falta definir: o Epic (criar um "LTDEV-15" novo?) e a sprint. Datas: uma semana por card (quarta a terça), a partir de 21/10/2026; 02/11 (Finados) descontado no Card 2. As chaves CRAWFORD-XX só existem depois que os cards forem criados.</div>
+</div>
+
+<script>
+const C = s => s.replace(/`([^`]+)`/g, '<code>$1</code>');
+const issues = [
+{ id:'epic', kind:'epic', key:'CRAWFORD-XX', type:'Epic', title:'LTDEV-15', hrs:'119–166 h', child:false,
+  sections:[{h:'Descrição',p:['Agrupa o desenvolvimento da distribuição automática de processos (LTDEV-15), como o CRAWFORD-21 faz para o LTDEV-2.']}],
+  side:{parent:'—', ini:'21/10/2026', fim:'17/11/2026'} },
+{ id:'pai', kind:'dev', key:'CRAWFORD-XX', type:'Desenvolvimento Avulso', title:'LTDEV-15 - Distribuição automática de processos', hrs:'119–166 h', child:false,
+  tasks:['Card 1 — Banco, parametrizações e nível de hierarquia','Card 2 — Motor de distribuição e troca de regulador','Card 3 — Telas de parâmetro, Ramo obrigatório e troca de regulador','Card 4 — Pedido de troca, tela de aprovações, testes e entrega'],
+  sections:[
+   {h:'Objetivo',p:['Escolher automaticamente o regulador principal ao cadastrar um sinistro, pela senioridade e pela quantidade de processos em aberto de cada regulador, em todos os países LATAM, com telas de parametrização e controle da troca manual.']},
+   {h:'Contexto',p:['A frente nasceu na branch BRL-735 (Leonardo Dalben e William Huang, 2025), aprovada duas vezes mas nunca mesclada no `main`: o merge em staging se perdeu e os PRs finais (#45 no backend, #67 no frontend) fecharam com a base `test-brazil` apagada. A análise de 21/10/2026 (`LTDEV-15_analise.md`) concluiu: reaproveitar a estrutura das parametrizações (37 arquivos novos no padrão II), reescrever o motor de distribuição e refazer o diálogo de troca de regulador. A troca de regulador estende o `ClaimService.ChangeMainAdjuster` do `main`, respeitando a DEV-545 (situação "Avisado") e a DV-137 (trava de sistema).','A construção está dividida em 4 subtarefas, uma por semana.']},
+   {h:'Critérios de sucesso',ul:['Sinistro cadastrado com parametrização vai para o regulador do nível certo com menos casos abertos, incluindo quem tem 0','Sem parametrização, o cadastro continua manual, como hoje','Com parametrização, a troca manual só por pedido aprovado pelo gestor, com motivo de 30 caracteres ou mais','Ramo obrigatório por flag no país (ligada só no Brasil)','Telas de parâmetro com permissão, tradução nos 8 idiomas e menu no padrão','DEV-545 (Avisado) e DV-137 (trava) continuam funcionando']},
+   {h:'Riscos técnicos',p:['O `main` andou cerca de 2.000 commits desde a BRL-735: os ganchos no núcleo do sinistro (`ClaimService`, `ClaimRepository`, `Claim.cs`, `NativeInjectorBootStrapper`) são reaplicados à mão. Perguntas em aberto (P1 a P13 da análise) podem mudar o desenho dos Cards 2 e 4. Volume real de carga por regulador só é mensurável em homologação.']},
+   {h:'Outras informações',p:['Estimativa: 119 a 166 h (15 a 21 dias úteis). Origem: BRL-735. Análise completa: `Doctos Crawford\\Crawford\\LTDEV-15_analise.md`.']}],
+  side:{parent:'Epic LTDEV-15', ini:'21/10/2026', fim:'17/11/2026'} },
+{ id:'c1', kind:'sub', key:'CRAWFORD-XX', type:'Subtarefa', title:'LTDEV-15 — Card 1 — Banco, parametrizações e nível de hierarquia', hrs:'29–39 h', child:true,
+  tasks:['Scripts idempotentes em `OneCrawford.Infra.Database.SqlServer/_executar/` (refazendo `BRL-735-1..4.sql`): tabelas `ParameterActivityAreaAdjuster` e `ParameterDistribuitionClaim` com FKs e índices, `PageX`/`PageComponent`/`GroupUserPermission` para todos os países, traduções em UTF-8 com `N\'\'`','Portar entidades e filtros: `ParameterActivityAreaAdjuster.cs`, `ParameterDistribuitionClaim.cs`, `ParameterDistribuitionClaimFilter*.cs`','Portar repositórios `ParameterActivityAreaAdjusterRepository.cs` e `ParameterDistribuitionClaimRepository.cs`, com filtro de país (B13)','Portar serviços `ParameterActivityAreaAdjusterService.cs` e `ParameterDistribuitionClaimService.cs`, corrigindo exclusão sem `scope.Complete()` (B10) e NullReference sem Operação/Seguradora (B11)','Prioridade das regras (específica antes da genérica) e `ExistParameter` com nulos (B12)','Controllers `ParameterActivityAreaAdjusterController.cs` e `ParameterDistribuitionClaimController.cs` com permissão (B15)','Uma só rota de Ramo: descartar `Cores/ActivityAreaController.cs` da BRL-735 e completar o CRUD do `ActivityAreaRepository` do `main` (B16, B17)','Nível de hierarquia 1 a 10 no cargo (`RoleX`), com cadastro e endpoint, sem mexer em `HierarchicalPosition`','Flag de Ramo obrigatório no `ParameterRoot` (ligada só no Brasil) e Ramo exposto no `ClaimService` por método virtual sobrescrito no Brasil','Injeções em `NativeInjectorBootStrapper.cs` e mapeamentos em `ReverseMappingProfile.cs`'],
+  sections:[
+   {h:'Objetivo',p:['Ter no `main` atual a estrutura de parametrização da distribuição — tabelas, entidades, serviços e endpoints — corrigida e no padrão II, mais o nível de hierarquia e a flag de Ramo.']},
+   {h:'Contexto',p:['A BRL-735 trouxe 37 arquivos novos que não conflitam com o `main`, mas com defeitos: exclusão de regra que não grava, regras genéricas com prioridade sobre as específicas, repositórios sem filtro de país, controllers só com `[Authorize]` e duas rotas `ActivityArea`. A escala de hierarquia usada (1 a 10 crescente) não bate com `RoleX.HierarchicalPosition` (1 Presidente a 5), por isso o nível novo é um campo próprio.']},
+   {h:'Critérios de sucesso',ul:['Scripts rodam duas vezes sem erro e sem duplicar','CRUD das duas parametrizações funciona pela API, só para quem tem permissão, filtrado pelo país','Regra mais específica vence a genérica','Cargo aceita nível de 1 a 10','Brasil exige Ramo no cadastro; os outros países não']},
+   {h:'Riscos técnicos',p:['Resposta da P2 (nível como campo no `RoleX` ou tabela própria) e da P3 (Ramo em `dbo.Claim`, opção A ou B) podem mudar o desenho. A opção B acrescenta 8 a 12 h.']},
+   {h:'Outras informações',p:['Estimativa: 29 a 39 h. Não depende de nada; bloqueia os Cards 2 e 3.']}],
+  side:{parent:'LTDEV-15 - Distribuição automática de processos', week:'Semana 1', ini:'21/10/2026', fim:'27/10/2026'} },
+{ id:'c2', kind:'sub', key:'CRAWFORD-XX', type:'Subtarefa', title:'LTDEV-15 — Card 2 — Motor de distribuição e troca de regulador', hrs:'30–40 h', child:true,
+  tasks:['Reescrever a consulta de candidatos em `ClaimAdjusterRepository.cs`: partir de `usr.UserX`, incluir quem tem 0 casos, filtrar país, nível e Ramo, `with(nolock)` (B1, B2)','Desempate e controle de concorrência (dois cadastros simultâneos não escolhem o mesmo regulador) (B6)','`DistributionClaimService.cs` rodando depois do `scope.Complete()` do cadastro, sem desfazer o sinistro em caso de falha (B3)','Troca de situação pelo serviço do país, sem a checagem `CanChangeClaimSituationOfAnotherAdjuster` (B4, B5)','Mensagens corretas (Cancelado × Encerrado) e motivo traduzido, não a chave (B7)','Sem parametrização = manual; flag "distribuição ativa" por país','Log e aviso das falhas da distribuição','Não distribuir no import em massa (`ImportClaimService.cs`) (B8)','Troca de regulador: estender `ClaimService.ChangeMainAdjuster` do `main` com motivo (mínimo de 30 caracteres) e permissão; descartar o `ChangeMainAdjusterService` paralelo (B14)','Pedido de troca: tabela, serviço, endpoints e e-mail ao gestor pelo Service-Email'],
+  sections:[
+   {h:'Objetivo',p:['Distribuir automaticamente cada sinistro cadastrado para o regulador certo, sem nunca desfazer o cadastro, e controlar a troca manual do regulador principal.']},
+   {h:'Contexto',p:['O motor da BRL-735 é chamado em `ClaimService.AfterRegister` em todos os países, sem flag, ignorando o resultado. A consulta parte da tabela `Claim` com `COUNT(*)` (quem tem 0 casos nunca entra), compara o nível na escala errada e roda dentro do `TransactionScope` do cadastro — uma falha desfaz o sinistro depois de ele ter ido para a integração.']},
+   {h:'Critérios de sucesso',ul:['Exemplo do documento: R1=10, R2=9, R3=8 → o próximo vai para R3; regulador com 0 casos também recebe','Falha na distribuição não desfaz o cadastro e fica registrada','Sem parametrização, nada muda no cadastro','Troca manual exige motivo de 30 caracteres e permissão; DEV-545 e DV-137 continuam funcionando','Pedido de troca chega por e-mail ao gestor']},
+   {h:'Riscos técnicos',p:['Critério de desempate em aberto (P1: fase do processo × última atualização × previsão de encerramento). Gestor com mais de um líder por membro (263 casos no Brasil) e membros sem equipe dependem da P9.']},
+   {h:'Outras informações',p:['Estimativa: 30 a 40 h. Depende do Card 1; bloqueia o Card 4.']}],
+  side:{parent:'LTDEV-15 - Distribuição automática de processos', week:'Semana 2', ini:'28/10/2026', fim:'03/11/2026'} },
+{ id:'c3', kind:'sub', key:'CRAWFORD-XX', type:'Subtarefa', title:'LTDEV-15 — Card 3 — Telas de parâmetro, Ramo obrigatório e troca de regulador', hrs:'28–45 h', child:true,
+  tasks:['Trazer o frontend da BRL-735 (merge sem conflito) e atualizar com o `main`','`parameter-distribuition-claim/`: validação de regra vazia, `activityUniqueId` × `activityAreaUniqueId`, lista de cargos vinda do backend e traduzida (F5)','`parameter-activity-area-adjuster/`: permissão e menu','`menu-parameter` e `page.utils.ts`: GUIDs certos, `isVisible` por permissão (F4)','`@brscloud/translates/i18n/`: Chile (`cl`, não `pa`), chaves faltando, menu traduzido nos 8 idiomas (F6)','Ramo obrigatório real: validador propagado pelo `crw-combo` e `setFormFieldRequired()` nos 6 países, incluindo o Chile (F3, F8)','`formClearUniqueIdEmpty` só onde precisa, em `claim-basic-main.component.ts` (F7)','Refazer `dialog-claim-situation-main-adjuster/`: form com `reason` e `claimUniqueId`, motivo de 30 a N caracteres (F1, F2)','Botão de regulador principal escondido com parametrização e liberado só para gestores','Nível de hierarquia no cadastro de cargo'],
+  sections:[
+   {h:'Objetivo',p:['Entregar as telas de parametrização e a troca de regulador funcionando, com permissão e tradução, e o Ramo realmente obrigatório no Brasil.']},
+   {h:'Contexto',p:['O frontend da BRL-735 não funciona como está: o diálogo de troca quebra ao abrir, o Ramo "obrigatório" só fica vermelho e não impede salvar, as telas não verificam permissão e o Chile fica sem tradução. O merge com o `main` não tem conflito.']},
+   {h:'Critérios de sucesso',ul:['Telas de parâmetro só para quem tem permissão, nos 8 idiomas','Não é possível salvar sinistro do Brasil sem Ramo; nos outros países, opcional','Diálogo de troca abre, exige 30 caracteres e só aparece para quem pode trocar','Build AOT sem erro']},
+   {h:'Riscos técnicos',p:['A P10/P11 (gestor troca direto ou também por pedido) muda o comportamento do botão.']},
+   {h:'Outras informações',p:['Estimativa: 28 a 45 h. Depende do Card 1. Se passar de 40 h, a folga dos Cards 1 e 2 cobre.']}],
+  side:{parent:'LTDEV-15 - Distribuição automática de processos', week:'Semana 3', ini:'04/11/2026', fim:'10/11/2026'} },
+{ id:'c4', kind:'sub', key:'CRAWFORD-XX', type:'Subtarefa', title:'LTDEV-15 — Card 4 — Pedido de troca, tela de aprovações, testes e entrega', hrs:'32–42 h', child:true,
+  tasks:['Pedido de troca no frontend: diálogo "Solicitar troca" e status no sinistro','Tela de aprovações: lista do líder logado, aprovar ou reprovar com motivo','Carga por regulador (reaproveitar `dashboard-squad-claim-pending` ou componente leve na aprovação)','Testes do motor: 0 casos, empate, concorrência, sem parametrização, import','Testes ponta a ponta por país (Brasil, Argentina, Chile, Colômbia, México, Peru)','Regressão: DEV-545, DV-137, upload de anexo, cadastro externo','Roteiro de testes para a QA e apoio na homologação','PRs no backend e no frontend, seguindo o `main`'],
+  sections:[
+   {h:'Objetivo',p:['Fechar o fluxo de aprovação da troca de regulador e entregar a funcionalidade testada em todos os países.']},
+   {h:'Contexto',p:['Com parametrização, o regulador não troca direto: pede com motivo, o gestor recebe por e-mail e aprova na tela de aprovações (anotações 5, 8, 9 e 11 da reunião). A tela de equipes atual (`/Squad`) pode bastar para a gestão de equipes (P-b).']},
+   {h:'Critérios de sucesso',ul:['Pedido feito → e-mail ao gestor → aprovação na tela → regulador trocado com o motivo registrado','Reprovação registra o motivo e mantém o regulador','Testes por país aprovados pela QA','PRs aprovados']},
+   {h:'Riscos técnicos',p:['Volume real de casos por regulador só é medido em homologação (P13). Mudança de regra depois da aprovação é reestimada.']},
+   {h:'Outras informações',p:['Estimativa: 32 a 42 h. Depende dos Cards 2 e 3.']}],
+  side:{parent:'LTDEV-15 - Distribuição automática de processos', week:'Semana 4', ini:'11/11/2026', fim:'17/11/2026'} }
+];
+const icoTxt = {epic:'⚡', dev:'D', sub:'S'};
+const tree = document.getElementById('tree'), box = document.getElementById('issues');
+issues.forEach(i => {
+  const r = document.createElement('div');
+  r.className = 'row' + (i.child ? ' child' : '');
+  r.innerHTML = `<span class="ico ${i.kind}">${icoTxt[i.kind]}</span><span class="key">${i.key}</span><span>${i.title}</span><span class="hrs">${i.hrs}</span><span class="pill">A fazer</span>`;
+  r.onclick = () => show(i.id);
+  tree.appendChild(r);
+
+  let body = '';
+  if (i.tasks) body += `<h3>Checklist</h3><ul class="tasks">${i.tasks.map(t=>`<li><span>${C(t)}</span></li>`).join('')}</ul>`;
+  i.sections.forEach(s => {
+    body += `<h3>${s.h}</h3>`;
+    if (s.p) body += s.p.map(x=>`<p>${C(x)}</p>`).join('');
+    if (s.ul) body += `<ul>${s.ul.map(x=>`<li>${C(x)}</li>`).join('')}</ul>`;
+  });
+  const d = document.createElement('div');
+  d.className = 'issue'; d.id = 'i-' + i.id;
+  d.innerHTML = `<div class="main"><div class="type"><span class="ico ${i.kind}">${icoTxt[i.kind]}</span>${i.type} · ${i.key}</div><h2>${i.title}</h2>${body}</div>
+  <div class="side">
+    <div class="f"><label>Status</label><span class="pill" style="justify-self:start">A fazer</span></div>
+    <div class="f"><label>Responsável</label><span class="avatar">ND</span>Nelson Diniz</div>
+    <div class="f"><label>Pai</label>${i.side.parent}</div>
+    <div class="f"><label>Sprint</label><span class="todo">a definir</span></div>
+    <div class="f"><label>Data de início</label>${i.side.ini}</div>
+    <div class="f"><label>Prazo</label>${i.side.fim}</div>
+    <div class="f"><label>Estimativa</label>${i.hrs}</div>
+    <div class="f"><label>Rótulos</label><span class="tag">LTDEV-15</span> <span class="tag">BRL-735</span></div>
+  </div>`;
+  box.appendChild(d);
+});
+function show(id){
+  document.querySelectorAll('.issue').forEach(e=>e.classList.toggle('on', e.id==='i-'+id));
+  document.getElementById('i-'+id).scrollIntoView({behavior:'smooth',block:'start'});
+}
+document.getElementById('i-pai').classList.add('on');
+</script>
+</body>
+</html>

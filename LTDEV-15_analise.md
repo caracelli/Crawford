@@ -30,7 +30,7 @@ Fontes: código da BRL-735 e do `main` atual (backend `70132fee3`, frontend `fb7
   - gestor = líder da equipe (`Squad`/`SquadLeader`/`SquadMember`), com tela de equipes e dashboard de casos pendentes;
   - template de e-mail "Alteração de Regulador Principal" (ação 6);
   - precedente de flag por país (`ParameterRoot.IsBillingTypeRequired`).
-- **Estimativa revisada: 125 a 165 horas (16 a 21 dias úteis de 8 h).** Os 105 h anteriores não incluíam o novo nível de hierarquia, o backend do fluxo de aprovação nem as correções do frontend.
+- **Estimativa revisada: 119 a 166 horas (15 a 21 dias úteis de 8 h).** Os 105 h anteriores não incluíam o novo nível de hierarquia, o backend do fluxo de aprovação nem as correções do frontend.
 
 ---
 
@@ -269,7 +269,7 @@ ORDER BY QtdAbertos, FaseMaisAvancada DESC, ca.PersonId;
 | Nível no cadastro de cargo; carga por regulador (opcional) | 3–8 |
 | **Testes e entrega** | |
 | Testes do motor, ponta a ponta por país, concorrência, import; apoio à QA; PRs | 14–18 |
-| **Total (Ramo opção A)** | **127–171 h ≈ 16 a 21 dias úteis** |
+| **Total (Ramo opção A)** | **119–166 h ≈ 15 a 21 dias úteis** |
 | Total com Ramo opção B | +5–8 h |
 
 ---
